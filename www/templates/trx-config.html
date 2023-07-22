@@ -1,0 +1,262 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+-->
+<div id="container">
+<div class="container">
+	<h1 class="snd-config">多房间音乐</h1>
+
+	<p>
+		moOde多房间音频系统由发送器和接收器组成。发送器应该是一个专用的moOde播放器，配置为输出到集成HDMI端口或可选的耳机插孔，但不连接到任何扬声器或耳机。它仅作为音乐服务器，将其音频输出发送到一个或多个接收器。有关更多信息，请查看多工作室设置指南</a>
+	</p>
+
+	<form class="form-horizontal" method="post">
+		<legend>发送者</legend>
+		<div class="control-group">
+			<label class="control-label">发送器守护程序</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-multiroom-tx-2">开</label>$_select[multiroom_tx_on]
+					<label class="toggle-radio" for="toggle-multiroom-tx-1">关</label>$_select[multiroom_tx_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_tx" value="novalue" $_multiroom_tx_disable>设置</button>
+			</div>
+
+			<label class="control-label">回路</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-alsa-loopback-2">开</label>$_select[alsa_loopback_on]
+					<label class="toggle-radio" for="toggle-alsa-loopback-1">关</label>$_select[alsa_loopback_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_alsa_loopback" value="novalue" $_alsa_loopback_disable>设置</button>
+				<span class="config-help-static">
+					发送器要求ALSA回路打开，音频配置中的所有DSP关闭。
+                </span>
+			</div>
+
+			<div class="controls">
+				<button class="btn btn-primary btn-medium config-btn btn-submit" type="submit" name="multiroom_tx_discover" value="novalue">发现</button
+				<span class="config-btn-after">接收者</span>
+				<span class="config-help-static">
+					$_rx_hostnames
+				</span>
+			</div>
+
+			<label class="control-label" for="multiroom_initvol">初始音量</label>
+			<div class="controls">
+				<input id="multiroom_initvol" class="config-input-large" type="number" maxlength="3" min="0" max="100" name="multiroom_initvol" value="$_multiroom_initvol">
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_initvol" value="novalue" $_multiroom_initvol_disable>Set</button>
+				<span class="config-help-static">
+					设置发送器和接收器的初始音量。请注意，接收器必须将“主音量选择加入”设置为“是”。
+				</span>
+			</div>
+
+			<div class="controls">
+				<a data-toggle="modal" href="#restart-tx" $_tx_restart_link_disable><button class="btn btn-medium btn-primary config-btn" $_tx_restart_btn_disable>重启</button></a>
+				<span class="config-btn-after">发送者</span>
+			</div>
+
+			<label class="control-label">高级配置</label>
+			<div class="controls">
+				<label id="multiroom-tx-adv-options-label" class="btn btn-primary btn-medium config-btn">$_SESSION[tx_adv_toggle]</label>
+			</div>
+
+			<div id="multiroom-tx-adv-options" class="$_tx_adv_options_hide">
+				<label class="control-label" for="multiroom_tx_bfr">ALSA缓冲器(ms)</label>
+				<div class="controls">
+					<select id="multiroom_tx_bfr" class="config-select-large" name="multiroom_tx_bfr">
+						$_select[multiroom_tx_bfr]
+					</select>
+					<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_tx_bfr" value="novalue">设置</button>
+					<span class="config-help-static">
+						ALSA缓冲区的长度（以毫秒为单位）。
+					</span>
+				</div>
+
+				<label class="control-label" for="multiroom_tx_frame_size">Opus框架大小(ms)</label>
+				<div class="controls">
+					<select id="multiroom_tx_frame_size" class="config-select-large" name="multiroom_tx_frame_size">
+						$_select[multiroom_tx_frame_size]
+					</select>
+					<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_tx_frame_size" value="novalue">设置</button>
+					<span class="config-help-static">
+						要编码到Opus帧中的PCM数据的长度（以毫秒为单位）。
+					</span>
+				</div>
+
+				<label class="control-label" for="multiroom_tx_rtprio">实时优先级</label>
+				<div class="controls">
+					<input id="multiroom_tx_rtprio" class="input-small" type="number" maxlength="3" min="1" max="99" name="multiroom_tx_rtprio" value="$_multiroom_tx_rtprio">
+					<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_tx_rtprio" value="novalue">设置</button>
+					<span class="config-help-static">
+						Sender后台程序的实时进程优先级。优先级范围从1到99，其中较高的优先级优先于较低的优先级<br>
+						注意：计划程序策略为FIFO，默认优先级为45。
+					</span>
+				</div>
+
+				<label class="control-label" for="multiroom_tx_query_timeout">查询超时 </label>
+				<div class="controls">
+					<input id="multiroom_tx_query_timeout" class="input-small" type="number" maxlength="1" min="1" max="3" name="multiroom_tx_query_timeout" value="$_multiroom_tx_query_timeout">
+					<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_tx_query_timeout" value="novalue">设置</button>
+					<span class="config-help-static">
+						查询接收器时每个接收器等待的最大秒数<br>
+						范围为1-3秒。默认值为1秒<br>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<legend>接收者</legend>
+		<div class="control-group">
+			<label class="control-label" for="multiroom_rx">接收器守护程序</label>
+			<div class="controls">
+				<select id="multiroom_rx" class="config-select-large" name="multiroom_rx">
+					$_select[multiroom_rx]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_rx" value="novalue" $_multiroom_rx_disable>设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_multiroom_rx" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_multiroom_rx" class="config-help-info config-help-no-margin">
+					禁用接收器会对接收器隐藏它<i class=“fas fa rss”></i>；屏幕并防止其打开。
+				</span>
+				<span class="config-help-static">
+					接收器需要一个音频设备，该设备在音频配置的音量类型下拉列表中显示“硬件”。
+					请注意，音量类型必须设置为硬件或固定（0dB）。
+				</span>
+			</div>
+
+			<label class="control-label">主音量</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-multiroom-rx-mastervol-opt-in-2">是</label>$_select[multiroom_rx_mastervol_opt_in_yes]
+					<label class="toggle-radio" for="toggle-multiroom-rx-mastervol-opt-in-1">否 </label>$_select[multiroom_rx_mastervol_opt_in_no]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_rx_mastervol_opt_in" value="novalue">设置</button>
+				<span class="config-help-static">
+					指定接收方是否接受发送方音量控件所做的更改。
+					请注意，在接收方&nbsp;<i class="fas fa-rss"></i>&nbsp;屏幕音量旋钮图标&nbsp;<i class="fal fa-dot-circle"></i>&nbsp;会出现在那些选择加入的人面前。
+				</span>
+			</div>
+
+			<label class="control-label" for="multiroom_rx_alsa_output_mode">ALSA输出模式</label>
+			<div class="controls">
+				<select id="multiroom_rx_alsa_output_mode" class="config-select-large" name="multiroom_rx_alsa_output_mode">
+					$_select[multiroom_rx_alsa_output_mode]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_rx_alsa_output_mode" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_multiroom_rx_alsa_output_mode" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_multiroom_rx_alsa_output_mode" class="config-help-info">
+					<b>Default (plughw): </b>如果需要，执行自动转换，例如将位深度零填充到音频设备支持的宽度。<br>
+					<b>Direct (hw): </b>不执行自动转换。音频设备必须支持输出格式，否则无法播放。<br>
+				</span>
+			</div>
+
+			<label class="control-label" for="multiroom_rx_alsavol">ALSA音量(%)</label>
+			<div class="controls">
+				<input id="multiroom_rx_alsavol" class="config-input-large" type="number" maxlength="3" min="0" max="100" name="multiroom_rx_alsavol" value="$_multiroom_rx_alsavol">
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_rx_alsavol" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_multiroom_rx_alsavol" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_multiroom_rx_alsavol" class="config-help-info">
+					当AirPlay或Spotify渲染器在发送方上播放时，ALSA音量应指示100% (0dB)。
+				</span>
+			</div>
+
+			<div class="controls">
+				<a data-toggle="modal" href="#restart-rx" $_rx_restart_link_disable><button class="btn btn-medium btn-primary config-btn" $_rx_restart_btn_disable>重新开始</button></a>
+				<span class="config-btn-after">接收机</span>
+			</div>
+
+			<label class="control-label">高级选项</label>
+			<div class="controls">
+				<label id="multiroom-rx-adv-options-label" class="btn btn-primary btn-medium config-btn">$_SESSION[rx_adv_toggle]</label>
+			</div>
+
+			<div id="multiroom-rx-adv-options" class="$_rx_adv_options_hide">
+				<label class="control-label" for="multiroom_rx_bfr">ALSA缓冲器(ms)</label>
+				<div class="controls">
+					<select id="multiroom_rx_bfr" class="config-select-large" name="multiroom_rx_bfr">
+						$_select[multiroom_rx_bfr]
+					</select>
+					<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_rx_bfr" value="novalue">设置</button>
+					<span id="info_multiroom_rx_bfr" class="config-help-static">
+						ALSA缓冲区的长度，以毫秒为单位。
+					</span>
+				</div>
+
+				<label class="control-label" for="multiroom_rx_jitter_bfr">RTP抖动缓冲器(ms)</label>
+				<div class="controls">
+					<select id="multiroom_rx_jitter_bfr" class="config-select-large" name="multiroom_rx_jitter_bfr">
+						$_select[multiroom_rx_jitter_bfr]
+					</select>
+					<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_rx_jitter_bfr" value="novalue">设置</button>
+					<span id="info_multiroom_rx_jitter_bfr" class="config-help-static">
+						RTP抖动补偿缓冲区的长度，以毫秒为单位。
+					</span>
+				</div>
+
+				<label class="control-label" for="multiroom_rx_frame_size">Opus帧尺寸(ms)</label>
+				<div class="controls">
+					<select id="multiroom_rx_frame_size" class="config-select-large" name="multiroom_rx_frame_size">
+						$_select[multiroom_rx_frame_size]
+					</select>
+					<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_rx_frame_size" value="novalue">设置</button>
+					<span id="info_multiroom_rx_frame_size" class="config-help-static">
+						要从Opus帧中解码的PCM数据的长度(毫秒)。
+					</span>
+				</div>
+
+				<label class="control-label" for="multiroom_rx_rtprio">实时优先级</label>
+				<div class="controls">
+					<input id="multiroom_rx_rtprio" class="input-small" type="number" maxlength="2" min="1" max="99" name="multiroom_rx_rtprio" value="$_multiroom_rx_rtprio">
+					<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_rx_rtprio" value="novalue">设置</button>
+					<span id="info_multiroom_rx_rtprio" class="config-help-static">
+						接收器守护程序的实时进程优先级。优先级范围为1 - 99，其中较高的优先级优先于较低的优先级。
+						请注意，调度程序策略是FIFO，默认优先级是45。
+					</span>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+
+<form class="form-horizontal" method="post">
+	<div id="restart-tx" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="restart-tx-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>重启发送器</h3>
+		</div>
+		<div class="modal-body"></div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="multiroom_tx_restart" value="1">确认</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="restart-rx" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="restart-rx-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>重启接收器</h3>
+		</div>
+		<div class="modal-body"></div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="multiroom_rx_restart" value="1">确认</button>
+		</div>
+	</div>
+</form>
