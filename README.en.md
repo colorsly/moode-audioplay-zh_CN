@@ -2,7 +2,7 @@
 
 #### Description
 MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，最初由Andrea Coiutti和Simone De Gregori设计和编码，随后通过RaspyFi/Volumio项目的早期努力进行了增强。
-汉化文件使用版本：Release: 8.2.4 2022-12-27
+汉化文件适用版本：Release: 8.2.4 2022-12-27
 
 #### Software Architecture
 Software architecture description
