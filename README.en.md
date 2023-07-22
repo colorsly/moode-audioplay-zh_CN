@@ -9,22 +9,17 @@ Software architecture description
 
 #### Installation
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  汉化版这个就不用了吧！
 
 #### Instructions
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  汉化版这个就不用了吧！
+
 
 #### Contribution
 
 1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+2.  部分借鉴6.4.0版汉化作者“八楼B座”的汉化成果，感谢！
 
 
 #### Gitee Feature
