@@ -794,7 +794,7 @@
 <div id="preferences-modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="preferences-modal-label" aria-hidden="true">
 	<div class="modal-header">
 		<button aria-label="Close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3 id="preferences-modal-label">外观</h3>
+		<h3 id="preferences-modal-label">偏爱</h3>
 	</div>
 	<div class="modal-body" id="container-preferences">
 		<!-- APPEARANCE -->
@@ -2213,7 +2213,7 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-ellipsis-limited-text" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-ellipsis-limited-text" class="help-block hide">在“专辑”视图的封面艺术下方显示省略号限制的文本，以获得更紧凑的外观。</span>
+						<span id="info-ellipsis-limited-text" class="help-block hide">在“专辑”视图的封面艺术下方显示省略号限制的文本，以获得更紧凑的偏爱。</span>
 					</div>
 					<label class="control-label" for="utf8-char-filter">UTF8字符过滤</label>
 					<div class="controls">
@@ -2909,7 +2909,7 @@
 					</a>
 					<span id="info-edit-station-type" class="help-block hide">此设置控制电台的可见性以及是否将其视为收藏夹。标记为隐藏的电台可以通过无线电管理器取消隐藏。</span>
 				</div>
-				<label class="control-label" for="edit-station-genre">Genre</label>
+				<label class="control-label" for="edit-station-genre">流派</label>
 				<div class="controls">
 					<input id="edit-station-genre" class="input-large" type="text" name="edit_station_genre" maxlength="200" value="">
 					<a aria-label="Help" class="info-toggle" data-cmd="info-edit-station-genre" href="#notarget">
@@ -2917,11 +2917,11 @@
 					</a>
 					<span id="info-edit-station-genre" class="help-block hide">第一种类型是主要类型，然后是相关或子类型，用“，”（逗号加空格）分隔。</span>
 				</div>
-				<label class="control-label" for="edit-station-broadcaster">Broadcaster</label>
+				<label class="control-label" for="edit-station-broadcaster">广播公司</label>
 				<div class="controls">
 					<input id="edit-station-broadcaster" class="input-large" type="text" name="edit_station_broadcaster" maxlength="200" value="">
 				</div>
-				<label class="control-label" for="new-station-home-page">Home page</label>
+				<label class="control-label" for="new-station-home-page">主页</label>
 				<div class="controls">
 					<input id="edit-station-home-page" class="input-large" type="text" name="edit_station_home_page" maxlength="200" value="">
 					<a aria-label="Help" class="info-toggle" data-cmd="info-edit-station-home-page" href="#notarget">
@@ -2929,27 +2929,27 @@
 					</a>
 					<span id="info-edit-station-home-page" class="help-block hide">电台主页的URL。单击“播放”视图中的“流媒体源”时使用此链接。</span>
 				</div>
-				<label class="control-label" for="edit-station-language">Language</label>
+				<label class="control-label" for="edit-station-language">语言</label>
 				<div class="controls">
 					<input id="edit-station-language" class="input-large" type="text" name="edit_station_language" maxlength="32" value="">
 				</div>
-				<label class="control-label" for="edit-station-country">Country</label>
+				<label class="control-label" for="edit-station-country">国家</label>
 				<div class="controls">
 					<input id="edit-station-country" class="input-large" type="text" name="edit_station_country" maxlength="200" value="">
 				</div>
-				<label class="control-label" for="edit-station-region">Region</label>
+				<label class="control-label" for="edit-station-region">地区</label>
 				<div class="controls">
 					<input id="edit-station-region" class="input-large" type="text" name="edit_station_region" maxlength="200" value="">
 				</div>
-				<label class="control-label" for="edit-station-bitrate">Bit rate (kbps)</label>
+				<label class="control-label" for="edit-station-bitrate">比特率(kbps)</label>
 				<div class="controls">
 					<input id="edit-station-bitrate" class="input-large" type="text" maxlength="4" name="edit_station_bitrate" value="">
 				</div>
-				<label class="control-label" for="edit-station-format">Audio format</label>
+				<label class="control-label" for="edit-station-format">音频格式</label>
 				<div class="controls">
 					<input id="edit-station-format" class="input-large" type="text" name="edit_station_format" maxlength="10" value="">
 				</div>
-				<label class="control-label" for="edit-station-geo-fenced">Geo-fenced</label>
+				<label class="control-label" for="edit-station-geo-fenced">地理围栏</label>
 				<div class="controls">
 					<div class="btn-group bootstrap-select select-large">
 						<button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
@@ -3014,7 +3014,7 @@
 		<!-- SORT/GROUP OPTIONS -->
 		<span class="h5">排序与分组</span>
 		<div class="control-group">
-			<label class="control-label" for="radioview-sort-tag">Sort tag</label>
+			<label class="control-label" for="radioview-sort-tag">标签排序</label>
 			<div class="controls">
 				<div class="btn-group bootstrap-select select-large">
 					<button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
@@ -3026,42 +3026,42 @@
 						<ul class="dropdown-menu custom-select inner" role="menu">
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-sort-tag-sel">
-									<span class="text">Name</span>
+									<span class="text">名称</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-sort-tag-sel">
-									<span class="text">Genre</span>
+									<span class="text">流派</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-sort-tag-sel">
-									<span class="text">Broadcaster</span>
+									<span class="text">广播公司</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-sort-tag-sel">
-									<span class="text">Language</span>
+									<span class="text">语言</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-sort-tag-sel">
-									<span class="text">Country</span>
+									<span class="text">国家</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-sort-tag-sel">
-									<span class="text">Region</span>
+									<span class="text">地区</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-sort-tag-sel">
-									<span class="text">Bitrate</span>
+									<span class="text">比特率(kbps)</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-sort-tag-sel">
-									<span class="text">Format</span>
+									<span class="text">音频格式</span>
 								</a>
 							</li>
 						</ul>
@@ -3084,17 +3084,17 @@
 						<ul class="dropdown-menu custom-select inner" role="menu">
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-group-method-sel">
-									<span class="text">Favorites first</span>
+									<span class="text">收藏夹优先</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-group-method-sel">
-									<span class="text">Sort tag</span>
+									<span class="text">标签排序</span>
 								</a>
 							</li>
 							<li class="modal-dropdown-text">
 								<a href="#notarget" data-cmd="radioview-group-method-sel">
-									<span class="text">No grouping</span>
+									<span class="text">没有分组</span>
 								</a>
 							</li>
 						</ul>
@@ -3168,7 +3168,7 @@
 					<br>Note that moOde stations are a custom curated set of stations shipped in the release.
 				</span>
 			</div>
-			<label class="control-label" for="radioview-show-hide-other">Other stations</label>
+			<label class="control-label" for="radioview-show-hide-other">其他电台</label>
 			<div class="controls">
 				<div class="btn-group bootstrap-select select-large">
 					<button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">

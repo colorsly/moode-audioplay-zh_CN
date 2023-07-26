@@ -32,13 +32,14 @@
 		<p>MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，最初由Andrea Coiutti和Simone De Gregori设计和编码，随后通过RaspyFi/Volumio项目的早期努力进行了增强。</p>
 		<h5>发布信息</h5>
 		<ul>
-			<li>发布: 8.2.4 2022-12-27</li><!-- NOTE: getMoodeRel() parses this  -->
-			<li>维护者: Tim Curtis &copy; 2014</li>
-			<li>文档: <a class="moode-about-link" href="./relnotes.txt" target="_blank">查看发行说明，</a>&nbsp<a class="moode-about-link" href="./setup.txt" target="_blank">查看安装指南</a>
+			<li>发布： 8.2.4 2022-12-27</li>
+			<!-- NOTE: getMoodeRel() parses this  -->
+			<li>维护者： Tim Curtis &copy; 2014</li>
+			<li>文档： <a class="moode-about-link" href="./relnotes.txt" target="_blank">查看发行说明，</a>&nbsp&nbsp<a class="moode-about-link" href="./setup.txt" target="_blank">查看安装指南</a>
 			</li>
-			<li>贡献者: <a class="moode-about-link" href="./CONTRIBS.html" target="_blank">查看贡献者</a>
+			<li>贡献者： <a class="moode-about-link" href="./CONTRIBS.html" target="_blank">查看贡献者</a>
 			</li>
-			<li>许可证: <a class="moode-about-link" href="./COPYING.html" target="_blank">查看GPLv3</a>
+			<li>许可证： <a class="moode-about-link" href="./COPYING.html" target="_blank">查看GPLv3</a>
 			</li>
 		</ul>
 		<h5>平台信息</h5>

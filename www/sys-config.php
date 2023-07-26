@@ -101,8 +101,8 @@ if (isset($_POST['update_time_zone'])) {
 if (isset($_POST['update_host_name'])) {
 	if (isset($_POST['hostname']) && $_POST['hostname'] != $_SESSION['hostname']) {
 		if (preg_match("/[^A-Za-z0-9-]/", $_POST['hostname']) == 1) {
-			$_SESSION['notify']['title'] = 'Invalid input';
-			$_SESSION['notify']['msg'] = "Host name can only contain A-Z, a-z, 0-9 or hyphen (-).";
+			$_SESSION['notify']['title'] = '无效输入';
+			$_SESSION['notify']['msg'] = "主机名只能包含a-z、A-Z、0-9或连字符(-)。";
 		} else {
 			submitJob('hostname', '"' . $_SESSION['hostname'] . '" ' . '"' . $_POST['hostname'] . '"', 'Settings updated', 'Restart required');
 			phpSession('write', 'hostname', $_POST['hostname']);
@@ -120,7 +120,7 @@ if (isset($_POST['update_keyboard'])) {
 if (isset($_POST['update_browser_title'])) {
 	if (isset($_POST['browsertitle']) && $_POST['browsertitle'] != $_SESSION['browsertitle']) {
 		phpSession('write', 'browsertitle', $_POST['browsertitle']);
-		$_SESSION['notify']['title'] = 'Settings updated';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 }
 
@@ -167,12 +167,12 @@ if (isset($_POST['update_pwrled']) && $_POST['pwrled'] != explode(',', $_SESSION
 
 if (isset($_POST['update_ipaddr_timeout']) && $_POST['ipaddr_timeout'] != $_SESSION['ipaddr_timeout']) {
 	phpSession('write', 'ipaddr_timeout', $_POST['ipaddr_timeout']);
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 if (isset($_POST['eth0chk']) && $_POST['eth0chk'] != $_SESSION['eth0chk']) {
 	phpSession('write', 'eth0chk', $_POST['eth0chk']);
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 // TEST
@@ -211,7 +211,7 @@ if (isset($_POST['update_scnblank'])) {
 if (isset($_POST['update_wake_display'])) {
     if (isset($_POST['wake_display']) && $_POST['wake_display'] != $_SESSION['wake_display']) {
         phpSession('write', 'wake_display', $_POST['wake_display']);
-		$_SESSION['notify']['title'] = 'Settings updated';
+		$_SESSION['notify']['title'] = '设置已更新';
     }
 }
 
@@ -274,7 +274,7 @@ if (isset($_POST['update_fs_nfs_options'])) {
 
 if (isset($_POST['extmeta']) && $_POST['extmeta'] != $_SESSION['extmeta']) {
 	phpSession('write', 'extmeta', $_POST['extmeta']);
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 if (isset($_POST['update_lcdup'])) {
@@ -307,7 +307,7 @@ if (isset($_POST['update_clear_playhistory'])) {
 
 if (isset($_POST['debuglog']) && $_POST['debuglog'] != $_SESSION['debuglog']) {
 	$_SESSION['debuglog'] = $_POST['debuglog'];
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 phpSession('close');
