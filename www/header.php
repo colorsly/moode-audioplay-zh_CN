@@ -149,10 +149,10 @@
 			<ul class="dropdown-menu" role="menu" aria-labelledby="menu-settings">
 				<?php if ($section == 'index') { ?>
 					<li><a href="#configure-modal" data-toggle="modal"><i class="fas fa-cog sx"></i> 配置</a></li>
-					<li class="context-menu menu-separator"><a href="#notarget" data-cmd="preferences"><i class="fas fa-edit sx"></i> 外观</a></li>
+					<li class="context-menu menu-separator"><a href="#notarget" data-cmd="preferences"><i class="fas fa-edit sx"></i> 偏爱</a></li>
                     <li class="context-menu"><a href="#notarget" data-cmd="update_library"><i class="fas fa-sync sx"></i> 更新库</a></li>
 					<li id="bluetooth-hide"><a href="blu-config.php"><i class="fas fa-wifi sx"></i> 蓝牙</a></li>
-					<li id="players-menu-item"><a href="javascript:$('#players-modal .modal-body').load('players.php',function(e){$('#players-modal').modal('show');}); void 0"><i class="fas fa-forward sx"></i> 其他参与者</a></li>
+					<li id="players-menu-item"><a href="javascript:$('#players-modal .modal-body').load('players.php',function(e){$('#players-modal').modal('show');}); void 0"><i class="fas fa-forward sx"></i> 其他玩家</a></li>
                     <li><a href="javascript:audioPlayback()"><i class="fas fa-music sx"></i> 音频信息</a></li>
 					<li id="playhistory-hide" class="context-menu"><a href="#notarget" data-cmd="viewplayhistory"><i class="fas fa-book sx"></i> 播放历史</a></li>
 					<li class="context-menu"><a href="#notarget" data-cmd="quickhelp"><i class="fas fa-info sx"></i> 快速帮助</a></li>
