@@ -1,0 +1,291 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+-->
+<div id="container">
+<div class="container">
+	<h1 class="net-config">网络配置</h1>
+
+    <form class="form-horizontal" action="" method="post">
+		<legend>网卡
+			<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+		</legend>
+		<p class="sub-legend">
+			以太网有线连接提供了最大的性能和可靠性，并且通常不受大多数类型的电气和射频干扰的影响，这些干扰通常出现在住宅路由器和网络交换机所在的环境中。
+		</p>
+
+		<div class="control-group" >
+			<label class="control-label" for="eth0-method">地址</label>
+			<div class="controls">
+				<select id="eth0-method" name="eth0method" class="config-select-large">
+					$_eth0method
+				</select>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-eth0method" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-eth0method" class="config-help-info config-help-no-margin">
+                	IP地址分配方法。
+                </span>
+				<span class="config-help-static">
+					$_eth0currentip
+				</span>
+			</div>
+
+			<div id="eth0-static" class="class=control-group hide">
+				<label class="control-label" for="eth0ip">地址</label>
+				<div class="controls">
+					<input class="config-input-large" type="text" id="eth0ip" name="eth0ipaddr" value="$_eth0ipaddr">
+				</div>
+
+				<label class="control-label" for="eth0-netmask">掩码</label>
+				<div class="controls">
+					<select id="eth0-netmask" name="eth0netmask" class="config-select-large">
+						$_eth0netmask
+					</select>
+				</div>
+
+				<label class="control-label" for="eth0gateway">网关</label>
+				<div class="controls">
+					<input class="config-input-large" type="text" id="eth0gateway" name="eth0gateway" value="$_eth0gateway">
+				</div>
+
+				<label class="control-label" for="eth0pridns">主DNS</label>
+				<div class="controls">
+					<input class="config-input-large" type="text" id="eth0pridns" name="eth0pridns" value="$_eth0pridns">
+				</div>
+
+				<label class="control-label" for="eth0secdns">从DNS</label>
+				<div class="controls">
+					<input class="config-input-large" type="text" id="eth0secdns" name="eth0secdns" value="$_eth0secdns">
+				</div>
+			</div>
+		</div>
+
+		<legend>无线
+			<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+		</legend>
+		<p class="sub-legend">
+			WiFi 5Ghz频带上的无线网络通常不太可能由于2.4GHz频带上经常存在的干扰和拥塞而导致性能下降。
+		</p>
+
+		<div class="control-group" >
+			<label class="control-label" for="wlan0-method">地址</label>
+			<div class="controls">
+				<select id="wlan0-method" name="wlan0method" class="config-select-large">
+					$_wlan0method
+				</select>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-wlan0method" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-wlan0method" class="config-help-info config-help-no-margin">
+                	IP地址分配方法。连接质量(quality)和信号强度(level)。
+                </span>
+				<span class="config-help-static">
+					$_wlan0currentip
+				</span>
+			</div>
+
+			<label class="control-label" for="wlan0ssid">无线网络(SSID)</label>
+			<div class="controls">
+				<select id="wlan0ssid" name="wlan0ssid" class="config-select-large">
+					$_wlan0ssid
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="scan" value="1">扫描</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-wlan0ssid" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-wlan0ssid" class="config-help-info">
+					SCAN生成可用无线网络的列表。
+                </span>
+			</div>
+
+			<div class="controls">
+				<a data-toggle="modal" href="#manual-ssid"><button class="btn btn-medium btn-primary config-btn">输入</button></a>
+				<span class="config-btn-after">手动配置SSID</span>
+			</div>
+
+			<div class="controls">
+				<a data-toggle="modal" href="#manage-saved-networks"><button class="btn btn-medium btn-primary config-btn">管理</button></a>
+				<span class="config-btn-after">保存网络</span>
+			</div>
+
+			<label class="control-label" for="wlan0sec">安全</label>
+			<div class="controls">
+				<select id="wlan0sec" name="wlan0sec" class="config-select-large">
+					$_wlan0sec
+				</select>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-wlan0sec" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-wlan0sec" class="config-help-info">
+                	安全协议。
+                </span>
+			</div>
+
+			<label class="control-label" for="wlan0pwd">密码</label>
+			<div class="controls">
+				<input class="config-input-large" type="password" pattern=".{8,64}" id="wlan0pwd" name="wlan0pwd" value="$_wlan0pwd">
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-wlan0pwd" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<a class="show-hide-password" href="#notarget" data-id="wlan0pwd"><i class="fal fa-eye"></i></a>
+				<span id="info-wlan0pwd" class="config-help-info">
+                	长度8-63个字符。保存后，密码将转换为预共享密钥（PSK）。
+                </span>
+			</div>
+
+			<label class="control-label" for="wlan0country">国家</label>
+			<div class="controls">
+				<select id="wlan0country" name="wlan0country" class="config-select-large">
+					$_wlan0country
+				</select>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-wlan0country" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-wlan0country" class="config-help-info">
+					国家/地区代码决定可用的频带。<br>
+                </span>
+			</div>
+		</div>
+
+		<div id="wlan0-static" class="control-group hide">
+			<label class="control-label" for="wlan0ip">地址</label>
+			<div class="controls">
+				<input class="config-input-large" type="text" id="wlan0ip" name="wlan0ipaddr" value="$_wlan0ipaddr">
+			</div>
+
+			<label class="control-label" for="wlan0-netmask">掩码</label>
+			<div class="controls">
+				<select id="wlan0-netmask" name="wlan0netmask" class="config-select-large">
+					$_wlan0netmask
+				</select>
+			</div>
+
+			<label class="control-label" for="wlan0gateway">网关</label>
+			<div class="controls">
+				<input class="config-input-large" type="text" id="wlan0gateway" name="wlan0gateway" value="$_wlan0gateway">
+			</div>
+
+			<label class="control-label" for="wlan0pridns">主DNS</label>
+			<div class="controls">
+				<input class="config-input-large" type="text" id="wlan0pridns" name="wlan0pridns" value="$_wlan0pridns">
+			</div>
+
+			<label class="control-label" for="wlan0secdns">从DNS</label>
+			<div class="controls">
+				<input class="config-input-large" type="text" id="wlan0secdns" name="wlan0secdns" value="$_wlan0secdns">
+			</div>
+		</div>
+
+		<legend>接入点
+			<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+		</legend>
+		<p class="sub-legend">
+			接入点（AP）模式允许通过moOde自己的专用2.4 GHz WiFi网络访问moOde，该网络使用下面的SSID命名。
+			连接到SSID后，输入URL<b>http://172.24.1.1</b>或<b>http://moode.local</b>进入浏览器以打开WebUI。
+			AP还可以作为路由器，通过打开路由器模式在AP和以太网连接之间转发数据包。
+		</p>
+
+		<div class="control-group">
+			<label class="control-label">路由器模式</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-wlan0apd-router-2">开</label>$_select[wlan0apd_router_on]
+					<label class="toggle-radio" for="toggle-wlan0apd-router-1">关</label>$_select[wlan0apd_router_off]
+				</div>
+				<span class="config-help-static">
+					 路由器模式在接入点和以太网连接之间转发数据包。
+		        </span>
+			</div>
+
+	        <label class="control-label" for="apdssid">网络(SSID)</label>
+	        <div class="controls">
+	            <input class="config-input-large" type="text" pattern="[A-Za-z0-9\-]{3,32}" id="apdssid" name="wlan0apdssid" value="$_wlan0apdssid" required>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-apdssid" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-apdssid" class="config-help-info">
+					长度8-63字符、A-Z、a-z、0-9 被允许。<br>
+					备注：默认密码为 moodeaudio
+				</span>
+	        </div>
+
+            <label class="control-label" for="apdchan">信道</label>
+            <div class="controls">
+                <input class="config-input-large" type="number" maxlength="2" min="1" max="14" id="apdchan" name="wlan0apdchan" value="$_wlan0apdchan" required>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-apdchan" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-apdchan" class="config-help-info">
+					2.4 GHz频段支持信道1-14。
+				</span>
+            </div>
+
+            <label class="control-label" for="apdpwd">密码</label>
+            <div class="controls">
+                <input class="config-input-large" type="password" pattern=".{8,64}" id="apdpwd" name="wlan0apdpwd" value="$_wlan0apdpwd" required>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-apdpwd" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<a class="show-hide-password" href="#notarget" data-id="apdpwd"><i class="fal fa-eye"></i></a>
+				<span id="info-apdpwd" class="config-help-info">
+					长度8-63字符、A-Z、a-z、0-9 被允许。<br>
+				</span>
+				<span class="config-help-static">
+					默认密码为moodeaudio，但应进行更改以提高安全性。
+				</span>
+            </div>
+        </div>
+	</form>
+</div>
+</div>
+
+<form class="form-horizontal" method="post">
+	<div id="net-config-defaults" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="net-config-defaults-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div>
+		<div class="modal-body"><h3>将网络配置重置为以太网和DHCP？</h3></div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="reset" value="1">确认</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="manual-ssid" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="manual-ssid-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>手动SSID输入</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="wlan0otherssid">SSID</label>
+				<div class="controls">
+					<input class="config-input-large config-modal-input" type="text" pattern="[A-Za-z0-9\- ]{3,32}" id="wlan0otherssid" name="wlan0otherssid" value="" autofocus>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-manualssid" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-manualssid" class="config-help-info">
+                    	长度2-32字符。
+                    </span>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="manualssid" value="1">确认</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="manage-saved-networks" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="manage-saved-networks-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>管理保存的网络</h3>
+		</div>
+		<div class="modal-body">
+			<div class="form-horizontal">
+				$_saved_networks
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="update-saved-networks" value="1">更新</button>
+		</div>
+	</div>
+</form>
