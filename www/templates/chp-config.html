@@ -150,7 +150,7 @@
 			</legend>
 			<p class=sub-legend>这些选项适用于Boss 2板上的Cirrus Logic CS43198实现。</p>
 
-			<label class="control-label" for="boss2-deemphasis-filter">De-emphasis filter</label>
+			<label class="control-label" for="boss2-deemphasis-filter">去加重滤波器</label>
 			<div class="controls">
 				<select id="boss2-deemphasis-filter" class="config-select-large" name="config[boss2_deemphasis_filter]">
 					$_select[boss2_deemphasis_filter]
@@ -160,7 +160,7 @@
                 </span>
 			</div>
 
-			<label class="control-label" for="boss2-filter-speed">Filter speed</label>
+			<label class="control-label" for="boss2-filter-speed">过滤速度</label>
 			<div class="controls">
 				<select id="boss2-filter-speed" class="config-select-large" name="config[boss2_filter_speed]">
 					$_select[boss2_filter_speed]
@@ -170,7 +170,7 @@
                 </span>
 			</div>
 
-			<label class="control-label" for="boss2-highpass-filter">High pass filter</label>
+			<label class="control-label" for="boss2-highpass-filter">高通滤波器</label>
 			<div class="controls">
 				<select id="boss2-highpass-filter" class="config-select-large" name="config[boss2_highpass_filter]">
 					$_select[boss2_highpass_filter]
@@ -180,7 +180,7 @@
                 </span>
 			</div>
 
-			<label class="control-label" for="boss2-nonosf-emulate">Emulate NOS</label>
+			<label class="control-label" for="boss2-nonosf-emulate">模拟NOS</label>
 			<div class="controls">
 				<select id="boss2-nonosf-emulate" class="config-select-large" name="config[boss2_nonosf_emulate]">
 					$_select[boss2_nonosf_emulate]
@@ -190,7 +190,7 @@
                 </span>
 			</div>
 
-			<label class="control-label" for="boss2-phase-compensation">Phase compensation</label>
+			<label class="control-label" for="boss2-phase-compensation">相位补偿</label>
 			<div class="controls">
 				<select id="boss2-phase-compensation" class="config-select-large" name="config[boss2_phase_compensation]">
 					$_select[boss2_phase_compensation]
@@ -223,11 +223,11 @@
 		<!-- Audiophonics (ESS Sabre ES9028/9038 pre and post 2019 boards) -->
 		<div class="control-group $_audiophonics_q2m_hide">
 			<legend>Audiophonics ES9028/9038 DAC
-				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">Save</button>
+				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
 			</legend>
 			<p class=sub-legend>这些选项适用于音频板上的ESS Sabre ES9028/9038实现。</p>
 
-			<label class="control-label" for="audiophonics-q2m-osf">Oversampling filter</label>
+			<label class="control-label" for="audiophonics-q2m-osf">过采样滤波器</label>
 			<div class="controls">
 				<select id="audiophonics-q2m-osf" class="config-select-large" name="config[audiophonics_q2m_osf]">
 					$_select[audiophonics_q2m_osf]
@@ -240,7 +240,7 @@
 			</div>
 
 			<!-- NOTE: This option is handled in the Source Select screen -->
-			<label class="control-label" for="audiophonics-q2m-input">DAC input</label>
+			<label class="control-label" for="audiophonics-q2m-input">DAC输入</label>
 			<div class="controls">
 				<select id="audiophonics-q2m-input" class="config-select-large" name="config[audiophonics_q2m_input]">
 					$_select[audiophonics_q2m_input]
@@ -254,17 +254,18 @@
 		<!-- MERUS(tm) Amp piHAT ZW (MERUS MA12070P chip) -->
 		<div class="control-group $_merus_ma12070p">
 			<legend>MERUS(tm) Amp piHAT ZW
-				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">Save</button>
+				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
 			</legend>
 			<p class=sub-legend>这些选项适用于在MERUS Amp板上实施的MERUS MA12070P。</p>
 
-			<label class="control-label" for="merus-ma12070p-pmp">Power mode profile</label>
+			<label class="control-label" for="merus-ma12070p-pmp">电源模式配置文件</label>
 			<div class="controls">
 				<select id="merus-ma12070p-pmp" class="config-select-large" name="config[merus_ma12070p_pmp]">
 					$_select[merus_ma12070p_pmp]
 				</select>
 				<span class="config-help-static">
-                	MA12070P为操作内部放大器提供了不同的功率模式配置文件。它们为预期应用定义了放大器的最佳设置。功率模式配置文件的选择会影响各种参数，如开关频率、调制方案和环路增益，从而在音频性能、功率损耗和EMI等设计权衡中提供灵活性。
+                	MA12070P为操作内部放大器提供了不同的功率模式配置文件。它们为预期应用定义了放大器的最佳设置。
+					功率模式配置文件的选择会影响各种参数，如开关频率、调制方案和环路增益，从而在音频性能、功率损耗和EMI等设计权衡中提供灵活性。
                 </span>
 			</div>
 		</div>
