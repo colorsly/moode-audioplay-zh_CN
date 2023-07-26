@@ -32,13 +32,13 @@
 		<p>MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，最初由Andrea Coiutti和Simone De Gregori设计和编码，随后通过RaspyFi/Volumio项目的早期努力进行了增强。</p>
 		<h5>发布信息</h5>
 		<ul>
-			<li>Release: 8.2.4 2022-12-27</li><!-- NOTE: getMoodeRel() parses this  -->
-			<li>Maintainer: Tim Curtis &copy; 2014</li>
-			<li>Documentation: <a class="moode-about-link" href="./relnotes.txt" target="_blank">View release notes,</a>&nbsp<a class="moode-about-link" href="./setup.txt" target="_blank">View setup guide</a>
+			<li>发布: 8.2.4 2022-12-27</li><!-- NOTE: getMoodeRel() parses this  -->
+			<li>维护者: Tim Curtis &copy; 2014</li>
+			<li>文档: <a class="moode-about-link" href="./relnotes.txt" target="_blank">查看发行说明，</a>&nbsp<a class="moode-about-link" href="./setup.txt" target="_blank">查看安装指南</a>
 			</li>
-			<li>Contributors: <a class="moode-about-link" href="./CONTRIBS.html" target="_blank">View contributors</a>
+			<li>贡献者: <a class="moode-about-link" href="./CONTRIBS.html" target="_blank">查看贡献者</a>
 			</li>
-			<li>License: <a class="moode-about-link" href="./COPYING.html" target="_blank">View GPLv3</a>
+			<li>许可证: <a class="moode-about-link" href="./COPYING.html" target="_blank">查看GPLv3</a>
 			</li>
 		</ul>
 		<h5>平台信息</h5>
@@ -63,7 +63,7 @@
 <div id="configure-modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="configure-modal-label" aria-hidden="true">
 	<div class="modal-header">
 		<button aria-label="Close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3 id="configure-modal-label">配置设置</h3>
+		<h3 id="configure-modal-label">配置</h3>
 	</div>
 	<div class="modal-body">
 		<div id="configure">
@@ -145,7 +145,7 @@
 <div id="players-modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="players-modal-label" aria-hidden="true">
 	<div class="modal-header">
 		<button aria-label="Close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3 id="players-modal-label">其他参与者</h3>
+		<h3 id="players-modal-label">其他玩家</h3>
 	</div>
 	<div class="modal-body"></div>
 	<div class="modal-footer">
