@@ -18,6 +18,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 汉化：Androidnews
  *
  */
 
@@ -36,7 +37,7 @@ phpSession('open');
 if (isset($_POST['update_updater_auto_check'])) {
 	if (isset($_POST['updater_auto_check']) && $_POST['updater_auto_check'] != $_SESSION['updater_auto_check']) {
 		$_SESSION['updater_auto_check'] = $_POST['updater_auto_check'];
-		submitJob('updater_auto_check', $_POST['updater_auto_check'], 'Settings updated', '');
+		submitJob('updater_auto_check', $_POST['updater_auto_check'], '设置已更新', '');
 	}
 }
 
@@ -47,15 +48,15 @@ if (isset($_POST['checkfor_update'])) {
 
 	if (false === ($availableDate = strtotime($available['Date'])) ||
 		false === ($thisDate = strtotime($thisReleaseDate))) {
-		$_available_upd = 'Date error comparing This: ' . $thisReleaseDate . ' to Available: ' . $available['Date'];
+		$_available_upd = '比较以下内容时出现日期错误：' . $thisReleaseDate . ' 至可用： ' . $available['Date'];
 	} else if ($availableDate <= $thisDate) {
-		$_available_upd = 'Software is up to date';
+		$_available_upd = '软件是最新的';
 	} else if ($available['ImageOnly'] == 'Yes') {
-		$_available_upd = 'moOde��һ���µ��ȶ��汾���������Ƴ����μ� <a href="http://moodeaudio.org" class="moode-about-link" target="_blank">moodeaudio.org</a> �˽������Ϣ��';
+		$_available_upd = 'moOde的一个新的稳定版本镜像现已推出。参见 <a href="http://moodeaudio.org" class="moode-about-link" target="_blank">moodeaudio.org</a> 了解更多信息。';
 	} else {
 		$_available_upd = $available['Date'] == 'None' ? 'None available' :
-			'<button class="btn btn-primary btn-small config-btn set-button btn-submit" id="install-update" type="submit" name="install_update" value="1">��װ</button>' .
-			'<button class="btn btn-primary btn-small config-btn set-button" data-toggle="modal" href="#view-pkgcontent">�鿴</button>' .
+			'<button class="btn btn-primary btn-small config-btn set-button btn-submit" id="install-update" type="submit" name="install_update" value="1">安装</button>' .
+			'<button class="btn btn-primary btn-small config-btn set-button" data-toggle="modal" href="#view-pkgcontent">查看</button>' .
 			'<span class="config-btn-after">Release ' . $available['Release'] . ', ' . $available['Date'] . '</span>' .
 			'<span class="config-help-static">Monitor progress with the command <i>moodeutl -t</i></span>';
 		$_pkg_description = $available['Description'];
@@ -72,16 +73,16 @@ if (isset($_POST['install_update'])) {
 		$space = sysCmd("df | grep /dev/root | awk '{print $4}'");
 		# Check for invalid configs
 		if ($mount[0] != '/var/local/moode.sqsh on /var/www type squashfs (ro,relatime)' && ($_SESSION['feat_bitmask'] & FEAT_SQSHCHK)) {
-			$_SESSION['notify']['title'] = '��Ч������';
-			$_SESSION['notify']['msg'] = "�Ҳ���ѹ���ļ�ϵͳ";
+			$_SESSION['notify']['title'] = '无效的配置';
+			$_SESSION['notify']['msg'] = "找不到压缩文件系统";
 			$_SESSION['notify']['duration'] = 20;
 		} else if ($mount[0] == '/var/local/moode.sqsh on /var/www type squashfs (ro,relatime)' && !($_SESSION['feat_bitmask'] & FEAT_SQSHCHK)) {
-			$_SESSION['notify']['title'] = '��Ч������';
-			$_SESSION['notify']['msg'] = "�ļ�ϵͳ��ѹ���ĺ�ֻ����";
+			$_SESSION['notify']['title'] = '无效的配置';
+			$_SESSION['notify']['msg'] = "文件系统是压缩的和只读的";
 			$_SESSION['notify']['duration'] = 20;
 		} else if ($space[0] < 512000) {
-			$_SESSION['notify']['title'] = '�ռ䲻��';
-			$_SESSION['notify']['msg'] = "û������500M�Ŀռ䣬�����޷�����";
+			$_SESSION['notify']['title'] = '空间不足';
+			$_SESSION['notify']['msg'] = "没有至少500M的空间，更新无法进行";
 			$_SESSION['notify']['duration'] = 20;
 		} else {
 			submitJob('install_update', '', '', '', 60000);
@@ -93,7 +94,7 @@ if (isset($_POST['install_update'])) {
 
 if (isset($_POST['update_time_zone'])) {
 	if (isset($_POST['timezone']) && $_POST['timezone'] != $_SESSION['timezone']) {
-		submitJob('timezone', $_POST['timezone'], 'Settings updated', '');
+		submitJob('timezone', $_POST['timezone'], '置已更新', '');
 		phpSession('write', 'timezone', $_POST['timezone']);
 	}
 }
@@ -101,10 +102,10 @@ if (isset($_POST['update_time_zone'])) {
 if (isset($_POST['update_host_name'])) {
 	if (isset($_POST['hostname']) && $_POST['hostname'] != $_SESSION['hostname']) {
 		if (preg_match("/[^A-Za-z0-9-]/", $_POST['hostname']) == 1) {
-			$_SESSION['notify']['title'] = '��Ч����';
-			$_SESSION['notify']['msg'] = "������ֻ�ܰ���a-z��A-Z��0-9�����ַ�(-)��";
+			$_SESSION['notify']['title'] = '无效输入';
+			$_SESSION['notify']['msg'] = "主机名只能包含a-z、A-Z、0-9或连字符(-)。";
 		} else {
-			submitJob('hostname', '"' . $_SESSION['hostname'] . '" ' . '"' . $_POST['hostname'] . '"', 'Settings updated', 'Restart required');
+			submitJob('hostname', '"' . $_SESSION['hostname'] . '" ' . '"' . $_POST['hostname'] . '"', '设置已更新', '需要重启');
 			phpSession('write', 'hostname', $_POST['hostname']);
 		}
 	}
@@ -112,7 +113,7 @@ if (isset($_POST['update_host_name'])) {
 
 if (isset($_POST['update_keyboard'])) {
     if (isset($_POST['keyboard']) && $_POST['keyboard'] != $_SESSION['keyboard']) {
-        submitJob('keyboard', $_POST['keyboard'], 'Settings updated', 'Restart required');
+        submitJob('keyboard', $_POST['keyboard'], '设置已更新', '需要重启');
         phpSession('write', 'keyboard', $_POST['keyboard']);
     }
 }
@@ -120,90 +121,90 @@ if (isset($_POST['update_keyboard'])) {
 if (isset($_POST['update_browser_title'])) {
 	if (isset($_POST['browsertitle']) && $_POST['browsertitle'] != $_SESSION['browsertitle']) {
 		phpSession('write', 'browsertitle', $_POST['browsertitle']);
-		$_SESSION['notify']['title'] = '�����Ѹ���';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 }
 
 // STARTUP OPTIONS
 
 if (isset($_POST['update_cpugov'])) {
-	submitJob('cpugov', $_POST['cpugov'], 'Settings updated', '');
+	submitJob('cpugov', $_POST['cpugov'], '设置已更新', '');
 	phpSession('write', 'cpugov', $_POST['cpugov']);
 }
 
 if (isset($_POST['update_usb_auto_mounter'])) {
-	submitJob('usb_auto_mounter', $_POST['usb_auto_mounter'], 'Settings updated', 'Restart required');
+	submitJob('usb_auto_mounter', $_POST['usb_auto_mounter'], '设置已更新', '需要重启');
 	phpSession('write', 'usb_auto_mounter', $_POST['usb_auto_mounter']);
 }
 
 if (isset($_POST['update_usbboot'])) {
-	submitJob('usbboot', '', 'Settings updated', 'Restart required');
+	submitJob('usbboot', '', '设置已更新', '需要重启');
 }
 
 if (isset($_POST['p3wifi']) && $_POST['p3wifi'] != $_SESSION['p3wifi']) {
-	submitJob('p3wifi', $_POST['p3wifi'], 'Settings updated', 'Restart required');
+	submitJob('p3wifi', $_POST['p3wifi'], '设置已更新', '需要重启');
 	phpSession('write', 'p3wifi', $_POST['p3wifi']);
 }
 
 if (isset($_POST['p3bt']) && $_POST['p3bt'] != $_SESSION['p3bt']) {
-	submitJob('p3bt', $_POST['p3bt'], 'Settings updated', 'Restart required');
+	submitJob('p3bt', $_POST['p3bt'], '设置已更新', '需要重启');
 	phpSession('write', 'p3bt', $_POST['p3bt']);
 }
 
 if (isset($_POST['hdmiport']) && $_POST['hdmiport'] != $_SESSION['hdmiport']) {
-	submitJob('hdmiport', $_POST['hdmiport'], 'Settings updated', '');
+	submitJob('hdmiport', $_POST['hdmiport'], '设置已更新', '');
 	phpSession('write', 'hdmiport', $_POST['hdmiport']);
 }
 
 if (isset($_POST['update_actled']) && $_POST['actled'] != explode(',', $_SESSION['led_state'])[0]) {
-	submitJob('actled', $_POST['actled'], 'Settings updated', '');
+	submitJob('actled', $_POST['actled'], '设置已更新', '');
 	phpSession('write', 'led_state', $_POST['actled'] . ',' . explode(',', $_SESSION['led_state'])[1]);
 }
 
 if (isset($_POST['update_pwrled']) && $_POST['pwrled'] != explode(',', $_SESSION['led_state'])[1]) {
-	submitJob('pwrled', $_POST['pwrled'], 'Settings updated', '');
+	submitJob('pwrled', $_POST['pwrled'], '设置已更新', '');
 	phpSession('write', 'led_state', explode(',', $_SESSION['led_state'])[0] . ',' . $_POST['pwrled']);
 }
 
 if (isset($_POST['update_ipaddr_timeout']) && $_POST['ipaddr_timeout'] != $_SESSION['ipaddr_timeout']) {
 	phpSession('write', 'ipaddr_timeout', $_POST['ipaddr_timeout']);
-	$_SESSION['notify']['title'] = '�����Ѹ���';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 if (isset($_POST['eth0chk']) && $_POST['eth0chk'] != $_SESSION['eth0chk']) {
 	phpSession('write', 'eth0chk', $_POST['eth0chk']);
-	$_SESSION['notify']['title'] = '�����Ѹ���';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 // TEST
 if (isset($_POST['update_nginx_https_only']) && $_POST['nginx_https_only'] != $_SESSION['nginx_https_only']) {
 	$_SESSION['nginx_https_only'] = $_POST['nginx_https_only'];
-	submitJob('nginx_https_only', $_POST['nginx_https_only'], 'Settings updated', 'Restart required');
+	submitJob('nginx_https_only', $_POST['nginx_https_only'], '设置已更新', '需要重启');
 }
 
 // LOCAL DISPLAY
 
 if (isset($_POST['update_localui'])) {
     if (isset($_POST['localui']) && $_POST['localui'] != $_SESSION['localui']) {
-        submitJob('localui', $_POST['localui'], 'Settings updated', 'Restart may be required');
+        submitJob('localui', $_POST['localui'], '设置已更新', '可能需要重新启动');
         phpSession('write', 'localui', $_POST['localui']);
     }
 }
 
 if (isset($_POST['update_restart_localui'])) {
-	submitJob('localui_restart', '', 'Local display restarted');
+	submitJob('localui_restart', '', '本地显示已重新启动');
 }
 
 if (isset($_POST['update_touchscn'])) {
     if (isset($_POST['touchscn']) && $_POST['touchscn'] != $_SESSION['touchscn']) {
-        submitJob('touchscn', $_POST['touchscn'], 'Settings updated', 'Local display restarted');
+        submitJob('touchscn', $_POST['touchscn'], '设置已更新', '本地显示已重新启动');
         phpSession('write', 'touchscn', $_POST['touchscn']);
     }
 }
 
 if (isset($_POST['update_scnblank'])) {
     if (isset($_POST['scnblank']) && $_POST['scnblank'] != $_SESSION['scnblank']) {
-        submitJob('scnblank', $_POST['scnblank'], 'Settings updated', 'Local display restarted');
+        submitJob('scnblank', $_POST['scnblank'], '设置已更新', '本地显示已重新启动');
         phpSession('write', 'scnblank', $_POST['scnblank']);
     }
 }
@@ -211,27 +212,27 @@ if (isset($_POST['update_scnblank'])) {
 if (isset($_POST['update_wake_display'])) {
     if (isset($_POST['wake_display']) && $_POST['wake_display'] != $_SESSION['wake_display']) {
         phpSession('write', 'wake_display', $_POST['wake_display']);
-		$_SESSION['notify']['title'] = '�����Ѹ���';
+		$_SESSION['notify']['title'] = '设置已更新';
     }
 }
 
 if (isset($_POST['update_scnbrightness'])) {
     if (isset($_POST['scnbrightness']) && $_POST['scnbrightness'] != $_SESSION['scnbrightness']) {
-		submitJob('scnbrightness', $_POST['scnbrightness'], 'Settings updated');
+		submitJob('scnbrightness', $_POST['scnbrightness'], '设置已更新');
 		phpSession('write', 'scnbrightness', $_POST['scnbrightness']);
     }
 }
 
 if (isset($_POST['update_pixel_aspect_ratio'])) {
     if (isset($_POST['pixel_aspect_ratio']) && $_POST['pixel_aspect_ratio'] != $_SESSION['pixel_aspect_ratio']) {
-		submitJob('pixel_aspect_ratio', $_POST['pixel_aspect_ratio'], 'Settings updated', 'Restart required');
+		submitJob('pixel_aspect_ratio', $_POST['pixel_aspect_ratio'], '设置已更新', '需要重启');
 		phpSession('write', 'pixel_aspect_ratio', $_POST['pixel_aspect_ratio']);
     }
 }
 
 if (isset($_POST['update_scnrotate'])) {
     if (isset($_POST['scnrotate']) && $_POST['scnrotate'] != $_SESSION['scnrotate']) {
-		submitJob('scnrotate', $_POST['scnrotate'], 'Settings updated', 'Restart required');
+		submitJob('scnrotate', $_POST['scnrotate'], '设置已更新', '需要重启');
 		phpSession('write', 'scnrotate', $_POST['scnrotate']);
     }
 }
@@ -247,26 +248,26 @@ if (isset($_POST['update_on_screen_kbd'])) {
 if (isset($_POST['update_fs_smb'])) {
 	if (isset($_POST['fs_smb']) && $_POST['fs_smb'] != $_SESSION['fs_smb']) {
 		phpSession('write', 'fs_smb', $_POST['fs_smb']);
-		submitJob('fs_smb', $_POST['fs_smb'], 'Settings updated', '');
+		submitJob('fs_smb', $_POST['fs_smb'], '设置已更新', '');
 	}
 }
 
 if (isset($_POST['update_fs_nfs'])) {
 	if (isset($_POST['fs_nfs']) && $_POST['fs_nfs'] != $_SESSION['fs_nfs']) {
 		phpSession('write', 'fs_nfs', $_POST['fs_nfs']);
-		submitJob('fs_nfs', $_POST['fs_nfs'], 'Settings updated', '');
+		submitJob('fs_nfs', $_POST['fs_nfs'], '设置已更新', '');
 	}
 }
 if (isset($_POST['update_fs_nfs_access'])) {
 	if (isset($_POST['fs_nfs_access']) && $_POST['fs_nfs_access'] != $_SESSION['fs_nfs_access']) {
 		phpSession('write', 'fs_nfs_access', $_POST['fs_nfs_access']);
-		submitJob('fs_nfs_access', 'restart', 'Settings updated', '');
+		submitJob('fs_nfs_access', 'restart', '设置已更新', '');
 	}
 }
 if (isset($_POST['update_fs_nfs_options'])) {
 	if (isset($_POST['fs_nfs_options']) && $_POST['fs_nfs_options'] != $_SESSION['fs_nfs_options']) {
 		phpSession('write', 'fs_nfs_options', $_POST['fs_nfs_options']);
-		submitJob('fs_nfs_options', 'restart', 'Settings updated', '');
+		submitJob('fs_nfs_options', 'restart', '设置已更新', '');
 	}
 }
 
@@ -274,12 +275,12 @@ if (isset($_POST['update_fs_nfs_options'])) {
 
 if (isset($_POST['extmeta']) && $_POST['extmeta'] != $_SESSION['extmeta']) {
 	phpSession('write', 'extmeta', $_POST['extmeta']);
-	$_SESSION['notify']['title'] = '�����Ѹ���';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 if (isset($_POST['update_lcdup'])) {
 	if (isset($_POST['lcdup']) && $_POST['lcdup'] != $_SESSION['lcdup']) {
-		submitJob('lcdup', $_POST['lcdup'], 'Settings updated', '');
+		submitJob('lcdup', $_POST['lcdup'], '设置已更新', '');
 		phpSession('write', 'lcdup', $_POST['lcdup']);
 		phpSession('write', 'extmeta', '1'); // Turn on external metadata generation
 	}
@@ -287,27 +288,27 @@ if (isset($_POST['update_lcdup'])) {
 
 if (isset($_POST['update_gpio_svc']) && $_POST['gpio_svc'] != $_SESSION['gpio_svc']) {
 	phpSession('write', 'gpio_svc', $_POST['gpio_svc']);
-	submitJob('gpio_svc', $_POST['gpio_svc'], 'Settings updated', '');
+	submitJob('gpio_svc', $_POST['gpio_svc'], '设置已更新', '');
 }
 
 if (isset($_POST['shellinabox']) && $_POST['shellinabox'] != $_SESSION['shellinabox']) {
 	phpSession('write', 'shellinabox', $_POST['shellinabox']);
-	submitJob('shellinabox', $_POST['shellinabox'], 'Settings updated', '');
+	submitJob('shellinabox', $_POST['shellinabox'], '设置已更新', '');
 }
 
 // MAINTENANCE
 
 if (isset($_POST['update_clear_syslogs'])) {
-	submitJob('clearsyslogs', '', 'System logs cleared', '');
+	submitJob('清除系统日志', '', '系统日志已清除', '');
 }
 
 if (isset($_POST['update_clear_playhistory'])) {
-	submitJob('clearplayhistory', '', 'Playback history cleared', '');
+	submitJob('清除播放历史', '', '回放历史记录已清除', '');
 }
 
 if (isset($_POST['debuglog']) && $_POST['debuglog'] != $_SESSION['debuglog']) {
 	$_SESSION['debuglog'] = $_POST['debuglog'];
-	$_SESSION['notify']['title'] = '�����Ѹ���';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 phpSession('close');
@@ -392,10 +393,10 @@ if ($model == '3') { // Pi-3B, B+, A+
 	$result = sysCmd('vcgencmd otp_dump | grep 17:');
 	if ($result[0] == '17:3020000a') {
 		$_usbboot_btn_disable = 'disabled';
-		$_usbboot_msg = 'USB boot is already enabled';
+		$_usbboot_msg = 'USB启动已启用';
 	} else {
 		$_usbboot_btn_disable = '';
-		$_usbboot_msg = 'USB boot is not enabled yet';
+		$_usbboot_msg = 'USB启动尚未启用';
 	}
 } else {
 	// NOTE: USB boot is enabled by default for pi 4, 400 with Sep 3 2020 or later boot loader

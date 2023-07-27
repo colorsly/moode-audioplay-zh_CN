@@ -15,6 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 汉化：Androidnews
  *
  */
 
@@ -35,7 +36,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		}
 	}
 
-	submitJob('airplaysvc', '', 'Setings updated', ($_SESSION['airplaysvc'] == '1' ? 'AirPlay restarted' : ''));
+	submitJob('airplaysvc', '', 'Setings updated', ($_SESSION['airplaysvc'] == '1' ? 'AirPlay已重新启动' : ''));
 }
 
 phpSession('close');
@@ -62,8 +63,8 @@ $_select['output_rate'] .= "<option value=\"88200\" " . (($cfgAirplay['output_ra
 $_select['output_rate'] .= "<option value=\"176400\" " . (($cfgAirplay['output_rate'] == '176400') ? "selected" : "") . ">176.4 kHz</option>\n";
 $_select['output_rate'] .= "<option value=\"352800\" " . (($cfgAirplay['output_rate'] == '352800') ? "selected" : "") . ">352.8 kHz</option>\n";
 
-$_select['allow_session_interruption'] .= "<option value=\"yes\" " . (($cfgAirplay['allow_session_interruption'] == 'yes') ? "selected" : "") . ">Yes</option>\n";
-$_select['allow_session_interruption'] .= "<option value=\"no\" " . (($cfgAirplay['allow_session_interruption'] == 'no') ? "selected" : "") . ">No</option>\n";
+$_select['allow_session_interruption'] .= "<option value=\"yes\" " . (($cfgAirplay['allow_session_interruption'] == 'yes') ? "selected" : "") . ">是</option>\n";
+$_select['allow_session_interruption'] .= "<option value=\"no\" " . (($cfgAirplay['allow_session_interruption'] == 'no') ? "selected" : "") . ">否</option>\n";
 
 $_select['session_timeout'] = $cfgAirplay['session_timeout'];
 $_select['audio_backend_latency_offset_in_seconds'] = $cfgAirplay['audio_backend_latency_offset_in_seconds'];

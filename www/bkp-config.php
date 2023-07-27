@@ -17,6 +17,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 汉化：Androidnews
  *
  */
 
@@ -50,7 +51,7 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 	}
 
 	if (empty($backupOptions)) {
-		$_SESSION['notify']['title'] = 'ָ������һ��Ҫ���ݵ���Ŀ';
+		$_SESSION['notify']['title'] = '指定至少一个要备份的项目';
 	} else {
 		$backupOptions = '--what ' . $backupOptions . ' ';
 
@@ -103,7 +104,7 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 		}
 
 		if (empty($restoreOptions)) {
-			$_SESSION['notify']['title'] = 'ָ������һ��Ҫ��ԭ����Ŀ';
+			$_SESSION['notify']['title'] = '指定至少一个要还原的项目';
 		} else {
 			$restoreOptions = '--what ' . $restoreOptions . ' ';
 
@@ -112,11 +113,11 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 			sysCmd('rm ' . TMP_RESTORE_ZIP);
 
 			// Request reboot if system settings are part of restore
-			$title = 'Restore complete';
+			$title = '恢复完成';
 			if( empty($restoreOptions) || (isset($_POST['restore_system']) && $_POST['restore_system'] == '1') ) {
 				$msg = 'Reboot required';
 				$duration = 60;
-				//submitJob('reboot', '', 'Restore complete', 'System rebooting...');
+				//submitJob('重启', '', '恢复完成', '系统重启......');
 			} else {
 				$msg = '';
 				$duration = 5;
@@ -131,8 +132,8 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 			//$_SESSION['notify']['duration'] = 10;
 		}
 	} else {
-		$_imported_backupfile = 'No file selected';
-		$_SESSION['notify']['title'] = 'ѡ�񱸷��ļ�';
+		$_imported_backupfile = '未选择文件';
+		$_SESSION['notify']['title'] = '选择备份文件';
 		$_SESSION['notify']['duration'] = 3;
 	}
 } else if (isset($_POST['import_backupfile'])) {
@@ -147,12 +148,12 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 	//workerLog('Imported script: ' . print_r($_FILES['backup_scriptfile'], true));
 } else if (isset($_POST['reset_options'])) {
 	sysCmd('rm /tmp/backup.zip /tmp/moodecfg.ini /tmp/restore.zip /tmp/py.log /tmp/script');
-	$_imported_backupfile = 'No file selected';
-	$_SESSION['notify']['title'] = 'ѡ��������';
+	$_imported_backupfile = '未选择文件';
+	$_SESSION['notify']['title'] = '选项已重置';
 	$_SESSION['notify']['duration'] = 3;
 } else {
-	$_imported_backupfile = 'No file selected';
-	$_imported_scriptfile = 'No file selected';
+	$_imported_backupfile = '未选择文件';
+	$_imported_scriptfile = '未选择文件';
 }
 
 phpSession('close');
@@ -162,9 +163,9 @@ function genToggleButton($name, $value, $disabled) {
 	$id = str_replace('_', '-', $name);
 	$template = '
 	<div class="toggle config-toggle-yn" %disable_style>
-		<label class="toggle-radio" for="toggle-%id-2">YES</label>
+		<label class="toggle-radio" for="toggle-%id-2">是</label>
 		<input type="radio" name="%name" id="toggle-%id-1" value="1" %checked1>
-		<label class="toggle-radio" for="toggle-%id-1">NO</label>
+		<label class="toggle-radio" for="toggle-%id-1">否</label>
 		<input type="radio" name="%name" id="toggle-%id-2" value="0" %checked0>
 	</div>
 	<a aria-label="Help" class="config-info-toggle" data-cmd="info-%id" href="#notarget"><i class="fas fa-info-circle"></i></a>';

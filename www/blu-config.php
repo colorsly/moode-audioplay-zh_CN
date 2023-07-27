@@ -15,6 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * æ±‰åŒ–ï¼šAndroidnews
  *
  */
 
@@ -108,7 +109,7 @@ if (isset($_POST['disconnect_device']) && $_POST['disconnect_device'] == '1') {
 if (isset($_POST['update_pcm_buffer']) && $_POST['update_pcm_buffer'] == '1') {
 	phpSession('write', 'bluez_pcm_buffer', $_POST['pcm_buffer']);
 	sysCmd("sed -i '/BUFFERTIME/c\BUFFERTIME=" . $_POST['pcm_buffer'] . "' /etc/bluealsaaplay.conf");
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = 'è®¾ç½®å·²æ›´æ–°';
 }
 
 phpSession('close');
@@ -142,7 +143,7 @@ $result = sysCmd('/var/www/util/blu-control.sh ' . $cmd);
 
 // Format output for HTML
 if ($cmd == '-H') {
-	$_cmd_output = 'ÔÚäÖÈ¾Æ÷ÖĞ´ò¿ªÀ¶ÑÀ£¬È»ºóÑ¡ÔñÒ»¸öÃüÁîÌá½»¸ø¿ØÖÆÆ÷<br>';
+	$_cmd_output = 'åœ¨æ¸²æŸ“å™¨ä¸­æ‰“å¼€è“ç‰™ï¼Œç„¶åé€‰æ‹©ä¸€ä¸ªå‘½ä»¤æäº¤ç»™æ§åˆ¶å™¨<br>';
 } else {
 	for ($i = 2; $i < count($result); $i++) {
 		if ($result[$i] != '**') {
@@ -157,8 +158,8 @@ if ($cmd == '-H') {
 $_cmd_output = empty($_cmd_output) ? 'No devices' : $_cmd_output;
 
 // Audio output
-$_select['audioout'] .= "<option value=\"Local\" " . (($_SESSION['audioout'] == 'Local') ? "selected" : "") . ">Local audio</option>\n";
-$_select['audioout'] .= "<option value=\"Bluetooth\" " . (($_SESSION['audioout'] == 'Bluetooth') ? "selected" : "") . ">Bluetooth speaker</option>\n";
+$_select['audioout'] .= "<option value=\"Local\" " . (($_SESSION['audioout'] == 'Local') ? "selected" : "") . ">æœ¬åœ°éŸ³é¢‘</option>\n";
+$_select['audioout'] .= "<option value=\"Bluetooth\" " . (($_SESSION['audioout'] == 'Bluetooth') ? "selected" : "") . ">è“ç‰™æ‰¬å£°å™¨</option>\n";
 
 // Provide a select for removing, disconnecting, pairing or connecting a device
 $cmd_array = array('-p', '-c', '-l', '-s', '-S');

@@ -15,6 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 汉化：Androidnews
  *
  */
 
@@ -33,7 +34,7 @@ phpSession('open');
 if (isset($_POST['update_multiroom_tx'])) {
 	if (isset($_POST['multiroom_tx']) && $_POST['multiroom_tx'] != $_SESSION['multiroom_tx']) {
 		phpSession('write', 'multiroom_tx', $_POST['multiroom_tx']);
-		submitJob('multiroom_tx', '', 'Settings updated', '');
+		submitJob('multiroom_tx', '', '设置已更新', '');
 	}
 }
 if (isset($_POST['update_alsa_loopback'])) {
@@ -42,25 +43,25 @@ if (isset($_POST['update_alsa_loopback'])) {
 		if ($_POST['alsa_loopback'] == 'Off') {
 			$inUse = sysCmd('sudo modprobe -r snd-aloop');
 			if (!empty($inUse)) {
-				$_SESSION['notify']['title'] = 'Unable to turn off';
-				$_SESSION['notify']['msg'] = 'Loopback is in use';
+				$_SESSION['notify']['title'] = '无法关闭';
+				$_SESSION['notify']['msg'] = '环回正在使用中';
 				$_SESSION['notify']['duration'] = 5;
 			} else {
-				submitJob('alsa_loopback', 'Off', 'Settings updated', '');
+				submitJob('alsa_loopback', 'Off', '设置已更新', '');
 				phpSession('write', 'alsa_loopback', 'Off');
 			}
 		} else {
-			submitJob('alsa_loopback', 'On', 'Settings updated', '');
+			submitJob('alsa_loopback', 'On', '设置已更新', '');
 			phpSession('write', 'alsa_loopback', 'On');
 		}
 	}
 }
 if (isset($_POST['update_multiroom_initvol'])) {
 	$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_initvol'] . "' " . "WHERE param='initial_volume'", $dbh);
-	submitJob('multiroom_initvol', $_POST['multiroom_initvol'], 'Volume levels initialized', '');
+	submitJob('multiroom_initvol', $_POST['multiroom_initvol'], '音量已初始化', '');
 }
 if (isset($_POST['multiroom_tx_restart'])) {
-	submitJob('multiroom_tx_restart', '', 'Sender restarted', '');
+	submitJob('multiroom_tx_restart', '', '发送程序已重新启动', '');
 }
 if (isset($_POST['multiroom_tx_discover'])) {
 	// Scan the network for hosts with open port 6600 (MPD)
@@ -94,38 +95,38 @@ if (isset($_POST['multiroom_tx_discover'])) {
 
 	// Check for no receivers found
 	if (empty(trim($_SESSION['rx_hostnames']))) {
-		$_SESSION['rx_hostnames'] = 'No receivers found';
+		$_SESSION['rx_hostnames'] = '找不到接收者';
 		$_SESSION['notify']['title'] = $_SESSION['rx_hostnames'];
 	} else {
-		$_SESSION['notify']['title'] = 'Discovery complete';
+		$_SESSION['notify']['title'] = '发现完成';
 		$_SESSION['notify']['msg'] = 'Found: ' . $_SESSION['rx_hostnames'];
 	}
 }
 if (isset($_POST['update_multiroom_tx_bfr'])) {
 	if (isset($_POST['multiroom_tx_bfr']) && $_POST['multiroom_tx_bfr'] != $cfgMultiroom['tx_bfr']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_tx_bfr'] . "' " . "WHERE param='tx_bfr'", $dbh);
-		$msg = $_SESSION['multiroom_tx'] == 'On' ? 'Sender restarted' : '';
-		submitJob('multiroom_tx_restart', '', 'Settings updated', $msg);
+		$msg = $_SESSION['multiroom_tx'] == 'On' ? '发送程序已重新启动' : '';
+		submitJob('multiroom_tx_restart', '', '设置已更新', $msg);
 	}
 }
 if (isset($_POST['update_multiroom_tx_frame_size'])) {
 	if (isset($_POST['multiroom_tx_frame_size']) && $_POST['multiroom_tx_frame_size'] != $cfgMultiroom['tx_frame_size']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_tx_frame_size'] . "' " . "WHERE param='tx_frame_size'", $dbh);
-		$msg = $_SESSION['multiroom_tx'] == 'On' ? 'Sender restarted' : '';
-		submitJob('multiroom_tx_restart', '', 'Settings updated', $msg);
+		$msg = $_SESSION['multiroom_tx'] == 'On' ? '发送程序已重新启动' : '';
+		submitJob('multiroom_tx_restart', '', '设置已更新', $msg);
 	}
 }
 if (isset($_POST['update_multiroom_tx_rtprio'])) {
 	if (isset($_POST['multiroom_tx_rtprio']) && $_POST['multiroom_tx_rtprio'] != $cfgMultiroom['tx_rtprio']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_tx_rtprio'] . "' " . "WHERE param='tx_rtprio'", $dbh);
-		$msg = $_SESSION['multiroom_tx'] == 'On' ? 'Sender restarted' : '';
-		submitJob('multiroom_tx_restart', '', 'Settings updated', $msg);
+		$msg = $_SESSION['multiroom_tx'] == 'On' ? '发送程序已重新启动' : '';
+		submitJob('multiroom_tx_restart', '', '设置已更新', $msg);
 	}
 }
 if (isset($_POST['update_multiroom_tx_query_timeout'])) {
 	if (isset($_POST['multiroom_tx_query_timeout']) && $_POST['multiroom_tx_query_timeout'] != $cfgMultiroom['multiroom_tx_query_timeout']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_tx_query_timeout'] . "' " . "WHERE param='tx_query_timeout'", $dbh);
-		$_SESSION['notify']['title'] = 'Settings updated';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 }
 
@@ -136,57 +137,57 @@ if (isset($_POST['update_multiroom_tx_query_timeout'])) {
 if (isset($_POST['update_multiroom_rx'])) {
 	if (isset($_POST['multiroom_rx']) && $_POST['multiroom_rx'] != $_SESSION['multiroom_rx']) {
 		phpSession('write', 'multiroom_rx', $_POST['multiroom_rx']);
-		submitJob('multiroom_rx', '', 'Settings updated', '');
+		submitJob('multiroom_rx', '', '设置已更新', '');
 	}
 }
 if (isset($_POST['update_multiroom_rx_mastervol_opt_in'])) {
 	if (isset($_POST['multiroom_rx_mastervol_opt_in']) && $_POST['multiroom_rx_mastervol_opt_in'] != $cfgMultiroom['rx_mastervol_opt_in']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_rx_mastervol_opt_in'] . "' " . "WHERE param='rx_mastervol_opt_in'", $dbh);
-		$_SESSION['notify']['title'] = 'Settings updated';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 }
 if (isset($_POST['update_multiroom_rx_alsa_output_mode'])) {
 	if (isset($_POST['multiroom_rx_alsa_output_mode']) && $_POST['multiroom_rx_alsa_output_mode'] != $cfgMultiroom['rx_alsa_output_mode']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_rx_alsa_output_mode'] . "' " . "WHERE param='rx_alsa_output_mode'", $dbh);
-		$msg = $_SESSION['multiroom_rx'] == 'On' ? 'Receiver restarted' : '';
-		submitJob('multiroom_rx_restart', '', 'Settings updated', $msg);
+		$msg = $_SESSION['multiroom_rx'] == 'On' ? '接收器重新启动' : '';
+		submitJob('multiroom_rx_restart', '', '设置已更新', $msg);
 	}
 }
 if (isset($_POST['update_multiroom_rx_alsavol'])) {
 	if (isset($_POST['multiroom_rx_alsavol'])) {
 		sysCmd('/var/www/util/sysutil.sh set-alsavol ' . $_SESSION['amixname'] . ' ' . $_POST['multiroom_rx_alsavol']);
-		$_SESSION['notify']['title'] = 'Settings updated';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 }
 if (isset($_POST['multiroom_rx_restart'])) {
-	submitJob('multiroom_rx_restart', '', 'Receiver restarted', '');
+	submitJob('multiroom_rx_restart', '', '接收器重新启动', '');
 }
 if (isset($_POST['update_multiroom_rx_bfr'])) {
 	if (isset($_POST['multiroom_rx_bfr']) && $_POST['multiroom_rx_bfr'] != $cfgMultiroom['rx_bfr']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_rx_bfr'] . "' " . "WHERE param='rx_bfr'", $dbh);
-		$msg = $_SESSION['multiroom_rx'] == 'On' ? 'Receiver restarted' : '';
-		submitJob('multiroom_rx_restart', '', 'Settings updated', $msg);
+		$msg = $_SESSION['multiroom_rx'] == 'On' ? '接收器重新启动' : '';
+		submitJob('multiroom_rx_restart', '', '设置已更新', $msg);
 	}
 }
 if (isset($_POST['update_multiroom_rx_jitter_bfr'])) {
 	if (isset($_POST['multiroom_rx_jitter_bfr']) && $_POST['multiroom_rx_jitter_bfr'] != $cfgMultiroom['rx_jitter_bfr']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_rx_jitter_bfr'] . "' " . "WHERE param='rx_jitter_bfr'", $dbh);
-		$msg = $_SESSION['multiroom_rx'] == 'On' ? 'Receiver restarted' : '';
-		submitJob('multiroom_rx_restart', '', 'Settings updated', $msg);
+		$msg = $_SESSION['multiroom_rx'] == 'On' ? '接收器重新启动' : '';
+		submitJob('multiroom_rx_restart', '', '设置已更新', $msg);
 	}
 }
 if (isset($_POST['update_multiroom_rx_frame_size'])) {
 	if (isset($_POST['multiroom_rx_frame_size']) && $_POST['multiroom_rx_frame_size'] != $cfgMultiroom['rx_frame_size']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_rx_frame_size'] . "' " . "WHERE param='rx_frame_size'", $dbh);
-		$msg = $_SESSION['multiroom_rx'] == 'On' ? 'Receiver restarted' : '';
-		submitJob('multiroom_rx_restart', '', 'Settings updated', $msg);
+		$msg = $_SESSION['multiroom_rx'] == 'On' ? '接收器重新启动' : '';
+		submitJob('multiroom_rx_restart', '', '设置已更新', $msg);
 	}
 }
 if (isset($_POST['update_multiroom_rx_rtprio'])) {
 	if (isset($_POST['multiroom_rx_rtprio']) && $_POST['multiroom_rx_rtprio'] != $cfgMultiroom['rx_rtprio']) {
 		$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_rx_rtprio'] . "' " . "WHERE param='rx_rtprio'", $dbh);
-		$msg = $_SESSION['multiroom_rx'] == 'On' ? 'Receiver restarted' : '';
-		submitJob('multiroom_rx_restart', '', 'Settings updated', $msg);
+		$msg = $_SESSION['multiroom_rx'] == 'On' ? '接收器重新启动' : '';
+		submitJob('multiroom_rx_restart', '', '设置已更新', $msg);
 	}
 }
 
@@ -237,8 +238,8 @@ $_multiroom_tx_query_timeout = $cfgMultiroom['tx_query_timeout'];
 
 // Receiver
 $_select['multiroom_rx'] .= "<option value=\"Disabled\" " . (($_SESSION['multiroom_rx'] == 'Disabled') ? "selected" : "") . ">Disabled</option>\n";
-$_select['multiroom_rx'] .= "<option value=\"On\" " . (($_SESSION['multiroom_rx'] == 'On') ? "selected" : "") . ">On</option>\n";
-$_select['multiroom_rx'] .= "<option value=\"Off\" " . (($_SESSION['multiroom_rx'] == 'Off') ? "selected" : "") . ">Off</option>\n";
+$_select['multiroom_rx'] .= "<option value=\"On\" " . (($_SESSION['multiroom_rx'] == 'On') ? "selected" : "") . ">开</option>\n";
+$_select['multiroom_rx'] .= "<option value=\"Off\" " . (($_SESSION['multiroom_rx'] == 'Off') ? "selected" : "") . ">关</option>\n";
 $_select['multiroom_rx_mastervol_opt_in_yes'] .= "<input type=\"radio\" name=\"multiroom_rx_mastervol_opt_in\" id=\"toggle-multiroom-rx-mastervol-opt-in-1\" value=\"1\" " . (($cfgMultiroom['rx_mastervol_opt_in'] == '1') ? "checked=\"checked\"" : "") . ">\n";
 $_select['multiroom_rx_mastervol_opt_in_no'] .= "<input type=\"radio\" name=\"multiroom_rx_mastervol_opt_in\" id=\"toggle-multiroom-rx-mastervol-opt-in-2\" value=\"0\" " . (($cfgMultiroom['rx_mastervol_opt_in'] == '0') ? "checked=\"checked\"" : "") . ">\n";
 $_select['multiroom_rx_alsa_output_mode'] .= "<option value=\"plughw\" " . (($cfgMultiroom['rx_alsa_output_mode'] == 'plughw') ? "selected" : "") . ">Default (plughw)</option>\n";

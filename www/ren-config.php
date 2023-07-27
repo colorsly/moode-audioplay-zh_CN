@@ -15,6 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 汉化：Androidnews
  *
  */
 
@@ -29,11 +30,11 @@ if (isset($_POST['update_bt_settings'])) {
 	$currentBtName = $_SESSION['btname'];
 
 	if (isset($_POST['btname']) && $_POST['btname'] != $_SESSION['btname']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'btname', $_POST['btname']);
 	}
 	if (isset($_POST['btsvc']) && $_POST['btsvc'] != $_SESSION['btsvc']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'btsvc', $_POST['btsvc']);
 		if ($_POST['btsvc'] == '0') {
 			phpSession('write', 'pairing_agent', '0');
@@ -44,28 +45,28 @@ if (isset($_POST['update_bt_settings'])) {
 	}
 }
 if (isset($_POST['btrestart']) && $_POST['btrestart'] == 1 && $_SESSION['btsvc'] == '1') {
-	submitJob('btsvc', '', 'Bluetooth controller restarted', '');
+	submitJob('btsvc', '', '蓝牙控制器已重新启动', '');
 }
 if (isset($_POST['update_pairing_agent'])) {
 	phpSession('write', 'pairing_agent', $_POST['pairing_agent']);
-	submitJob('pairing_agent', $_POST['pairing_agent'], 'Settings updated', '');
+	submitJob('pairing_agent', $_POST['pairing_agent'], '设置已更新', '');
 }
 if (isset($_POST['parestart']) && $_POST['parestart'] == 1 && $_SESSION['btsvc'] == '1') {
-	submitJob('pairing_agent', '', 'Pairing agent restarted', '');
+	submitJob('pairing_agent', '', '配对代理已重新启动', '');
 }
 if (isset($_POST['update_rsmafterbt'])) {
 	phpSession('write', 'rsmafterbt', $_POST['rsmafterbt']);
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 
 // AirPlay
 if (isset($_POST['update_airplay_settings'])) {
 	if (isset($_POST['airplayname']) && $_POST['airplayname'] != $_SESSION['airplayname']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'airplayname', $_POST['airplayname']);
 	}
 	if (isset($_POST['airplaysvc']) && $_POST['airplaysvc'] != $_SESSION['airplaysvc']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'airplaysvc', $_POST['airplaysvc']);
 	}
 	if (isset($title)) {
@@ -74,24 +75,24 @@ if (isset($_POST['update_airplay_settings'])) {
 }
 if (isset($_POST['update_airplay_protocol'])) {
 	$_SESSION['airplay_protocol'] = substr($_POST['airplay_protocol'], -1);
-	submitJob('airplay_protocol', $_POST['airplay_protocol'], 'Settings updated', '');
+	submitJob('airplay_protocol', $_POST['airplay_protocol'], '设置已更新', '');
 }
 if (isset($_POST['update_rsmafterapl'])) {
 	phpSession('write', 'rsmafterapl', $_POST['rsmafterapl']);
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 if (isset($_POST['airplayrestart']) && $_POST['airplayrestart'] == 1 && $_SESSION['airplaysvc'] == '1') {
-	submitJob('airplaysvc', '', 'AirPlay restarted', '');
+	submitJob('airplaysvc', '', 'AirPlay已重新启动', '');
 }
 
 // Spotify Connect
 if (isset($_POST['update_spotify_settings'])) {
 	if (isset($_POST['spotifyname']) && $_POST['spotifyname'] != $_SESSION['spotifyname']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'spotifyname', $_POST['spotifyname']);
 	}
 	if (isset($_POST['spotifysvc']) && $_POST['spotifysvc'] != $_SESSION['spotifysvc']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'spotifysvc', $_POST['spotifysvc']);
 	}
 	if (isset($title)) {
@@ -100,19 +101,19 @@ if (isset($_POST['update_spotify_settings'])) {
 }
 if (isset($_POST['update_rsmafterspot'])) {
 	phpSession('write', 'rsmafterspot', $_POST['rsmafterspot']);
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 if (isset($_POST['spotifyrestart']) && $_POST['spotifyrestart'] == 1 && $_SESSION['spotifysvc'] == '1') {
 	submitJob('spotifysvc', '', 'Spotify connect restarted', '');
 }
 if (isset($_POST['spotify_clear_credentials']) && $_POST['spotify_clear_credentials'] == 1) {
-	submitJob('spotify_clear_credentials', '', 'Credential cache cleared', '');
+	submitJob('spotify_clear_credentials', '', '凭据缓存已清除', '');
 }
 
 // Squeezelite
 if (isset($_POST['update_sl_settings'])) {
 	if (isset($_POST['slsvc']) && $_POST['slsvc'] != $_SESSION['slsvc']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'slsvc', $_POST['slsvc']);
 	}
 	if (isset($title)) {
@@ -124,17 +125,17 @@ if (isset($_POST['update_sl_settings'])) {
 }
 if (isset($_POST['update_rsmaftersl'])) {
 	phpSession('write', 'rsmaftersl', $_POST['rsmaftersl']);
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 if (isset($_POST['slrestart']) && $_POST['slrestart'] == 1) {
 	phpSession('write', 'rsmaftersl', 'No');
-	submitJob('slrestart', '', 'Squeezelite restarted', '');
+	submitJob('slrestart', '', 'Squeezelite已重新启动', '');
 }
 
 // RoonBridge
 if (isset($_POST['update_rb_settings'])) {
 	if (isset($_POST['rbsvc']) && $_POST['rbsvc'] != $_SESSION['rbsvc']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'rbsvc', $_POST['rbsvc']);
 	}
 	if (isset($title)) {
@@ -143,21 +144,21 @@ if (isset($_POST['update_rb_settings'])) {
 }
 if (isset($_POST['update_rsmafterrb'])) {
 	phpSession('write', 'rsmafterrb', $_POST['rsmafterrb']);
-	$_SESSION['notify']['title'] = 'Settings updated';
+	$_SESSION['notify']['title'] = '设置已更新';
 }
 if (isset($_POST['rbrestart']) && $_POST['rbrestart'] == 1) {
-	submitJob('rbrestart', '', 'RoonBridge restarted', '');
+	submitJob('rbrestart', '', 'RoonBridge已重新启动', '');
 }
 
 // UPnP client for MPD
 if (isset($_POST['update_upnp_settings'])) {
 	$currentUpnpName = $_SESSION['upnpname'];
 	if (isset($_POST['upnpname']) && $_POST['upnpname'] != $_SESSION['upnpname']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'upnpname', $_POST['upnpname']);
 	}
 	if (isset($_POST['upnpsvc']) && $_POST['upnpsvc'] != $_SESSION['upnpsvc']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		phpSession('write', 'upnpsvc', $_POST['upnpsvc']);
 	}
 	if (isset($title)) {
@@ -165,20 +166,20 @@ if (isset($_POST['update_upnp_settings'])) {
 	}
 }
 if (isset($_POST['upnprestart']) && $_POST['upnprestart'] == 1 && $_SESSION['upnpsvc'] == '1') {
-	submitJob('upnpsvc', '', 'UPnP renderer restarted', '');
+	submitJob('upnpsvc', '', 'UPnP渲染器已重新启动', '');
 }
 
 // DLNA media server
 if (isset($_POST['update_dlna_settings'])) {
 	$currentDlnaName = $_SESSION['dlnaname'];
 	if (isset($_POST['dlnaname']) && $_POST['dlnaname'] != $_SESSION['dlnaname']) {
-		$title = 'Settings updated';
+		$title = '设置已更新';
 		$msg = '';
 		phpSession('write', 'dlnaname', $_POST['dlnaname']);
 	}
 	if (isset($_POST['dlnasvc']) && $_POST['dlnasvc'] != $_SESSION['dlnasvc']) {
-		$title = 'Settings updated';
-		$msg = $_POST['dlnasvc'] == 1 ? 'Database rebuild initiated' : '';
+		$title = '设置已更新';
+		$msg = $_POST['dlnasvc'] == 1 ? '数据库重建已启动' : '';
 		phpSession('write', 'dlnasvc', $_POST['dlnasvc']);
 	}
 	if (isset($title)) {
@@ -187,11 +188,11 @@ if (isset($_POST['update_dlna_settings'])) {
 }
 if (isset($_POST['rebuild_dlnadb'])) {
 	if ($_SESSION['dlnasvc'] == 1) {
-		submitJob('dlnarebuild', '', 'Database rebuild initiated...', '');
+		submitJob('dlnarebuild', '', '数据库重建已启动......', '');
 	}
 	else {
-		$_SESSION['notify']['title'] = 'Turn DLNA server on';
-		$_SESSION['notify']['msg'] = 'Database rebuild will initiate';
+		$_SESSION['notify']['title'] = '打开DLNA服务器';
+		$_SESSION['notify']['msg'] = '将启动数据库重建';
 	}
 }
 

@@ -25,6 +25,8 @@
  * - try_files $uri $uri/ /coverart.php;
  *
  * 2023-01-01 sacd iso by yuyong
+ * 汉化：Androidnews
+ *
  */
 
 require_once __DIR__ . '/inc/common.php';

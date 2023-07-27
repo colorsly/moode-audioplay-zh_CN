@@ -15,6 +15,7 @@
  *
  * Refer to the link below for a copy of the GNU General Public License.
  * http://www.gnu.org/licenses/
+ * 汉化：Androidnews
  *
  */
 
@@ -47,7 +48,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		}
 		// Update chip options
 		$result = sqlUpdate('cfg_audiodev', $dbh, $_SESSION['i2sdevice'], $chipoptions);
-		$_SESSION['notify']['title'] = '�����Ѹ���';
+		$_SESSION['notify']['title'] = '设置已更新';
 
 		// Allo Piano 2.1 Hi-Fi DAC device settings
 		if ($_SESSION['i2sdevice'] == 'Allo Piano 2.1 Hi-Fi DAC') {
@@ -59,8 +60,8 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 				sysCmd('/var/www/util/sysutil.sh set-piano-lowpass ' . '"' . $_POST['config']['lowpass'] . '"');
 				sysCmd('/var/www/util/sysutil.sh set-piano-subvol ' . '"' . $_POST['config']['subwvol'] . '"');
 			}
-			$_SESSION['notify']['title'] = '�����Ѹ���';
-			$_SESSION['notify']['msg'] = '��Ҫ����';
+			$_SESSION['notify']['title'] = '设置已更新';
+			$_SESSION['notify']['msg'] = '需要重启';
 			$_SESSION['notify']['duration'] = 10;
 		}
 	}
@@ -81,7 +82,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		}
 
 		$result = sqlUpdate('cfg_audiodev', $dbh, $_SESSION['i2sdevice'], $chipoptions);
-		$_SESSION['notify']['title'] = '�����Ѹ���';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 
 	// Allo Boss 2 Cirrus Logic CS43198 chip
@@ -108,7 +109,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		//sysCmd('amixer -c 0 sset Digital ' . $_POST['config']['boss2_dop_volume'] . '%');
 
 		$result = sqlUpdate('cfg_audiodev', $dbh, $_SESSION['i2sdevice'], $chipoptions);
-		$_SESSION['notify']['title'] = '�����Ѹ���';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 
 	// Audiophonics ES9028/38 Q2M chip
@@ -127,7 +128,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		}
 
 		$result = sqlUpdate('cfg_audiodev', $dbh, $_SESSION['i2sdevice'], $chipoptions);
-		$_SESSION['notify']['title'] = '�����Ѹ���';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 
 	// MERUS Amp HAT ZW chip
@@ -138,7 +139,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		cfgChipOptions($chipoptions, $chiptype);
 
 		$result = sqlUpdate('cfg_audiodev', $dbh, $_SESSION['i2sdevice'], $chipoptions);
-		$_SESSION['notify']['title'] = '�����Ѹ���';
+		$_SESSION['notify']['title'] = '设置已更新';
 	}
 }
 
@@ -161,10 +162,10 @@ if (strpos($result[0]['dacchip'], 'PCM5') !== false || strpos($result[0]['dacchi
 	$_select['analogboost'] .= "<option value=\"0\" " . (($analogboost == '0') ? "selected" : "") . ">0 dB (normal amplitude)</option>\n";
 	$_select['analogboost'] .= "<option value=\"100\" " . (($analogboost == '100') ? "selected" : "") . ">.8 dB (10% boosted amplitude)</option>\n";
 	// Digital interpolation filter
-	$_select['digfilter'] .= "<option value=\"FIR interpolation with de-emphasis\" " . (($digfilter == 'FIR interpolation with de-emphasis') ? "selected" : "") . ">FIR interpolation with de-emphasis</option>\n";
-	$_select['digfilter'] .= "<option value=\"High attenuation with de-emphasis\" " . (($digfilter == 'High attenuation with de-emphasis') ? "selected" : "") . ">High attenuation with de-emphasis</option>\n";
-	$_select['digfilter'] .= "<option value=\"Low latency IIR with de-emphasis\" " . (($digfilter == 'Low latency IIR with de-emphasis') ? "selected" : "") . ">Low latency IIR with de-emphasis</option>\n";
-	$_select['digfilter'] .= "<option value=\"Ringing-less low latency FIR\" " . (($digfilter == 'Ringing-less low latency FIR') ? "selected" : "") . ">Ringing-less low latency FIR</option>\n";
+	$_select['digfilter'] .= "<option value=\"FIR interpolation with de-emphasis\" " . (($digfilter == 'FIR interpolation with de-emphasis') ? "selected" : "") . ">去加重的傅里叶插值</option>\n";
+	$_select['digfilter'] .= "<option value=\"High attenuation with de-emphasis\" " . (($digfilter == 'High attenuation with de-emphasis') ? "selected" : "") . ">去加重的高衰减</option>\n";
+	$_select['digfilter'] .= "<option value=\"Low latency IIR with de-emphasis\" " . (($digfilter == 'Low latency IIR with de-emphasis') ? "selected" : "") . ">具有去加重功能的低延迟IIR</option>\n";
+	$_select['digfilter'] .= "<option value=\"Ringing-less low latency FIR\" " . (($digfilter == 'Ringing-less low latency FIR') ? "selected" : "") . ">无振铃低延迟FIR</option>\n";
 } else {
 	//$_burrbrown_hide = 'dummy'; // For testing the template
 	$_burrbrown_hide = 'hide';
@@ -226,21 +227,21 @@ if ($_SESSION['i2sdevice'] == 'Allo Katana DAC') {
 	$katana_deemphasis = $array[1];
 	$katana_dop = $array[2];
 	// Oversampling filter
-	$_select['katana_osf'] .= "<option value=\"Apodizing Fast Roll-off Filter\" " . (($katana_osf == 'Apodizing Fast Roll-off Filter') ? "selected" : "") . ">Apodizing Fast Roll-off Filter</option>\n";
-	$_select['katana_osf'] .= "<option value=\"Brick Wall Filter\" " . (($katana_osf == 'Brick Wall Filter') ? "selected" : "") . ">Brick Wall Filter</option>\n";
-	$_select['katana_osf'] .= "<option value=\"Corrected Minimum Phase Fast Roll-off Filter\" " . (($katana_osf == 'Corrected Minimum Phase Fast Roll-off Filter') ? "selected" : "") . ">Corrected Minimum Phase Fast Roll-off Filter</option>\n";
-	$_select['katana_osf'] .= "<option value=\"Linear Phase Fast Roll-off Filter\" " . (($katana_osf == 'Linear Phase Fast Roll-off Filter') ? "selected" : "") . ">Linear Phase Fast Roll-off Filter</option>\n";
-	$_select['katana_osf'] .= "<option value=\"Linear Phase Slow Roll-off Filter\" " . (($katana_osf == 'Linear Phase Slow Roll-off Filter') ? "selected" : "") . ">Linear Phase Slow Roll-off Filter</option>\n";
-	$_select['katana_osf'] .= "<option value=\"Minimum Phase Fast Roll-off Filter\" " . (($katana_osf == 'Minimum Phase Fast Roll-off Filter') ? "selected" : "") . ">Minimum Phase Fast Roll-off Filter</option>\n";
-	$_select['katana_osf'] .= "<option value=\"Minimum Phase Slow Roll-off Filter\" " . (($katana_osf == 'Minimum Phase Slow Roll-off Filter') ? "selected" : "") . ">Minimum Phase Slow Roll-off Filter</option>\n";
+	$_select['katana_osf'] .= "<option value=\"Apodizing Fast Roll-off Filter\" " . (($katana_osf == 'Apodizing Fast Roll-off Filter') ? "selected" : "") . ">Apodizing快速滚降滤波器</option>\n";
+	$_select['katana_osf'] .= "<option value=\"Brick Wall Filter\" " . (($katana_osf == 'Brick Wall Filter') ? "selected" : "") . ">Brick Wall滤波器</option>\n";
+	$_select['katana_osf'] .= "<option value=\"Corrected Minimum Phase Fast Roll-off Filter\" " . (($katana_osf == 'Corrected Minimum Phase Fast Roll-off Filter') ? "selected" : "") . ">校正最小相位快速滚降滤波器</option>\n";
+	$_select['katana_osf'] .= "<option value=\"Linear Phase Fast Roll-off Filter\" " . (($katana_osf == 'Linear Phase Fast Roll-off Filter') ? "selected" : "") . ">线性相位快速滚降滤波器</option>\n";
+	$_select['katana_osf'] .= "<option value=\"Linear Phase Slow Roll-off Filter\" " . (($katana_osf == 'Linear Phase Slow Roll-off Filter') ? "selected" : "") . ">线性相位慢滚降滤波器</option>\n";
+	$_select['katana_osf'] .= "<option value=\"Minimum Phase Fast Roll-off Filter\" " . (($katana_osf == 'Minimum Phase Fast Roll-off Filter') ? "selected" : "") . ">最小相位快速滚降滤波器</option>\n";
+	$_select['katana_osf'] .= "<option value=\"Minimum Phase Slow Roll-off Filter\" " . (($katana_osf == 'Minimum Phase Slow Roll-off Filter') ? "selected" : "") . ">最小相位慢滚降滤波器</option>\n";
 	// De-emphasis
 	$_select['katana_deemphasis'] .= "<option value=\"Bypass\" " . (($katana_deemphasis == 'Bypass') ? "selected" : "") . ">Bypass</option>\n";
 	$_select['katana_deemphasis'] .= "<option value=\"32kHz\" " . (($katana_deemphasis == '32kHz') ? "selected" : "") . ">32 kHz</option>\n";
 	$_select['katana_deemphasis'] .= "<option value=\"44.1kHz\" " . (($katana_deemphasis == '44.1kHz') ? "selected" : "") . ">44.1 kHz</option>\n";
 	$_select['katana_deemphasis'] .= "<option value=\"48kHz\" " . (($katana_deemphasis == '48kHz') ? "selected" : "") . ">48 kHz</option>\n";
 	// DoP
-	$_select['katana_dop'] .= "<option value=\"on\" " . (($katana_dop == 'on') ? "selected" : "") . ">On</option>\n";
-	$_select['katana_dop'] .= "<option value=\"off\" " . (($katana_dop == 'off') ? "selected" : "") . ">Off</option>\n";
+	$_select['katana_dop'] .= "<option value=\"on\" " . (($katana_dop == 'on') ? "selected" : "") . ">开</option>\n";
+	$_select['katana_dop'] .= "<option value=\"off\" " . (($katana_dop == 'off') ? "selected" : "") . ">关</option>\n";
 } else {
 	//$_allo_katana_hide = 'dummy';
 	$_allo_katana_hide = 'hide';
@@ -289,18 +290,18 @@ if ($_SESSION['i2sdevice'] == 'Audiophonics ES9028/9038 DAC' || $_SESSION['i2sde
 	$audiophonics_q2m_input = $array[1];
 	// Oversampling filter
 	if ($_SESSION['i2sdevice'] == 'Audiophonics ES9028/9038 DAC') {
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"apodizing fast\" " . (($audiophonics_q2m_osf == 'apodizing fast') ? "selected" : "") . ">Apodizing Fast Roll-off Filter</option>\n";
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"brick wall\" " . (($audiophonics_q2m_osf == 'brick wall') ? "selected" : "") . ">Brick Wall Filter</option>\n";
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"corrected minimum phase fast\" " . (($audiophonics_q2m_osf == 'corrected minimum phase fast') ? "selected" : "") . ">Corrected Minimum Phase Fast Roll-off Filter</option>\n";
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"linear phase fast\" " . (($audiophonics_q2m_osf == 'linear phase fast') ? "selected" : "") . ">Linear Phase Fast Roll-off Filter</option>\n";
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"linear phase slow\" " . (($audiophonics_q2m_osf == 'linear phase slow') ? "selected" : "") . ">Linear Phase Slow Roll-off Filter</option>\n";
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"minimum phase fast\" " . (($audiophonics_q2m_osf == 'minimum phase fast') ? "selected" : "") . ">Minimum Phase Fast Roll-off Filter</option>\n";
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"minimum phase slow\" " . (($audiophonics_q2m_osf == 'minimum phase slow') ? "selected" : "") . ">Minimum Phase slow Roll-off Filter</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"apodizing fast\" " . (($audiophonics_q2m_osf == 'apodizing fast') ? "selected" : "") . ">Apodizing快速滚降滤波器</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"brick wall\" " . (($audiophonics_q2m_osf == 'brick wall') ? "selected" : "") . ">Brick Wall滤波器</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"corrected minimum phase fast\" " . (($audiophonics_q2m_osf == 'corrected minimum phase fast') ? "selected" : "") . ">校正最小相位快速滚降滤波器</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"linear phase fast\" " . (($audiophonics_q2m_osf == 'linear phase fast') ? "selected" : "") . ">线性相位快速滚降滤波器</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"linear phase slow\" " . (($audiophonics_q2m_osf == 'linear phase slow') ? "selected" : "") . ">线性相位慢滚降滤波器</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"minimum phase fast\" " . (($audiophonics_q2m_osf == 'minimum phase fast') ? "selected" : "") . ">最小相位快速滚降滤波器</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"minimum phase slow\" " . (($audiophonics_q2m_osf == 'minimum phase slow') ? "selected" : "") . ">最小相位慢滚降滤波器</option>\n";
 	} else {
 		// Pre 2019 implementation
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"brick wall\" " . (($audiophonics_q2m_osf == 'brick wall') ? "selected" : "") . ">PCM Filter sharp</option>\n";
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"corrected minimum phase fast\" " . (($audiophonics_q2m_osf == 'corrected minimum phase fast') ? "selected" : "") . ">PCM Filter fast</option>\n";
-		$_select['audiophonics_q2m_osf'] .= "<option value=\"minimum phase slow\" " . (($audiophonics_q2m_osf == 'minimum phase slow') ? "selected" : "") . ">PCM Filter slow</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"brick wall\" " . (($audiophonics_q2m_osf == 'brick wall') ? "selected" : "") . ">PCM滤波器sharp</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"corrected minimum phase fast\" " . (($audiophonics_q2m_osf == 'corrected minimum phase fast') ? "selected" : "") . ">PCM滤波器fast</option>\n";
+		$_select['audiophonics_q2m_osf'] .= "<option value=\"minimum phase slow\" " . (($audiophonics_q2m_osf == 'minimum phase slow') ? "selected" : "") . ">PCM滤波器slow</option>\n";
 	}
 	// NOTE: This option is handled in the Source Select screen
 	$_select['audiophonics_q2m_input'] .= "<option value=\"I2S\" " . (($audiophonics_q2m_input == 'I2S') ? "selected" : "") . ">I2S</option>\n";
@@ -315,11 +316,11 @@ if ($_SESSION['i2sdevice'] == 'MERUS(tm) Amp piHAT ZW') {
 	$_merus_ma12070p = '';
 	$merus_ma12070p_pmp = $array[0];
 	// Power mode profiles
-	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF0\" " . (($merus_ma12070p_pmp == 'PMF0') ? "selected" : "") . ">PMF0 - No filter, optimized efficiency, default applications</option>\n";
-	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF1\" " . (($merus_ma12070p_pmp == 'PMF1') ? "selected" : "") . ">PMF1 - No filter, optimized audio performance, active speaker applications</option>\n";
-	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF2\" " . (($merus_ma12070p_pmp == 'PMF2') ? "selected" : "") . ">PMF2 - No filter, optimized audio performance, default applications</option>\n";
-	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF3\" " . (($merus_ma12070p_pmp == 'PMF3') ? "selected" : "") . ">PMF3 - LC filter, high efficiency, high audio performance, good EMI, low ripple loss</option>\n";
-	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF4\" " . (($merus_ma12070p_pmp == 'PMF4') ? "selected" : "") . ">PMF4 - No filter, optimized efficiency, active speaker applications</option>\n";
+	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF0\" " . (($merus_ma12070p_pmp == 'PMF0') ? "selected" : "") . ">PMF0 - 无滤波器、优化效率、默认应用</option>\n";
+	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF1\" " . (($merus_ma12070p_pmp == 'PMF1') ? "selected" : "") . ">PMF1 - 无滤波器、优化的音频性能、有源扬声器应用</option>\n";
+	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF2\" " . (($merus_ma12070p_pmp == 'PMF2') ? "selected" : "") . ">PMF2 - 无滤波器、优化的音频性能、默认应用</option>\n";
+	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF3\" " . (($merus_ma12070p_pmp == 'PMF3') ? "selected" : "") . ">PMF3 - LC滤波器，高效率，高音频性能，良好的电磁干扰，低纹波损耗</option>\n";
+	$_select['merus_ma12070p_pmp'] .= "<option value=\"PMF4\" " . (($merus_ma12070p_pmp == 'PMF4') ? "selected" : "") . ">PMF4 - 无滤波器、优化效率、有源扬声器应用</option>\n";
 } else {
 	//$_merus_ma12070p = 'dummy';
 	$_merus_ma12070p = 'hide';
