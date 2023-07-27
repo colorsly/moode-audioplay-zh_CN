@@ -1,0 +1,197 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * tsunamp player ui (C) 2013 Andrea Coiutti & Simone De Gregori
+ * http://www.tsunamp.com
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 汉化：Androidnews
+ *
+ */
+-->
+<div id="container">
+<div class="container">
+	<h1 class="lib-config">音乐库配置</h1>
+
+	<form class="form-horizontal" method="post">
+		<legend>音乐源</legend>
+		<p class="sub-legend">
+				当歌曲文件位于网络中的另一台计算机上时，创建音乐源。
+				保存或删除源后，返回播放或库，然后从菜单中选择“更新库”。
+
+		</p>
+
+		<div class="control-group">
+			<a href="lib-config.php?cmd=add"><button class="btn btn-medium btn-primary config-btn">创建</button></a>
+			<span class="config-btn-after">音乐来源</span>
+
+			<div>$_mounts</div>
+
+			<a href="#remount-sources" data-toggle="modal"><button class="btn btn-medium btn-primary config-btn">重新挂载</button></a>
+			<span class="config-btn-after">所有音源</span>
+			<a aria-label="Help" class="config-info-toggle" data-cmd="info-remount-sources" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-remount-sources" class="config-help-info">
+				卸载所有音乐源，然后重新挂载它们。
+			</span>
+
+			<div>
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-fs-mount-monitor-2">开</label>$_select[fs_mountmon_on]
+					<label class="toggle-radio" for="toggle-fs-mount-monitor-1">关</label>$_select[fs_mountmon_off]
+				</div>
+				<span class="config-toggle-after">安装监视器</span>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_fs_mountmon" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-mount-monitor" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-mount-monitor" class="config-help-info">
+					尝试自动恢复由于网络或文件共享服务中断而暂时不可用的音乐源装载。
+					由于SMB和NFS中使用的协议，在检查装载或执行重新装载时可能会出现长时间超时。
+					调试日志记录打开时，请参阅文件/var/log/mountmon.log。
+
+				</span>
+			</div>
+		</div>
+
+		<legend>音乐数据库</legend>
+		<p class="sub-legend">
+					“音乐数据库”包含集合中每个歌曲文件的相关信息。
+					它由MPD在“更新库”期间使用歌曲文件元数据标签填充，然后由moOde使用额外的元数据进行增强。
+
+		</p>
+
+		<div class="control-group">
+			<div>
+				<a href="#regen-mpddb" data-toggle="modal"><button class="btn btn-medium btn-primary config-btn">重新生成</button></a>
+				<span class="config-btn-after">音乐数据库</span>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-regen-mpddb" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-regen-mpddb" class="config-help-info">
+					重新生成音乐数据库，然后更新专辑封面缩略图缓存。
+	            </span>
+			</div>
+
+			<div>
+				<a href="#clear-libcache" data-toggle="modal"><button class="btn btn-medium btn-primary config-btn">清空</button></a>
+				<span class="config-btn-after">音乐库标记缓存</span>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-clear-libcache" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-clear-libcache" class="config-help-info">
+					返回“播放”或“库”视图时，将重新生成标记缓存。
+	            </span>
+			</div>
+
+			<div>
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle_usb_auto_updatedb1">是</label>$_select[usb_auto_updatedb1]
+					<label class="toggle-radio" for="toggle_usb_auto_updatedb0">否 </label>$_select[usb_auto_updatedb0]
+				</div>
+				<span class="config-toggle-after">更新数据库</span>
+				<button class="btn btn-primary btn-small btn-submit config-btn-set" type="submit" name="update_usb_auto_updatedb" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-usb-auto-update" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-usb-auto-update" class="config-help-info">
+					在插入或移除USB设备时自动更新数据库。
+		        </span>
+			</div>
+
+			<div>
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle_cuefiles_ignore1">是</label>$_select[cuefiles_ignore1]
+					<label class="toggle-radio" for="toggle_cuefiles_ignore0">否 </label>$_select[cuefiles_ignore0]
+				</div>
+				<span class="config-toggle-after">忽略CUE文件</span>
+				<button class="btn btn-primary btn-small btn-submit config-btn-set" type="submit" name="update_cuefiles_ignore" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-cuefiles-ignore" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-cuefiles-ignore" class="config-help-info">
+					当相册目录中存在.cue文件时，这有助于防止重复的曲目条目。
+					更改此设置后，返回播放或库，然后从菜单中选择“更新库”。
+
+		        </span>
+			</div>
+		</div>
+
+		<legend>缩略图生成器</legend>
+		<p class="sub-legend">
+					专辑封面缩略图用于填充库视图、播放栏和队列。
+					“首选项”的“播放”和“库”部分包含缩略图的选项。
+		</p>
+
+		<div class="control-group">
+			<div>
+				<a href="#regen-thmcache" data-toggle="modal"><button class="btn btn-medium btn-primary config-btn">重新生成</button></a>
+				<span class="config-btn-after">专辑封面缩略图缓存</span>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-regen-thmcache" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-regen-thmcache" class="config-help-info">
+					重新生成专辑封面缩略图缓存，方法是先将其删除，然后用新生成的专辑封面缩略图重新填充。
+	            </span>
+			</div>
+
+			<div>
+				<a id="view-thmcache-status" href="#notarget"><button class="btn btn-medium btn-primary config-btn">查看状态</button></a>
+				<span id="thmcache-status" class="config-btn-after">$_thmcache_status</span>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+
+<form class="form-horizontal" method="post">
+	<div id="remount-sources" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="remount-sources-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>是否重载音乐来源？</h3>
+		</div>
+		<div class="modal-body"></div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="remount_sources" value="novalue">确认</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="regen-mpddb" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="regen-mpddb-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>是否重新生成音乐数据库？</h3>
+		</div>
+		<div class="modal-body"></div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="regen_library" value="novalue">确认</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="clear-libcache" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="clear-libcache-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>是否清除库标记缓存？</h3>
+		</div>
+		<div class="modal-body"></div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="clear_libcache" value="novalue">确认</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="regen-thmcache" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="regen-thmcache-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>是否重新生成缩略图缓存？</h3>
+		</div>
+		<div class="modal-body"></div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="regen_thmcache" value="novalue">确认</button>
+		</div>
+	</div>
+</form>
