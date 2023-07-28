@@ -31,7 +31,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		sqlUpdate('cfg_spotify', $dbh, $key, $value);
 	}
 
-	submitJob('spotifysvc', '', 'Settings updated', ($_SESSION['spotifysvc'] == '1' ? 'Spotify receiver restarted' : ''));
+	submitJob('spotifysvc', '', '设置已更新', ($_SESSION['spotifysvc'] == '1' ? 'Spotify接收器已重新启动' : ''));
 }
 
 phpSession('close');
@@ -69,8 +69,8 @@ $_select['volume_curve'] .= "<option value=\"fixed\" " . (($cfgSpotify['volume_c
 
 $_select['volume_range'] = $cfgSpotify['volume_range'];
 
-$_select['volume_normalization'] .= "<option value=\"Yes\" " . (($cfgSpotify['volume_normalization'] == 'Yes') ? "selected" : "") . ">Yes</option>\n";
-$_select['volume_normalization'] .= "<option value=\"No\" " . (($cfgSpotify['volume_normalization'] == 'No') ? "selected" : "") . ">No</option>\n";
+$_select['volume_normalization'] .= "<option value=\"Yes\" " . (($cfgSpotify['volume_normalization'] == 'Yes') ? "selected" : "") . ">是</option>\n";
+$_select['volume_normalization'] .= "<option value=\"No\" " . (($cfgSpotify['volume_normalization'] == 'No') ? "selected" : "") . ">否</option>\n";
 $_select['normalization_method'] .= "<option value=\"dynamic\" " . (($cfgSpotify['normalization_method'] == 'dynamic') ? "selected" : "") . ">Dynamic (Default)</option>\n";
 $_select['normalization_method'] .= "<option value=\"basic\" " . (($cfgSpotify['normalization_method'] == 'basic') ? "selected" : "") . ">Basic</option>\n";
 $_select['normalization_gain_type'] .= "<option value=\"auto\" " . (($cfgSpotify['normalization_gain_type'] == 'auto') ? "selected" : "") . ">Automatic (Default)</option>\n";
@@ -82,8 +82,8 @@ $_select['normalization_attack'] = $cfgSpotify['normalization_attack'];
 $_select['normalization_release'] = $cfgSpotify['normalization_release'];
 $_select['normalization_knee'] = $cfgSpotify['normalization_knee'];
 
-$_select['autoplay'] .= "<option value=\"Yes\" " . (($cfgSpotify['autoplay'] == 'Yes') ? "selected" : "") . ">Yes</option>\n";
-$_select['autoplay'] .= "<option value=\"No\" " . (($cfgSpotify['autoplay'] == 'No') ? "selected" : "") . ">No</option>\n";
+$_select['autoplay'] .= "<option value=\"Yes\" " . (($cfgSpotify['autoplay'] == 'Yes') ? "selected" : "") . ">是</option>\n";
+$_select['autoplay'] .= "<option value=\"No\" " . (($cfgSpotify['autoplay'] == 'No') ? "selected" : "") . ">否</option>\n";
 
 waitWorker(1, 'spo_config');
 

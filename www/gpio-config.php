@@ -30,7 +30,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 	foreach (array_keys($_POST['config']) as $key) {
 		sqlUpdate('cfg_gpio', $dbh, $key, $_POST['config'][$key]);
 	}
-	submitJob('gpio_svc', $_SESSION['gpio_svc'], 'Settings updated', ($_SESSION['gpio_svc'] == '1' ? 'GPIO controller restarted' : ''));
+	submitJob('gpio_svc', $_SESSION['gpio_svc'], '设置已更新', ($_SESSION['gpio_svc'] == '1' ? 'GPIO控制器重新启动' : ''));
 }
 
 $result = sqlRead('cfg_gpio', $dbh);

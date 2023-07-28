@@ -38,7 +38,7 @@ if ($result[0]['value'] == '0') {
 // Check for MPD connection failure
 $sock = openMpdSock('localhost', 6600);
 if (!$sock) {
-	debugLog('engine-mpd: Connection to MPD failed');
+	debugLog('engine-mpd: 与MPD的连接失败');
 	echo json_encode(array('error' => 'openMpdSock() failed', 'module' => 'engine-mpd'));
 	exit;
 }

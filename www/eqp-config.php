@@ -68,7 +68,7 @@ if (isset($_POST['curve_id']) && isset($_POST['save']) && $_POST['save'] == '1')
 		}
 	}
 
-	$_SESSION['notify']['title'] = 'Curve updated';
+	$_SESSION['notify']['title'] = '曲线已更新';
 }
 
 if (isset($_POST['play']) && $_POST['play'] == '1') {
@@ -85,7 +85,7 @@ if (isset($_POST['play']) && $_POST['play'] == '1') {
 	closeMpdSock($sock);
 
 	$curveConfig = $config;
-	$_SESSION['notify']['title'] = 'Playing curve';
+	$_SESSION['notify']['title'] = '播放曲线';
 }
 
 // Add, remove, change, refresh
@@ -94,14 +94,14 @@ if (isset($_POST['curve_id']) && isset($_POST['newcurvename']) && $_POST['newcur
 	$newCurveID = $eqp12->setpreset(null, $_POST['new_curve_name'], $eqp12->getpreset($curveID));
 	if ($newCurveID) {
 		$_selected_curve_id = $newCurveID;
-		$_SESSION['notify']['title'] = 'New curve added';
+		$_SESSION['notify']['title'] = '添加了新曲线';
 	}
 } else if (isset($_POST['curve_id']) && isset($_POST['rmcurve'])) {
 	$currentID = intval($_POST['curve_id']);
 	if ($currentID && $currentID != 1) {
 		$eqp12->unsetpreset($currentID);
 		$_selected_curve_id = 1;
-		$_SESSION['notify']['title'] = 'Curve removed';
+		$_SESSION['notify']['title'] = '移除曲线';
 	}
 } else if ($_selected_curve_id == null and isset($_GET['curve'])) {
 	$_selected_curve_id = $_GET['curve'];
@@ -128,7 +128,7 @@ foreach ($curveList as $curveID => $curveName) {
 // Set control states
 $_disable_play = $_SESSION['eqfa12p'] == 'Off' ? 'disabled' : '';
 $_disable_rm = $_selected_curve_id == 1 ? 'disabled' : '';
-$_disable_rm_msg = $_selected_curve_id == 1 ? 'The Default curve cannot be removed' : '';
+$_disable_rm_msg = $_selected_curve_id == 1 ? '不能移除默认曲线' : '';
 
 // Load curve params
 if (!$curveConfig) {

@@ -65,7 +65,7 @@
 <div id="configure-modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="configure-modal-label" aria-hidden="true">
 	<div class="modal-header">
 		<button aria-label="Close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3 id="configure-modal-label">配置</h3>
+		<h3 id="configure-modal-label">系统配置</h3>
 	</div>
 	<div class="modal-body">
 		<div id="configure">
@@ -124,7 +124,7 @@
 				<li class="context-menu">
 					<a href="#notarget" class="btn btn-large" data-cmd="setforclockradio-m">
 						<i class="fas fa-alarm-clock"></i>
-						<br>闹钟
+						<br>收音机闹钟
 					</a>
 				</li>
 				<?php } ?>
@@ -193,7 +193,7 @@
 <div id="power-modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="power-modal-label" aria-hidden="true">
 	<div class="modal-header">
 		<button aria-label="Close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3 id="power-modal-label">电源</h3>
+		<h3 id="power-modal-label">电源按钮</h3>
 	</div>
 	<div class="modal-body">
 		<button aria-label="Shutdown" id="system-shutdown" data-dismiss="modal" class="btn btn-primary btn-large btn-block">关机</button>
@@ -211,12 +211,12 @@
 <div id="restart" class="hide">
 	<div class="reconnect-bg"></div>
 	<a href="javascript:location.reload(true); void 0" class="btn reconnect-btn">重新连接</a>
-	<span class="reconnect-msg">系统重启中......</span>
+	<span class="reconnect-msg">系统重启中...</span>
 </div>
 <div id="shutdown" class="hide">
 	<div class="reconnect-bg"></div>
 	<a href="javascript:location.reload(true); void 0" class="btn reconnect-btn">重新连接</a>
-	<span class="reconnect-msg">系统关机中......</span>
+	<span class="reconnect-msg">系统关机中...</span>
 </div>
 <?php
     //workerLog('-- footer.php');

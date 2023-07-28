@@ -35,7 +35,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		sqlUpdate('cfg_sl', $dbh, $key, SQLite3::escapeString($value));
 	}
 
-	submitJob('slcfgupdate', '', 'Settings updated', ($_SESSION['slsvc'] == '1' ? 'Squeezelite restarted' : ''));
+	submitJob('slcfgupdate', '', '设置已更新', ($_SESSION['slsvc'] == '1' ? 'Squeezelite重新启动' : ''));
 }
 
 phpSession('close');

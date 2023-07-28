@@ -45,14 +45,14 @@ if (isset($_POST['update_bt_settings'])) {
 	}
 }
 if (isset($_POST['btrestart']) && $_POST['btrestart'] == 1 && $_SESSION['btsvc'] == '1') {
-	submitJob('btsvc', '', '蓝牙控制器已重新启动', '');
+	submitJob('btsvc', '', '蓝牙控制器重新启动', '');
 }
 if (isset($_POST['update_pairing_agent'])) {
 	phpSession('write', 'pairing_agent', $_POST['pairing_agent']);
 	submitJob('pairing_agent', $_POST['pairing_agent'], '设置已更新', '');
 }
 if (isset($_POST['parestart']) && $_POST['parestart'] == 1 && $_SESSION['btsvc'] == '1') {
-	submitJob('pairing_agent', '', '配对代理已重新启动', '');
+	submitJob('pairing_agent', '', '配对代理重新启动', '');
 }
 if (isset($_POST['update_rsmafterbt'])) {
 	phpSession('write', 'rsmafterbt', $_POST['rsmafterbt']);
@@ -82,7 +82,7 @@ if (isset($_POST['update_rsmafterapl'])) {
 	$_SESSION['notify']['title'] = '设置已更新';
 }
 if (isset($_POST['airplayrestart']) && $_POST['airplayrestart'] == 1 && $_SESSION['airplaysvc'] == '1') {
-	submitJob('airplaysvc', '', 'AirPlay已重新启动', '');
+	submitJob('airplaysvc', '', 'AirPlay重新启动', '');
 }
 
 // Spotify Connect
@@ -104,10 +104,10 @@ if (isset($_POST['update_rsmafterspot'])) {
 	$_SESSION['notify']['title'] = '设置已更新';
 }
 if (isset($_POST['spotifyrestart']) && $_POST['spotifyrestart'] == 1 && $_SESSION['spotifysvc'] == '1') {
-	submitJob('spotifysvc', '', 'Spotify connect restarted', '');
+	submitJob('spotifysvc', '', 'Spotify connect重新启动', '');
 }
 if (isset($_POST['spotify_clear_credentials']) && $_POST['spotify_clear_credentials'] == 1) {
-	submitJob('spotify_clear_credentials', '', '凭据缓存已清除', '');
+	submitJob('spotify_clear_credentials', '', '凭据缓存清除', '');
 }
 
 // Squeezelite
@@ -129,7 +129,7 @@ if (isset($_POST['update_rsmaftersl'])) {
 }
 if (isset($_POST['slrestart']) && $_POST['slrestart'] == 1) {
 	phpSession('write', 'rsmaftersl', 'No');
-	submitJob('slrestart', '', 'Squeezelite已重新启动', '');
+	submitJob('slrestart', '', 'Squeezelite重新启动', '');
 }
 
 // RoonBridge
@@ -147,7 +147,7 @@ if (isset($_POST['update_rsmafterrb'])) {
 	$_SESSION['notify']['title'] = '设置已更新';
 }
 if (isset($_POST['rbrestart']) && $_POST['rbrestart'] == 1) {
-	submitJob('rbrestart', '', 'RoonBridge已重新启动', '');
+	submitJob('rbrestart', '', 'RoonBridge重新启动', '');
 }
 
 // UPnP client for MPD
@@ -166,7 +166,7 @@ if (isset($_POST['update_upnp_settings'])) {
 	}
 }
 if (isset($_POST['upnprestart']) && $_POST['upnprestart'] == 1 && $_SESSION['upnpsvc'] == '1') {
-	submitJob('upnpsvc', '', 'UPnP渲染器已重新启动', '');
+	submitJob('upnpsvc', '', 'UPnP渲染器重新启动', '');
 }
 
 // DLNA media server
@@ -179,7 +179,7 @@ if (isset($_POST['update_dlna_settings'])) {
 	}
 	if (isset($_POST['dlnasvc']) && $_POST['dlnasvc'] != $_SESSION['dlnasvc']) {
 		$title = '设置已更新';
-		$msg = $_POST['dlnasvc'] == 1 ? '数据库重建已启动' : '';
+		$msg = $_POST['dlnasvc'] == 1 ? '数据库重建启动' : '';
 		phpSession('write', 'dlnasvc', $_POST['dlnasvc']);
 	}
 	if (isset($title)) {
@@ -188,7 +188,7 @@ if (isset($_POST['update_dlna_settings'])) {
 }
 if (isset($_POST['rebuild_dlnadb'])) {
 	if ($_SESSION['dlnasvc'] == 1) {
-		submitJob('dlnarebuild', '', '数据库重建已启动......', '');
+		submitJob('dlnarebuild', '', '数据库重建启动......', '');
 	}
 	else {
 		$_SESSION['notify']['title'] = '打开DLNA服务器';

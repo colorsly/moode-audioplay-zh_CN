@@ -23,6 +23,13 @@ MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，
 2.  http://moode.local登陆；打开路由器，进入dhcp分配页，可以看到moode；当然，如果以前登陆过，继续原来ip；
 3.  其他未说明的。
 
+#### 汉化效果
+
+![输入图片说明](Screenshot_20230728_134458_com.mmbox.xbrowser.pro.jpg)
+![输入图片说明](Screenshot_20230728_134451_com.mmbox.xbrowser.pro.jpg)
+![输入图片说明](Screenshot_20230728_134522_com.mmbox.xbrowser.pro.jpg)
+![输入图片说明](Screenshot_20230728_140636_com.mmbox.xbrowser.pro.jpg)
+
 #### 参与贡献
 
 1.  Fork 本仓库

@@ -41,7 +41,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		}
 	}
 
-	submitJob('upnpsvc', '', 'Settings updated', ($_SESSION['upnpsvc'] == '1' ? 'UPnP restarted' : ''));
+	submitJob('upnpsvc', '', '设置已更新', ($_SESSION['upnpsvc'] == '1' ? 'UPnP重新启动' : ''));
 }
 
 phpSession('close');
@@ -53,8 +53,8 @@ foreach ($result as $row) {
 	$cfgUPNP[$row['param']] = $row['value'];
 }
 
-$_select['checkcontentformat'] .= "<option value=\"1\" " . (($cfgUPNP['checkcontentformat'] == '1') ? "selected" : "") . ">Yes</option>\n";
-$_select['checkcontentformat'] .= "<option value=\"0\" " . (($cfgUPNP['checkcontentformat'] == '0') ? "selected" : "") . ">No</option>\n";
+$_select['checkcontentformat'] .= "<option value=\"1\" " . (($cfgUPNP['checkcontentformat'] == '1') ? "selected" : "") . ">是</option>\n";
+$_select['checkcontentformat'] .= "<option value=\"0\" " . (($cfgUPNP['checkcontentformat'] == '0') ? "selected" : "") . ">否</option>\n";
 $_select['svctype'] .= "<option value=\"upnpav\" " . (($cfgUPNP['upnpav'] == '1') ? "selected" : "") . ">UPnP-A/V</option>\n";
 $_select['svctype'] .= "<option value=\"openhome\" " . (($cfgUPNP['openhome'] == '1') ? "selected" : "") . ">OpenHome</option>\n";
 

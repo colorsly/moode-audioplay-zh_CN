@@ -43,7 +43,7 @@ if (isset($_POST['reset']) && $_POST['reset'] == 1) {
 	$value['wlan_country'] = $cfgNetwork[1]['wlan_country']; // Preserve country code
 	sqlUpdate('cfg_network', $dbh, 'wlan0', $value);
 
-	submitJob('netcfg', '', 'Network config reset', 'Restart required');
+	submitJob('netcfg', '', '网络配置重置', '需要重启');
 }
 
 // Update interfaces
@@ -102,7 +102,7 @@ if (isset($_POST['save']) && $_POST['save'] == 1) {
 		'wlan_country' => '', 'wlan_channel' => $_POST['wlan0apdchan'], 'wlan_router' => $_POST['wlan0apd_router']);
 	sqlUpdate('cfg_network', $dbh, 'apd0', $value);
 
-	submitJob('netcfg', '', 'Settings updated', 'Restart required');
+	submitJob('netcfg', '', '设置已更新', '需要重启');
 }
 
 // Update saved networks
@@ -119,7 +119,7 @@ if (isset($_POST['update-saved-networks']) && $_POST['update-saved-networks'] ==
 		}
 
 		if ($itemDeleted) {
-			submitJob('netcfg', '', 'Settigs updated', 'Restart required');
+			submitJob('netcfg', '', '设置已更新', '需要重启');
 		}
 	}
 }

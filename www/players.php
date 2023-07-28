@@ -58,7 +58,7 @@ foreach ($port6600Hosts as $ipAddr) {
 
 // Check for no players found
 if (empty(trim($_players))) {
-	$_players = '<li style="font-size:large">No other players found</li>';
+	$_players = '<li style="font-size:large">找不到其他玩家</li>';
 }
 
 $tpl = 'players.html';

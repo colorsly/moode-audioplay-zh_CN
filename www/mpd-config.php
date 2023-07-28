@@ -52,7 +52,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 	$mixer_chg = 0;
 	$mixer_chg = 0;
 	$queue_args = $device_chg . ',' . $mixer_chg;
-	submitJob('mpdcfg', $queue_args, 'Settings updated', 'MPD restarted');
+	submitJob('mpdcfg', $queue_args, '设置已更新', 'MPD重新启动');
 }
 
 // Load settings
@@ -74,18 +74,18 @@ if ($_SESSION['audioout'] == 'Bluetooth' || $_SESSION['multiroom_tx'] == 'On' ||
 $_mpd_select['dop'] .= "<option value=\"no\" " . (($cfgMPD['dop'] == 'no') ? "selected" : "") . " >Native DSD (Default)</option>\n";
 $_mpd_select['dop'] .= "<option value=\"yes\" " . (($cfgMPD['dop'] == 'yes') ? "selected" : "") . " >DSD over PCM (DoP)</option>\n";
 // DSD silence before stop
-$_mpd_select['stop_dsd_silence'] .= "<option value=\"yes\" " . (($cfgMPD['stop_dsd_silence'] == 'yes') ? "selected" : "") . " >Yes</option>\n";
-$_mpd_select['stop_dsd_silence'] .= "<option value=\"no\" " . (($cfgMPD['stop_dsd_silence'] == 'no') ? "selected" : "") . " >No</option>\n";
+$_mpd_select['stop_dsd_silence'] .= "<option value=\"yes\" " . (($cfgMPD['stop_dsd_silence'] == 'yes') ? "selected" : "") . " >是</option>\n";
+$_mpd_select['stop_dsd_silence'] .= "<option value=\"no\" " . (($cfgMPD['stop_dsd_silence'] == 'no') ? "selected" : "") . " >否</option>\n";
 // Thesycon DSD workaround
-$_mpd_select['thesycon_dsd_workaround'] .= "<option value=\"yes\" " . (($cfgMPD['thesycon_dsd_workaround'] == 'yes') ? "selected" : "") . " >Yes</option>\n";
-$_mpd_select['thesycon_dsd_workaround'] .= "<option value=\"no\" " . (($cfgMPD['thesycon_dsd_workaround'] == 'no') ? "selected" : "") . " >No</option>\n";
+$_mpd_select['thesycon_dsd_workaround'] .= "<option value=\"yes\" " . (($cfgMPD['thesycon_dsd_workaround'] == 'yes') ? "selected" : "") . " >是</option>\n";
+$_mpd_select['thesycon_dsd_workaround'] .= "<option value=\"no\" " . (($cfgMPD['thesycon_dsd_workaround'] == 'no') ? "selected" : "") . " >否</option>\n";
 
 // SoX resampling
 $format = array('','','');
 $format = explode(':', $cfgMPD['audio_output_format']);
 // Enabled
-$_mpd_select['sox_enabled'] .= "<option value=\"Yes\" " . (($cfgMPD['audio_output_format'] != 'disabled') ? "selected" : "") . " >Yes</option>\n";
-$_mpd_select['sox_enabled'] .= "<option value=\"No\" " . (($cfgMPD['audio_output_format'] == 'disabled') ? "selected" : "") . " >No</option>\n";
+$_mpd_select['sox_enabled'] .= "<option value=\"Yes\" " . (($cfgMPD['audio_output_format'] != 'disabled') ? "selected" : "") . " >是</option>\n";
+$_mpd_select['sox_enabled'] .= "<option value=\"No\" " . (($cfgMPD['audio_output_format'] == 'disabled') ? "selected" : "") . " >否</option>\n";
 // Bit depth
 $_mpd_select['sox_bit_depth'] .= "<option value=\"*\" " . (($cfgMPD['audio_output_format'] != 'disabled' && $format[1] == '*') ? "selected" : "") . " >Any</option>\n";
 $_mpd_select['sox_bit_depth'] .= "<option value=\"16\" " . (($cfgMPD['audio_output_format'] != 'disabled' && $format[1] == '16') ? "selected" : "") . " >16</option>\n";
@@ -144,8 +144,8 @@ $_mpd_select['sox_attenuation'] = $cfgMPD['sox_attenuation'];
 $_mpd_select['sox_flags'] = $cfgMPD['sox_flags'];
 
 // SoX multithreading
-$_mpd_select['sox_multithreading'] .= "<option value=\"0\" " . (($cfgMPD['sox_multithreading'] == '0') ? "selected" : "") . " >Yes</option>\n";
-$_mpd_select['sox_multithreading'] .= "<option value=\"1\" " . (($cfgMPD['sox_multithreading'] == '1') ? "selected" : "") . " >No</option>\n";
+$_mpd_select['sox_multithreading'] .= "<option value=\"0\" " . (($cfgMPD['sox_multithreading'] == '0') ? "selected" : "") . " >是</option>\n";
+$_mpd_select['sox_multithreading'] .= "<option value=\"1\" " . (($cfgMPD['sox_multithreading'] == '1') ? "selected" : "") . " >否</option>\n";
 
 // Replaygain
 $_mpd_select['replaygain'] .= "<option value=\"off\" " . (($cfgMPD['replaygain'] == 'off') ? "selected" : "") . " >Off</option>\n";
@@ -157,8 +157,8 @@ $_mpd_select['replaygain'] .= "<option value=\"track\" " . (($cfgMPD['replaygain
 $_mpd_select['replaygain_preamp'] = $cfgMPD['replaygain_preamp'];
 
 // Volume normalization
-$_mpd_select['volume_normalization'] .= "<option value=\"yes\" " . (($cfgMPD['volume_normalization'] == 'yes') ? "selected" : "") . " >Yes</option>\n";
-$_mpd_select['volume_normalization'] .= "<option value=\"no\" " . (($cfgMPD['volume_normalization'] == 'no') ? "selected" : "") . " >No</option>\n";
+$_mpd_select['volume_normalization'] .= "<option value=\"yes\" " . (($cfgMPD['volume_normalization'] == 'yes') ? "selected" : "") . " >是</option>\n";
+$_mpd_select['volume_normalization'] .= "<option value=\"no\" " . (($cfgMPD['volume_normalization'] == 'no') ? "selected" : "") . " >否</option>\n";
 
 // Resource limits
 $_mpd_select['audio_buffer_size'] = $cfgMPD['audio_buffer_size'] / 1024; // Convert these from KB to MB

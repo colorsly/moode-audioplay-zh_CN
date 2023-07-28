@@ -41,52 +41,52 @@ $initiateLibraryUpd = false;
 if (isset($_POST['remount_sources'])) {
 	$result = sqlRead('cfg_source', $dbh);
 	if ($result === true) {
-		$_SESSION['notify']['title'] = 'No music sources configured';
+		$_SESSION['notify']['title'] = '没有配置音乐源';
 	} else {
 		$resultUnmount = sourceMount('unmountall');
 		$resultMount = sourceMount('mountall');
-		$_SESSION['notify']['title'] = 'Re-mounting music sources...';
+		$_SESSION['notify']['title'] = '重新安装音乐源...';
 	}
 }
 // Mount monitor
 if (isset($_POST['update_fs_mountmon'])) {
 	if (isset($_POST['fs_mountmon']) && $_POST['fs_mountmon'] != $_SESSION['fs_mountmon']) {
 		$_SESSION['fs_mountmon'] = $_POST['fs_mountmon'];
-		submitJob('fs_mountmon', $_POST['fs_mountmon'], 'Settings updated', '');
+		submitJob('fs_mountmon', $_POST['fs_mountmon'], '设置已更新', '');
 	}
 }
 // Regenerate MPD database
 if (isset($_POST['regen_library'])) {
-	submitJob('regen_library', '', 'Regenerating library...', 'Stay on this screen until the progress spinner is cleared');
+	submitJob('regen_library', '', '重新生成库...', '保持此屏幕直到进度微调器被清除');
 }
 // Clear library cache
 if (isset($_POST['clear_libcache'])) {
 	clearLibCacheAll();
-	$_SESSION['notify']['title'] = 'Library tag cache cleared';
+	$_SESSION['notify']['title'] = '库标记缓存已清除';
 }
 // Auto-update MPD db on usb insert or remove
 if (isset($_POST['update_usb_auto_updatedb'])) {
 	if (isset($_POST['usb_auto_updatedb']) && $_POST['usb_auto_updatedb'] != $_SESSION['usb_auto_updatedb']) {
-		$_SESSION['notify']['title'] = 'Settings updated';
+		$_SESSION['notify']['title'] = '设置已更新';
 		phpSession('write', 'usb_auto_updatedb', $_POST['usb_auto_updatedb']);
 	}
 }
 // Scan or ignore .cue files by adding or removing *.cue from /var/lib/mpd/music/.mpdignore
 if (isset($_POST['update_cuefiles_ignore'])) {
 	if (isset($_POST['cuefiles_ignore']) && $_POST['cuefiles_ignore'] != $_SESSION['cuefiles_ignore']) {
-		$_SESSION['notify']['title'] = 'Settings updated';
+		$_SESSION['notify']['title'] = '设置已更新';
 		phpSession('write', 'cuefiles_ignore', $_POST['cuefiles_ignore']);
-		submitJob('cuefiles_ignore', $_POST['cuefiles_ignore'], 'Settings updated', 'MPD restarted');
+		submitJob('cuefiles_ignore', $_POST['cuefiles_ignore'], '设置已更新', 'MPD重新启动');
 	}
 }
 // Regenerate thumbnail cache
 if (isset($_POST['regen_thmcache'])) {
 	$result = sysCmd('pgrep -l thumb-gen.php');
 	if (strpos($result[0], 'thumb-gen.php') !== false) {
-		$_SESSION['notify']['title'] = 'Process is currently running';
+		$_SESSION['notify']['title'] = '流程当前正在运行';
 	} else {
-		$_SESSION['thmcache_status'] = 'Regenerating thumbnail cache...';
-		submitJob('regen_thmcache', '', 'Regenerating thumbnail cache...', '');
+		$_SESSION['thmcache_status'] = '重新生成缩略图缓存...';
+		submitJob('regen_thmcache', '', '重新生成缩略图缓存...', '');
 	}
 }
 
@@ -109,19 +109,19 @@ if (isset($_POST['save']) && $_POST['save'] == 1) {
 	$_POST['mount']['remotedir'] = $address[1];
 
 	if (empty(trim($_POST['mount']['address']))) {
-		$_SESSION['notify']['title'] = 'Path cannot be blank';
+		$_SESSION['notify']['title'] = '路径不能为空';
 		$_SESSION['notify']['duration'] = 5;
 	} else if (empty(trim($_POST['mount']['remotedir']))) {
-		$_SESSION['notify']['title'] = 'Share cannot be blank';
+		$_SESSION['notify']['title'] = '共享不能为空';
 		$_SESSION['notify']['duration'] = 5;
 	} else if ($_POST['mount']['type'] == 'cifs' && empty(trim($_POST['mount']['username']))) {
-		$_SESSION['notify']['title'] = 'Userid cannot be blank';
+		$_SESSION['notify']['title'] = '用户标识不能为空';
 		$_SESSION['notify']['duration'] = 5;
 	} else if ($_POST['mount']['action'] == 'add' && !empty($id[0])) {
-		$_SESSION['notify']['title'] = 'Name already exists';
+		$_SESSION['notify']['title'] = '名称已经存在';
 		$_SESSION['notify']['duration'] = 5;
 	} else if (empty(trim($_POST['mount']['name']))) {
-		$_SESSION['notify']['title'] = 'Name cannot be blank';
+		$_SESSION['notify']['title'] = '名称不能为空';
 		$_SESSION['notify']['duration'] = 5;
 	} else {
 		$initiateLibraryUpd = true;
@@ -209,7 +209,7 @@ if ($initiateLibraryUpd == true) {
 	//DELETE$title = isset($_POST['save']) ? 'Music source saved' : 'Music source removed';
 	//DELETEsubmitJob('update_library', '', $title, 'Updating library...');
 	phpSession('open');
-	$_SESSION['notify']['title'] = isset($_POST['save']) ? 'Music source saved' : 'Music source removed';
+	$_SESSION['notify']['title'] = isset($_POST['save']) ? '音乐源已保存' : '音乐源已移除';
 	phpSession('close');
 	unset($_GET['cmd']);
 }
@@ -228,9 +228,9 @@ if (!isset($_GET['cmd'])) {
 
 	// Messages
 	if ($mounts === true) {
-		$_mounts .= '<span class="btn-large config-btn config-btn-music-source">None configured</span>';
+		$_mounts .= '<span class="btn-large config-btn config-btn-music-source">未配置</span>';
 	} else if ($mounts === false) {
-		$_mounts .= '<span class="btn-large config-btn config-btn-music-source">Query failed</span>';
+		$_mounts .= '<span class="btn-large config-btn config-btn-music-source">查询失败</span>';
 	}
 
 	// Mount monitor
