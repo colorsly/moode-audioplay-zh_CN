@@ -9,6 +9,11 @@ MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，
 
 #### 软件下载
 
+包含：
+moOde 8.2.4s 英文原版
+核心隔离脚本
+汉化包
+
 链接: https://pan.baidu.com/s/1_jJYeUOIVJclCaAXVl9pQg?pwd=y3c8 提取码: y3c8 
 
 
