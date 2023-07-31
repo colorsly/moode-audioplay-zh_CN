@@ -7,6 +7,10 @@ MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，
 #### 软件架构
 无复杂架构一说，就是替换固件相关目录下的文件
 
+#### 软件下载
+
+链接: https://pan.baidu.com/s/1_jJYeUOIVJclCaAXVl9pQg?pwd=y3c8 提取码: y3c8 
+
 
 #### 安装教程
 
