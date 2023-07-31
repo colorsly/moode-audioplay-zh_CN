@@ -1,0 +1,126 @@
+<!--
+/**
+ * moOde audio player (C) Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 汉化：Androidnews
+ *
+ */
+-->
+<div id="container">
+	<div class="container">
+		<h1 class="snd-config">AirPlay</h1>
+
+		<form class="form-horizontal" action="" method="post">
+			<legend>配置
+				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+			</legend>
+
+			<div class="control-group">
+				<label class="control-label" for="interpolation">插值</label>
+				<div class="controls">
+					<select id="interpolation" class="config-select-large" name="config[interpolation]">
+						$_select[interpolation]
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-interpolation" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-interpolation" class="config-help-info">
+						为了最佳品质默认使用SoX，Basic是消耗更少CPU资源的替代方案。
+						<br>
+					</span>
+				</div>
+
+				<label class="control-label" for="output-format">Bit深度</label>
+				<div class="controls">
+					<select id="output-format" class="config-select-large" name="config[output_format]">
+						$_select[output_format]
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-output-format" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-output-format" class="config-help-info">
+						Airplay接收器输出位深。默认值为 16 bit。
+						<br>
+					</span>
+				</div>
+
+				<label class="control-label" for="output-rate">采样率</label>
+				<div class="controls">
+					<select id="output-rate" class="config-select-large" name="config[output_rate]">
+						$_select[output_rate]
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-output-rate" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-output-rate" class="config-help-info">
+						Airplay接收器输出采样率。默认值为 44.1 kHz。转换通过简易上采样完成，仅当音频设备不支持44,100频率时使用。
+						<br>
+					</span>
+				</div>
+
+				<label class="control-label" for="allow-session-interruption">会话中断</label>
+				<div class="controls">
+					<select id="allow-session-interruption" class="config-select-large" name="config[allow_session_interruption]">
+						$_select[allow_session_interruption]
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-allow-session-interruption" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-allow-session-interruption" class="config-help-info">
+						允许会话被另一个Airplay发送器中断。默认值为 No。
+						<br>
+					</span>
+				</div>
+
+				<label class="control-label" for="session-timeout">会话超时</label>
+				<div class="controls">
+					<input class="config-input-large" type="number" id="session-timeout" name="config[session_timeout]" value="$_select[session_timeout]">
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-session-timeout" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-session-timeout" class="config-help-info">
+						在终止会话并再次可用前，一个源消失后等待的秒数。默认值为 120。
+						<br>
+					</span>
+				</div>
+
+				<label class="control-label" for="audio-backend-latency-offset-in-seconds">延迟偏移</label>
+				<div class="controls">
+					<input class="config-input-large" type="text" id="audio-backend-latency-offset-in-seconds" name="config[audio_backend_latency_offset_in_seconds]" value="$_select[audio_backend_latency_offset_in_seconds]">
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-audio-backend-latency-offset-in-seconds" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-audio-backend-latency-offset-in-seconds" class="config-help-info">
+						设置此偏移量以补偿音频后端中存在的固定延迟。例如，如果输出设备延迟100毫秒，则将其设置为 -0.1。
+						<br>
+					</span>
+				</div>
+
+				<label class="control-label" for="audio-backend-buffer-desired-length-in-seconds">缓冲区长度</label>
+				<div class="controls">
+					<input class="config-input-large" type="text" id="audio-backend-buffer-desired-length-in-seconds" name="config[audio_backend_buffer_desired_length_in_seconds]" value="$_select[audio_backend_buffer_desired_length_in_seconds]">
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-audio-backend-buffer-desired-length-in-seconds" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-audio-backend-buffer-desired-length-in-seconds" class="config-help-info">
+						如果设置得太小，小功率机器上会发生缓冲区下溢。太长，软件混音器的响应时间会变得烦人。默认值为 0.15。
+						<br>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
