@@ -22,75 +22,77 @@
  */
 -->
 <div id="container">
-<div class="container">
-	<h1>备份/恢复</h1>
+	<div class="container">
+		<h1>备份/恢复</h1>
 
-	<!-- BACKUP -->
+		<!-- BACKUP -->
 
-	<form class="form-horizontal" action="" method="post" id="backup" enctype="multipart/form-data" $_backup_hidden>
-		<legend>备份选项</legend>
+		<form class="form-horizontal" action="" method="post" id="backup" enctype="multipart/form-data" $_backup_hidden>
+			<legend>备份选项</legend>
 
-		<p class="sub-legend">
-			指定系统的哪些部分将包含在备份zip文件中。可以选择添加一个脚本文件，用于在恢复过程中执行自定义操作。它在moOde启动期间运行，作为恢复配置设置的一部分。
-			请注意，WiFi和AP模式密码将包含在备份的配置设置部分。
-		</p>
+			<p class="sub-legend">
+				指定系统的哪些部分将包含在备份zip文件中。可以选择添加一个脚本文件，用于在恢复过程中执行自定义操作。它在moOde启动期间运行，作为恢复配置设置的一部分。
+				请注意，WiFi和AP模式密码将包含在备份的配置设置部分。
+			</p>
 
-		<div class="control-group">
-			<label class="control-label">添加脚本</label>
-			<div class="controls">
-				<label for="backup-scriptfile" id="choose-backup-scriptfile" class="btn btn-primary btn-medium config-btn">选择</label>
-				<input type="file" id="backup-scriptfile" accept=".sh,.py" name="backup_scriptfile" style="display:none" onchange="$('#btn-import-scriptfile').click();">
-				<button id="btn-import-scriptfile" class="btn btn-medium btn-primary btn-submit" type="submit" name="import_scriptfile" value="1"  style="display:none"></button>
-				<a aria-label="Help" class="config-info-toggle" data-cmd="info-backup-scriptfile" href="#notarget"><i class="fas fa-info-circle"></i></a>
-				<span id="info-backup-scriptfile" class="config-help-info config-help-no-margin">
-					添加一个在恢复过程中执行自定义操作的脚本文件。
-				</span>
-				<span class="config-help-static">
-					$_imported_scriptfile
-				</span>
-			</div>
+			<div class="control-group">
+				<label class="control-label">添加脚本</label>
+				<div class="controls">
+					<label for="backup-scriptfile" id="choose-backup-scriptfile" class="btn btn-primary btn-medium config-btn">选择</label>
+					<input type="file" id="backup-scriptfile" accept=".sh,.py" name="backup_scriptfile" style="display:none" onchange="$('#btn-import-scriptfile').click();">
+					<button id="btn-import-scriptfile" class="btn btn-medium btn-primary btn-submit" type="submit" name="import_scriptfile" value="1" style="display:none"></button>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-backup-scriptfile" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-backup-scriptfile" class="config-help-info config-help-no-margin">
+						添加一个在恢复过程中执行自定义操作的脚本文件。
+					</span>
+					<span class="config-help-static">
+						$_imported_scriptfile
+					</span>
+				</div>
 
-			<label class="control-label">配置/预制</label>
-			<div class="controls">
-				$_togglebtn_backup_system
-				<span id="info-backup-system" class="config-help-info">
-					备份配置设置和首选项，包括备份镜像（如果有的话）。
-				</span>
-			</div>
+				<label class="control-label">配置/预制</label>
+				<div class="controls">
+					$_togglebtn_backup_system
+					<span id="info-backup-system" class="config-help-info">
+						备份配置设置和首选项，包括备份镜像（如果有的话）。
+					</span>
+				</div>
 
-			<label class="control-label">CamillaDSP</label>
-			<div class="controls">
-				$_togglebtn_backup_camilladsp
-				<span id="info-backup-camilladsp" class="config-help-info">
-					备份CamillaDSP通道配置和IR文件。
-				</span>
-			</div>
+				<label class="control-label">CamillaDSP</label>
+				<div class="controls">
+					$_togglebtn_backup_camilladsp
+					<span id="info-backup-camilladsp" class="config-help-info">
+						备份CamillaDSP通道配置和IR文件。
+					</span>
+				</div>
 
-			<label class="control-label">播放列表</label>
-			<div class="controls">
-				$_togglebtn_backup_playlists
-				<span id="info-backup-playlists" class="config-help-info">
-					备份播放列表。
-				</span>
-			</div>
+				<label class="control-label">播放列表</label>
+				<div class="controls">
+					$_togglebtn_backup_playlists
+					<span id="info-backup-playlists" class="config-help-info">
+						备份播放列表。
+					</span>
+				</div>
 
-			<label class="control-label">moOde电台</label>
-			<div class="controls">
-				$_togglebtn_backup_radiostations_moode
-				<span id="info-backup-radiostations-moode" class="config-help-info">
-					备份moOde电台频道。
-				</span>
-			</div>
+				<label class="control-label">moOde电台</label>
+				<div class="controls">
+					$_togglebtn_backup_radiostations_moode
+					<span id="info-backup-radiostations-moode" class="config-help-info">
+						备份moOde电台频道。
+					</span>
+				</div>
 
-			<label class="control-label">其它电台</label>
-			<div class="controls">
-				$_togglebtn_backup_radiostations_other
-				<span id="info-backup-radiostations-other" class="config-help-info">
-					备份自定义电台。
-				</span>
-			</div>
+				<label class="control-label">其它电台</label>
+				<div class="controls">
+					$_togglebtn_backup_radiostations_other
+					<span id="info-backup-radiostations-other" class="config-help-info">
+						备份自定义电台。
+					</span>
+				</div>
 
-			<!--
+				<!--
 			label class="control-label" for="wlan0pwd">WiFi密码</label>
 			<div class="controls">
 				<input class="config-input-large" type="password" pattern=".{8,64}" id="backup-wlan0pwd" name="backup_wlan0pwd" value="$_wlan0pwd" >
@@ -102,89 +104,92 @@
 			</div>
 			-->
 
-			<div class="controls">
-				<button id="backup-create" class="btn btn-medium btn-primary btn-submit config-btn" type="submit" name="backup_create" form="backup" value="1">创建新备份</button>
-				<span class="config-help-static">
-					备份zip文件将被下载到默认的下载文件夹中。
-				</span>
-			</div>
-		</div>
-	</form>
-
-	<!-- RESTORE -->
-
-	<form class="form-horizontal" action="" method="post" id="restore"  enctype="multipart/form-data" $_restore_hidden>
-		<legend>恢复备份配置</legend>
-
-		<p class="sub-legend">
-			指定将恢复系统的哪些部分。
-			是/否选项按钮是根据所选备份zip文件的内容自动设置的。如果将脚本文件添加到备份中，它将在moOde启动期间运行，作为恢复配置设置的一部分。
-		</p>
-
-		<div class="control-group">
-			<label class="control-label">配置和预置</label>
-			<div class="controls">
-				$_togglebtn_restore_system
-				<span id="info-restore-system" class="config-help-info">
-					恢复配置设置和首选项，包括备份镜像（如果有的话）。
-				</span>
-			</div>
-
-			<label class="control-label">CamillaDSP</label>
-			<div class="controls">
-				$_togglebtn_restore_camilladsp
-				<span id="info-restore-camilladsp" class="config-help-info">
-					恢复CamillaDSP通道配置和IR文件。
-				</span>
-			</div>
-
-			<label class="control-label">播放列表</label>
-			<div class="controls">
-				$_togglebtn_restore_playlists
-				<span id="info-restore-playlists" class="config-help-info">
-					恢复播放列表。
-				</span>
-			</div>
-
-			<label class="control-label">moOde电台</label>
-			<div class="controls">
-				$_togglebtn_restore_radiostations_moode
-				<span id="info-restore-radiostations-moode" class="config-help-info">
-					恢复moOde电台。
-				</span>
-			</div>
-
-			<label class="control-label">自定义电台</label>
-			<div class="controls">
-				$_togglebtn_restore_radiostations_other
-				<span id="info-restore-radiostations-other" class="config-help-info">
-					恢复自定义电台。
-				</span>
-			</div>
-
-			<label class="control-label">备份文件</label>
-			<div class="controls">
-				<label for="restore-backupfile" id="choose+restore_backupfile" class="btn btn-primary btn-medium config-btn">选择</label>
-				<input type="file" id="restore-backupfile" accept=".zip" name="restore_backupfile" style="display:none" onchange="$('#btn-import-backupfile').click();">
-				<button id="btn-import-backupfile" class="btn btn-medium btn-primary btn-submit" type="submit" name="import_backupfile" value="1"  style="display:none"/>
-				<button class="btn btn-medium btn-primary btn-submit config-btn" type="submit" name="reset_options" form="restore" value="1">重置</button>
-				<a aria-label="Help" class="config-info-toggle" data-cmd="info-backupfile" href="#notarget"><i class="fas fa-info-circle"></i></a>
-				<span id="info-backupfile" class="config-help-info config-help-no-margin">
-					选择: 选择并上传将用于恢复过程的备份zip文件。<br>
-					重置: 从临时目录中清除上传的文件，并将选项按钮重置为“否”。
-				</span>
-				<div class="config-help-static">
-					$_imported_backupfile
+				<div class="controls">
+					<button id="backup-create" class="btn btn-medium btn-primary btn-submit config-btn" type="submit" name="backup_create" form="backup" value="1">创建新备份</button>
+					<span class="config-help-static">
+						备份zip文件将被下载到默认的下载文件夹中。
+					</span>
 				</div>
 			</div>
+		</form>
 
-			<div class="controls">
-				<button class="btn btn-medium btn-primary btn-submit config-btn" type="submit" name="restore_start" form="restore" value="1">恢复系统</button>
-				<span class="config-help-static">
-					如果配置设置是还原的一部分，则需要重新启动。
-				</span>
+		<!-- RESTORE -->
+
+		<form class="form-horizontal" action="" method="post" id="restore" enctype="multipart/form-data" $_restore_hidden>
+			<legend>恢复备份配置</legend>
+
+			<p class="sub-legend">
+				指定将恢复系统的哪些部分。
+				是/否选项按钮是根据所选备份zip文件的内容自动设置的。如果将脚本文件添加到备份中，它将在moOde启动期间运行，作为恢复配置设置的一部分。
+			</p>
+
+			<div class="control-group">
+				<label class="control-label">配置和预置</label>
+				<div class="controls">
+					$_togglebtn_restore_system
+					<span id="info-restore-system" class="config-help-info">
+						恢复配置设置和首选项，包括备份镜像（如果有的话）。
+					</span>
+				</div>
+
+				<label class="control-label">CamillaDSP</label>
+				<div class="controls">
+					$_togglebtn_restore_camilladsp
+					<span id="info-restore-camilladsp" class="config-help-info">
+						恢复CamillaDSP通道配置和IR文件。
+					</span>
+				</div>
+
+				<label class="control-label">播放列表</label>
+				<div class="controls">
+					$_togglebtn_restore_playlists
+					<span id="info-restore-playlists" class="config-help-info">
+						恢复播放列表。
+					</span>
+				</div>
+
+				<label class="control-label">moOde电台</label>
+				<div class="controls">
+					$_togglebtn_restore_radiostations_moode
+					<span id="info-restore-radiostations-moode" class="config-help-info">
+						恢复moOde电台。
+					</span>
+				</div>
+
+				<label class="control-label">自定义电台</label>
+				<div class="controls">
+					$_togglebtn_restore_radiostations_other
+					<span id="info-restore-radiostations-other" class="config-help-info">
+						恢复自定义电台。
+					</span>
+				</div>
+
+				<label class="control-label">备份文件</label>
+				<div class="controls">
+					<label for="restore-backupfile" id="choose+restore_backupfile" class="btn btn-primary btn-medium config-btn">选择</label>
+					<input type="file" id="restore-backupfile" accept=".zip" name="restore_backupfile" style="display:none" onchange="$('#btn-import-backupfile').click();">
+					<button id="btn-import-backupfile" class="btn btn-medium btn-primary btn-submit" type="submit" name="import_backupfile" value="1" style="display:none" />
+					<button class="btn btn-medium btn-primary btn-submit config-btn" type="submit" name="reset_options" form="restore" value="1">重置</button>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-backupfile" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-backupfile" class="config-help-info config-help-no-margin">
+						选择: 选择并上传将用于恢复过程的备份zip文件。
+						<br>
+						重置: 从临时目录中清除上传的文件，并将选项按钮重置为“否”。
+					</span>
+					<div class="config-help-static">
+						$_imported_backupfile
+					</div>
+				</div>
+
+				<div class="controls">
+					<button class="btn btn-medium btn-primary btn-submit config-btn" type="submit" name="restore_start" form="restore" value="1">恢复系统</button>
+					<span class="config-help-static">
+						如果配置设置是还原的一部分，则需要重新启动。
+					</span>
+				</div>
 			</div>
-		</div>
-	</form>
-</div>
+		</form>
+	</div>
 </div>

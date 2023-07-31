@@ -318,7 +318,7 @@ if(file_exists($extensions_config)) {
 	$extension_template ='
 	<label class="control-label">%s</label>
 	<div class="controls">
-		<a href="%s"><button class="btn btn-primary btn-medium" style="margin-top:0px;">Open</button></a>
+		<a href="%s"><button class="btn btn-primary btn-medium" style="margin-top:0px;">打开</button></a>
 		<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
 			<a aria-label="Help" class="info-toggle" data-cmd="info-%s" href="#notarget"><i class="fas fa-info-circle"></i></a>
 		</div>
@@ -338,8 +338,8 @@ if(file_exists($extensions_config)) {
 }
 
 $cdsp_log_level = $cdsp->getLogLevel();
-$_cdsp_log_level .= "<option value=\"default\" " . (($cdsp_log_level == 'default') ? "selected" : "") . " >Default</option>\n";
-$_cdsp_log_level .= "<option value=\"verbose\" " . (($cdsp_log_level == 'verbose') ? "selected" : "") . " >Verbose</option>\n";
+$_cdsp_log_level .= "<option value=\"default\" " . (($cdsp_log_level == 'default') ? "selected" : "") . " >默认</option>\n";
+$_cdsp_log_level .= "<option value=\"verbose\" " . (($cdsp_log_level == 'verbose') ? "selected" : "") . " >详细</option>\n";
 
 setAltBackLink();
 

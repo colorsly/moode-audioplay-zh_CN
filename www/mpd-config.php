@@ -190,20 +190,20 @@ $_mpd_select['period_time'] .= "<option value=\"640000\" " . (($cfgMPD['period_t
 $_mpd_select['period_time'] .= "<option value=\"64000\" " . (($cfgMPD['period_time'] == '64000') ? "selected" : "") . " >0.00025X</option>\n";
 
 // ALSA auto-resample
-$_mpd_select['auto_resample'] .= "<option value=\"yes\" " . (($cfgMPD['auto_resample'] == 'yes') ? "selected" : "") . " >Yes</option>\n";
-$_mpd_select['auto_resample'] .= "<option value=\"no\" " . (($cfgMPD['auto_resample'] == 'no') ? "selected" : "") . " >No</option>\n";
+$_mpd_select['auto_resample'] .= "<option value=\"yes\" " . (($cfgMPD['auto_resample'] == 'yes') ? "selected" : "") . " >是</option>\n";
+$_mpd_select['auto_resample'] .= "<option value=\"no\" " . (($cfgMPD['auto_resample'] == 'no') ? "selected" : "") . " >否</option>\n";
 // ALSA auto-channels, r45b
-$_mpd_select['auto_channels'] .= "<option value=\"yes\" " . (($cfgMPD['auto_channels'] == 'yes') ? "selected" : "") . " >Yes</option>\n";
-$_mpd_select['auto_channels'] .= "<option value=\"no\" " . (($cfgMPD['auto_channels'] == 'no') ? "selected" : "") . " >No</option>\n";
+$_mpd_select['auto_channels'] .= "<option value=\"yes\" " . (($cfgMPD['auto_channels'] == 'yes') ? "selected" : "") . " >是</option>\n";
+$_mpd_select['auto_channels'] .= "<option value=\"no\" " . (($cfgMPD['auto_channels'] == 'no') ? "selected" : "") . " >否</option>\n";
 /// ALSA auto-format, r45b
-$_mpd_select['auto_format'] .= "<option value=\"yes\" " . (($cfgMPD['auto_format'] == 'yes') ? "selected" : "") . " >Yes</option>\n";
-$_mpd_select['auto_format'] .= "<option value=\"no\" " . (($cfgMPD['auto_format'] == 'no') ? "selected" : "") . " >No</option>\n";
+$_mpd_select['auto_format'] .= "<option value=\"yes\" " . (($cfgMPD['auto_format'] == 'yes') ? "selected" : "") . " >是</option>\n";
+$_mpd_select['auto_format'] .= "<option value=\"no\" " . (($cfgMPD['auto_format'] == 'no') ? "selected" : "") . " >否</option>\n";
 */
 
 /* DEPRECATE
 // Zeroconf
-$_mpd_select['zeroconf_enabled'] .= "<option value=\"yes\" " . (($cfgMPD['zeroconf_enabled'] == 'yes') ? "selected" : "") . ">Yes</option>\n";
-$_mpd_select['zeroconf_enabled'] .= "<option value=\"no\" " . (($cfgMPD['zeroconf_enabled'] == 'no') ? "selected" : "") . ">No</option>\n";
+$_mpd_select['zeroconf_enabled'] .= "<option value=\"yes\" " . (($cfgMPD['zeroconf_enabled'] == 'yes') ? "selected" : "") . ">是</option>\n";
+$_mpd_select['zeroconf_enabled'] .= "<option value=\"no\" " . (($cfgMPD['zeroconf_enabled'] == 'no') ? "selected" : "") . ">否</option>\n";
 $_mpd_select['zeroconf_name'] = $cfgMPD['zeroconf_name'];
 */
 
