@@ -45,7 +45,7 @@ if (isset($_POST['remount_sources'])) {
 	} else {
 		$resultUnmount = sourceMount('unmountall');
 		$resultMount = sourceMount('mountall');
-		$_SESSION['notify']['title'] = '重新安装音乐源...';
+		$_SESSION['notify']['title'] = '重新安装音乐源......</';
 	}
 }
 // Mount monitor
@@ -57,7 +57,7 @@ if (isset($_POST['update_fs_mountmon'])) {
 }
 // Regenerate MPD database
 if (isset($_POST['regen_library'])) {
-	submitJob('regen_library', '', '重新生成库...', '保持此屏幕直到进度微调器被清除');
+	submitJob('regen_library', '', '重新生成库......</', '保持此屏幕直到进度微调器被清除');
 }
 // Clear library cache
 if (isset($_POST['clear_libcache'])) {
@@ -85,8 +85,8 @@ if (isset($_POST['regen_thmcache'])) {
 	if (strpos($result[0], 'thumb-gen.php') !== false) {
 		$_SESSION['notify']['title'] = '流程当前正在运行';
 	} else {
-		$_SESSION['thmcache_status'] = '重新生成缩略图缓存...';
-		submitJob('regen_thmcache', '', '重新生成缩略图缓存...', '');
+		$_SESSION['thmcache_status'] = '重新生成缩略图缓存......</';
+		submitJob('regen_thmcache', '', '重新生成缩略图缓存......</', '');
 	}
 }
 

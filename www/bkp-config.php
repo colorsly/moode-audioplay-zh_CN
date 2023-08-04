@@ -115,7 +115,7 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 			// Request reboot if system settings are part of restore
 			$title = '恢复完成';
 			if( empty($restoreOptions) || (isset($_POST['restore_system']) && $_POST['restore_system'] == '1') ) {
-				$msg = 'Reboot required';
+				$msg = '需要重新启动';
 				$duration = 60;
 				//submitJob('重启', '', '恢复完成', '系统重启......');
 			} else {

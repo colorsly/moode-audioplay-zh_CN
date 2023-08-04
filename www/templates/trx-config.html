@@ -62,7 +62,7 @@
 			<label class="control-label" for="multiroom_initvol">初始音量</label>
 			<div class="controls">
 				<input id="multiroom_initvol" class="config-input-large" type="number" maxlength="3" min="0" max="100" name="multiroom_initvol" value="$_multiroom_initvol">
-				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_initvol" value="novalue" $_multiroom_initvol_disable>Set</button>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_multiroom_initvol" value="novalue" $_multiroom_initvol_disable>设置</button>
 				<span class="config-help-static">
 					设置发送器和接收器的初始音量。请注意，接收器必须将“主音量选择加入”设置为“是”。
 				</span>
@@ -73,7 +73,7 @@
 				<span class="config-btn-after">发送者</span>
 			</div>
 
-			<label class="control-label">高级配置</label>
+			<label class="control-label">高级选项</label>
 			<div class="controls">
 				<label id="multiroom-tx-adv-options-label" class="btn btn-primary btn-medium config-btn">$_SESSION[tx_adv_toggle]</label>
 			</div>
@@ -178,8 +178,8 @@
 			</div>
 
 			<div class="controls">
-				<a data-toggle="modal" href="#restart-rx" $_rx_restart_link_disable><button class="btn btn-medium btn-primary config-btn" $_rx_restart_btn_disable>重新开始</button></a>
-				<span class="config-btn-after">接收机</span>
+				<a data-toggle="modal" href="#restart-rx" $_rx_restart_link_disable><button class="btn btn-medium btn-primary config-btn" $_rx_restart_btn_disable>重启</button></a>
+				<span class="config-btn-after">接收者</span>
 			</div>
 
 			<label class="control-label">高级选项</label>
