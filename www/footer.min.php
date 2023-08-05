@@ -211,12 +211,12 @@
 <div id="restart" class="hide">
 	<div class="reconnect-bg"></div>
 	<a href="javascript:location.reload(true); void 0" class="btn reconnect-btn">重新连接</a>
-	<span class="reconnect-msg">系统重启中......</</span>
+	<span class="reconnect-msg">系统重启中......</span>
 </div>
 <div id="shutdown" class="hide">
 	<div class="reconnect-bg"></div>
 	<a href="javascript:location.reload(true); void 0" class="btn reconnect-btn">重新连接</a>
-	<span class="reconnect-msg">系统关机中......</</span>
+	<span class="reconnect-msg">系统关机中......</span>
 </div>
 <?php
     //workerLog('-- footer.php');
