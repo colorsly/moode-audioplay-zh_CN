@@ -15,7 +15,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 汉化：Androidnews
  *
  */
 
@@ -26,7 +25,7 @@ phpSession('open');
 
 if (isset($_POST['update_audio_input']) && $_POST['audio_input'] != $_SESSION['audioin']) {
 	if ($_POST['update_audio_input'] != 'Local' && $_SESSION['mpdmixer'] == 'software') {
-		$_SESSION['notify']['title'] = 'MPD音量控制必须首先设置为Hardware or Fixed (0dB)';
+		$_SESSION['notify']['title'] = 'MPD Volume control must first be set to Hardware or Fixed (0dB)';
 		$_SESSION['notify']['duration'] = 6;
 	} else {
 		phpSession('write', 'audioin', $_POST['audio_input']);
@@ -36,7 +35,7 @@ if (isset($_POST['update_audio_input']) && $_POST['audio_input'] != $_SESSION['a
 
 if (isset($_POST['update_resume_mpd']) && $_POST['resume_mpd'] != $_SESSION['rsmafterinp']) {
 	phpSession('write', 'rsmafterinp', $_POST['resume_mpd']);
-	$_SESSION['notify']['title'] = '设置已更新';
+	$_SESSION['notify']['title'] = 'Settings updated';
 }
 
 if (isset($_POST['update_audio_output']) && $_POST['audio_output'] != $_SESSION['audioout']) {
@@ -55,13 +54,13 @@ if ($_SESSION['i2sdevice'] == 'HiFiBerry DAC+ ADC') {
 }
 
 // Resume MPD after changing to Local
-$_select['resume_mpd'] .= "<option value=\"Yes\" " . (($_SESSION['rsmafterinp'] == 'Yes') ? "selected" : "") . ">是</option>\n";
-$_select['resume_mpd'] .= "<option value=\"No\" " . (($_SESSION['rsmafterinp'] == 'No') ? "selected" : "") . ">否</option>\n";
+$_select['resume_mpd'] .= "<option value=\"Yes\" " . (($_SESSION['rsmafterinp'] == 'Yes') ? "selected" : "") . ">Yes</option>\n";
+$_select['resume_mpd'] .= "<option value=\"No\" " . (($_SESSION['rsmafterinp'] == 'No') ? "selected" : "") . ">No</option>\n";
 
 // Output device
-$_select['audio_output'] .= "<option value=\"Local\" " . (($_SESSION['audioout'] == 'Local') ? "selected" : "") . ">本地设备</option>\n";
+$_select['audio_output'] .= "<option value=\"Local\" " . (($_SESSION['audioout'] == 'Local') ? "selected" : "") . ">Local device</option>\n";
 if ($_SESSION['btsvc'] == '1') {
-	$_select['audio_output'] .= "<option value=\"Bluetooth\" " . (($_SESSION['audioout'] == 'Bluetooth') ? "selected" : "") . ">蓝牙扬声器</option>\n";
+	$_select['audio_output'] .= "<option value=\"Bluetooth\" " . (($_SESSION['audioout'] == 'Bluetooth') ? "selected" : "") . ">Bluetooth speaker</option>\n";
 }
 
 waitWorker(1, 'inp-config');

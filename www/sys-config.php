@@ -303,7 +303,7 @@ if (isset($_POST['update_clear_syslogs'])) {
 }
 
 if (isset($_POST['update_clear_playhistory'])) {
-	submitJob('清除播放历史', '', '回放历史记录已清除', '');
+	submitJob('清除播放历史', '', '播放历史记录已清除', '');
 }
 
 if (isset($_POST['debuglog']) && $_POST['debuglog'] != $_SESSION['debuglog']) {
