@@ -353,11 +353,11 @@ foreach ($overlayList as $overlay) {
 // Driver options
 $result = sqlQuery("SELECT chipoptions, driver, drvoptions FROM cfg_audiodev WHERE name='" . $_SESSION['i2sdevice'] . "'", $dbh);
 if (!empty($result[0]['drvoptions']) && $_SESSION['i2soverlay'] == 'None') {
-	$_select['drvoptions'] .= "<option value=\"Enabled\" " . ((strpos($result[0]['driver'], $result[0]['drvoptions']) !== false) ? "selected" : "") . ">" . $result[0]['drvoptions'] . " Enabled</option>\n";
-	$_select['drvoptions'] .= "<option value=\"Disabled\" " . ((strpos($result[0]['driver'], $result[0]['drvoptions']) === false) ? "selected" : "") . ">" . $result[0]['drvoptions'] . " Disabled</option>\n";
+	$_select['drvoptions'] .= "<option value=\"Enabled\" " . ((strpos($result[0]['driver'], $result[0]['drvoptions']) !== false) ? "selected" : "") . ">" . $result[0]['drvoptions'] . " 启用</option>\n";
+	$_select['drvoptions'] .= "<option value=\"Disabled\" " . ((strpos($result[0]['driver'], $result[0]['drvoptions']) === false) ? "selected" : "") . ">" . $result[0]['drvoptions'] . " 禁止</option>\n";
 	$_driveropt_btn_disable = '';
 } else {
-	$_select['drvoptions'] .= "<option value=\"none\" selected>None available</option>\n";
+	$_select['drvoptions'] .= "<option value=\"none\" selected>无可用</option>\n";
 	$_driveropt_btn_disable = 'disabled';
 }
 

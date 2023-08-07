@@ -51,7 +51,7 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 	}
 
 	if (empty($backupOptions)) {
-		$_SESSION['notify']['title'] = 'Specify at least one item to backup';
+		$_SESSION['notify']['title'] = '指定至少一个要备份的项目';
 	} else {
 		$backupOptions = '--what ' . $backupOptions . ' ';
 
@@ -104,7 +104,7 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 		}
 
 		if (empty($restoreOptions)) {
-			$_SESSION['notify']['title'] = 'Specify at least one item to restore';
+			$_SESSION['notify']['title'] = '指定至少一个要还原的项目';
 		} else {
 			$restoreOptions = '--what ' . $restoreOptions . ' ';
 
@@ -115,9 +115,9 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 			// Request reboot if system settings are part of restore
 			$title = 'Restore complete';
 			if( empty($restoreOptions) || (isset($_POST['restore_system']) && $_POST['restore_system'] == '1') ) {
-				$msg = 'Reboot required';
+				$msg = '需要重新启动';
 				$duration = 60;
-				//submitJob('reboot', '', 'Restore complete', 'System rebooting...');
+				//submitJob('reboot', '', '恢复完成', '系统重新启动...');
 			} else {
 				$msg = '';
 				$duration = 5;
@@ -133,7 +133,7 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 		}
 	} else {
 		$_imported_backupfile = 'No file selected';
-		$_SESSION['notify']['title'] = 'Select a backup file';
+		$_SESSION['notify']['title'] = '选择备份文件';
 		$_SESSION['notify']['duration'] = 3;
 	}
 } else if (isset($_POST['import_backupfile'])) {
@@ -149,7 +149,7 @@ if (isset($_POST['backup_create']) && $_POST['backup_create'] == '1') {
 } else if (isset($_POST['reset_options'])) {
 	sysCmd('rm /tmp/backup.zip /tmp/moodecfg.ini /tmp/restore.zip /tmp/py.log /tmp/script');
 	$_imported_backupfile = 'No file selected';
-	$_SESSION['notify']['title'] = 'Options have been reset';
+	$_SESSION['notify']['title'] = '选项已重置';
 	$_SESSION['notify']['duration'] = 3;
 } else {
 	$_imported_backupfile = 'No file selected';

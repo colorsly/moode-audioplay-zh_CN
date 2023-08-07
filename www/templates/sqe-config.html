@@ -43,9 +43,9 @@
                 <input class="config-input-large" type="text" id="alsa-params" name="config[ALSAPARAMS]" value="$_sl_select[alsa_params]">
 				<a aria-label="Help" class="config-info-toggle" data-cmd="info-alsa-params" href="#notarget"><i class="fas fa-info-circle"></i></a>
 				<span id="info-alsa-params" class="config-help-info">
-					b = buffer time, p = period count, f sample format (16|24|24_3|32), m = use mmap (0|1)<br>
-                	b less than 500 treated as buffer time in ms, otherwise size in bytes<br>
-					p less than 50 treated as period count, otherwise size in bytes
+					b = 缓冲时间, p = 期间计数, f 样本格式 (16|24|24_3|32), m = 使用mmap (0|1)<br>
+                	b 小于500视为缓冲时间，以毫秒为单位，否则以字节为单位<br>
+					p 小于50视为周期计数，否则以字节为单位
                 </span>
             </div>
 
@@ -54,7 +54,7 @@
                 <input class="config-input-large" type="text" id="output-buffers" name="config[OUTPUTBUFFERS]" value="$_sl_select[output_buffers]">
 				<a aria-label="Help" class="config-info-toggle" data-cmd="info-output-buffers" href="#notarget"><i class="fas fa-info-circle"></i></a>
 				<span id="info-output-buffers" class="config-help-info">
-					流缓冲区（KB）：dspBuffer必须小于可用RAM
+					流缓冲区（KB）：DSP缓冲器必须小于可用RAM
                 </span>
             </div>
 
@@ -77,16 +77,16 @@
                 </span>
             </div>
 
-            <label class="control-label" for="other-options">Other options</label>
+            <label class="control-label" for="other-options">其他选项</label>
             <div class="controls">
                 <input class="config-input-large" type="text" id="other-options" name="config[OTHEROPTIONS]" value="$_sl_select[other_options]">
 				<a aria-label="Help" class="config-info-toggle" data-cmd="info-other-options" href="#notarget"><i class="fas fa-info-circle"></i></a>
 				<span id="info-other-options" class="config-help-info">
                 	默认值：-W -D 500 -R E -S /var/local/www/commandw/slpower.sh<br>
-					-V [control] Use ALSA control for volume, otherwise use software volume.<br>
-					-D [delay][:format] Output device supports DSD<br>
-					[delay] = optional delay in ms switching between PCM and DSD<br>
-					[:format] = dop (default if not specified), u8, u16le, u16be, u32le oe u32be.<br>
+					-V [control] 使用ALSA控制音量，否则使用软件音量。<br>
+					-D [delay][:format] 输出设备支持DSD<br>
+					[delay] = PCM和DSD之间切换的可选ms延迟<br>
+					[:format] = dop (如果未指定，则为默认值), u8, u16le, u16be, u32le oe u32be.<br>
                 </span>
             </div>
         </div>

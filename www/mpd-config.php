@@ -116,7 +116,7 @@ $selectiveModeLabel = array(
 	SOX_ADHERE_BASE_FREQ => 'Resample (adhere to base freq)',
 	SOX_UPSAMPLE_ALL + SOX_ADHERE_BASE_FREQ => 'Upsample if source &lt; target rate (adhere to base freq)'
 );
-$_mpd_select['selective_resample_mode'] .= "<option value=\"0\" " . (($cfgMPD['selective_resample_mode'] == '0') ? "selected" : "") . " >Disabled</option>\n";
+$_mpd_select['selective_resample_mode'] .= "<option value=\"0\" " . (($cfgMPD['selective_resample_mode'] == '0') ? "selected" : "") . " >禁止</option>\n";
 $_mpd_select['selective_resample_mode'] .= "<option value=\"" . SOX_UPSAMPLE_ALL . "\" " . (($cfgMPD['selective_resample_mode'] == SOX_UPSAMPLE_ALL) ? "selected" : "") . " >" . $selectiveModeLabel[SOX_UPSAMPLE_ALL] . "</option>\n";
 $_mpd_select['selective_resample_mode'] .= "<option value=\"" . SOX_UPSAMPLE_ONLY_41K . "\" " . (($cfgMPD['selective_resample_mode'] == SOX_UPSAMPLE_ONLY_41K) ? "selected" : "") . " >" . $selectiveModeLabel[SOX_UPSAMPLE_ONLY_41K] . "</option>\n";
 $_mpd_select['selective_resample_mode'] .= "<option value=\"" . SOX_UPSAMPLE_ONLY_4148K . "\" " . (($cfgMPD['selective_resample_mode'] == SOX_UPSAMPLE_ONLY_4148K) ? "selected" : "") . " >" . $selectiveModeLabel[SOX_UPSAMPLE_ONLY_4148K] . "</option>\n";
@@ -164,7 +164,7 @@ $_mpd_select['volume_normalization'] .= "<option value=\"no\" " . (($cfgMPD['vol
 $_mpd_select['audio_buffer_size'] = $cfgMPD['audio_buffer_size'] / 1024; // Convert these from KB to MB
 $_mpd_select['max_output_buffer_size'] = $cfgMPD['max_output_buffer_size'] / 1024;
 $_mpd_select['max_playlist_length'] = $cfgMPD['max_playlist_length'];
-$_mpd_select['input_cache'] .= "<option value=\"Disabled\" " . (($cfgMPD['input_cache'] == 'Disabled') ? "selected" : "") . " >Disabled</option>\n";
+$_mpd_select['input_cache'] .= "<option value=\"Disabled\" " . (($cfgMPD['input_cache'] == 'Disabled') ? "selected" : "") . " >禁止</option>\n";
 $_mpd_select['input_cache'] .= "<option value=\"128 MB\" " . (($cfgMPD['input_cache'] == '128 MB') ? "selected" : "") . " >128 MB</option>\n";
 $_mpd_select['input_cache'] .= "<option value=\"256 MB\" " . (($cfgMPD['input_cache'] == '256 MB') ? "selected" : "") . " >256 MB</option>\n";
 $_mpd_select['input_cache'] .= "<option value=\"512 MB\" " . (($cfgMPD['input_cache'] == '512 MB') ? "selected" : "") . " >512 MB</option>\n";
@@ -172,8 +172,8 @@ $_mpd_select['input_cache'] .= "<option value=\"1 GB\" " . (($cfgMPD['input_cach
 $_mpd_select['input_cache'] .= "<option value=\"2 GB\" " . (($cfgMPD['input_cache'] == '2 GB') ? "selected" : "") . " >2 GB</option>\n";
 
 // Log level
-$_mpd_select['log_level'] .= "<option value=\"default\" " . (($cfgMPD['log_level'] == 'default') ? "selected" : "") . " >Default</option>\n";
-$_mpd_select['log_level'] .= "<option value=\"verbose\" " . (($cfgMPD['log_level'] == 'verbose') ? "selected" : "") . " >Verbose</option>\n";
+$_mpd_select['log_level'] .= "<option value=\"default\" " . (($cfgMPD['log_level'] == 'default') ? "selected" : "") . " >默认</option>\n";
+$_mpd_select['log_level'] .= "<option value=\"verbose\" " . (($cfgMPD['log_level'] == 'verbose') ? "selected" : "") . " >冗余</option>\n";
 
 /* DEPRECATE
 // hardware buffer time

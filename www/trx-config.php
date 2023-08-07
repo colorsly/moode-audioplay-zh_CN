@@ -43,8 +43,8 @@ if (isset($_POST['update_alsa_loopback'])) {
 		if ($_POST['alsa_loopback'] == 'Off') {
 			$inUse = sysCmd('sudo modprobe -r snd-aloop');
 			if (!empty($inUse)) {
-				$_SESSION['notify']['title'] = 'Unable to turn off';
-				$_SESSION['notify']['msg'] = 'Loopback is in use';
+				$_SESSION['notify']['title'] = '无法关闭';
+				$_SESSION['notify']['msg'] = '环回正在使用';
 				$_SESSION['notify']['duration'] = 5;
 			} else {
 				submitJob('alsa_loopback', 'Off', '设置已更新', '');
@@ -58,7 +58,7 @@ if (isset($_POST['update_alsa_loopback'])) {
 }
 if (isset($_POST['update_multiroom_initvol'])) {
 	$result = sqlQuery("UPDATE cfg_multiroom SET value='" . $_POST['multiroom_initvol'] . "' " . "WHERE param='initial_volume'", $dbh);
-	submitJob('multiroom_initvol', $_POST['multiroom_initvol'], 'Volume levels initialized', '');
+	submitJob('multiroom_initvol', $_POST['multiroom_initvol'], '已初始化音量级别', '');
 }
 if (isset($_POST['multiroom_tx_restart'])) {
 	submitJob('multiroom_tx_restart', '', '发送程序已重启', '');
@@ -95,10 +95,10 @@ if (isset($_POST['multiroom_tx_discover'])) {
 
 	// Check for no receivers found
 	if (empty(trim($_SESSION['rx_hostnames']))) {
-		$_SESSION['rx_hostnames'] = 'No receivers found';
+		$_SESSION['rx_hostnames'] = '找不到接收器';
 		$_SESSION['notify']['title'] = $_SESSION['rx_hostnames'];
 	} else {
-		$_SESSION['notify']['title'] = 'Discovery complete';
+		$_SESSION['notify']['title'] = '发现完成';
 		$_SESSION['notify']['msg'] = 'Found: ' . $_SESSION['rx_hostnames'];
 	}
 }
@@ -237,7 +237,7 @@ $_multiroom_tx_rtprio = $cfgMultiroom['tx_rtprio'];
 $_multiroom_tx_query_timeout = $cfgMultiroom['tx_query_timeout'];
 
 // Receiver
-$_select['multiroom_rx'] .= "<option value=\"Disabled\" " . (($_SESSION['multiroom_rx'] == 'Disabled') ? "selected" : "") . ">Disabled</option>\n";
+$_select['multiroom_rx'] .= "<option value=\"Disabled\" " . (($_SESSION['multiroom_rx'] == 'Disabled') ? "selected" : "") . ">禁用</option>\n";
 $_select['multiroom_rx'] .= "<option value=\"On\" " . (($_SESSION['multiroom_rx'] == 'On') ? "selected" : "") . ">开</option>\n";
 $_select['multiroom_rx'] .= "<option value=\"Off\" " . (($_SESSION['multiroom_rx'] == 'Off') ? "selected" : "") . ">关</option>\n";
 $_select['multiroom_rx_mastervol_opt_in_yes'] .= "<input type=\"radio\" name=\"multiroom_rx_mastervol_opt_in\" id=\"toggle-multiroom-rx-mastervol-opt-in-1\" value=\"1\" " . (($cfgMultiroom['rx_mastervol_opt_in'] == '1') ? "checked=\"checked\"" : "") . ">\n";

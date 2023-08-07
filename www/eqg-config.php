@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * ������Androidnews
+ * 汉化：Androidnews
  */
 
 require_once __DIR__ . '/inc/common.php';
@@ -38,11 +38,11 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		$newID = sqlQuery('SELECT MAX(id)+1 FROM cfg_eqalsa', $dbh);
 		$result = sqlQuery("INSERT INTO cfg_eqalsa VALUES ('" . $newID[0][0] . "','" . $_POST['curve_name'] . "','" . $curveValues . "')", $dbh);
 		$_GET['curve'] = $_POST['curve_name'];
-		$_SESSION['notify']['title'] = 'New curve added';
+		$_SESSION['notify']['title'] = '新曲线已添加';
 	} else {
 		// Update
 		$result = sqlQuery("UPDATE cfg_eqalsa SET curve_values='" . $curveValues . "' WHERE curve_name='" . $_POST['curve_name'] . "'" , $dbh);
-		$_SESSION['notify']['title'] = 'Curve updated';
+		$_SESSION['notify']['title'] = '曲线已更新';
 	}
 }
 
@@ -62,7 +62,7 @@ if (isset($_POST['play']) && $_POST['play'] == '1') {
 	closeMpdSock($sock);
 
 	phpSession('write', 'alsaequal', $_POST['curve_name']);
-	$_SESSION['notify']['title'] = 'Playing curve';
+	$_SESSION['notify']['title'] = '播放曲线';
 }
 
 if (isset($_POST['new_curve'])) {
@@ -70,7 +70,7 @@ if (isset($_POST['new_curve'])) {
 } else if (isset($_POST['remove_curve'])) {
 	$result = sqlQuery("DELETE FROM cfg_eqalsa WHERE curve_name='" . $_GET['curve'] . "'", $dbh);
 	$searchCurve = 'Flat';
-	$_SESSION['notify']['title'] = 'Curve removed';
+	$_SESSION['notify']['title'] = '曲线已删除';
 } else if (isset($_GET['curve'])) {
 	$searchCurve = $_GET['curve'];
 } else {
@@ -97,7 +97,7 @@ if (isset($_POST['new_curve']) && $_POST['new_curve'] == '1') {
 
 $_disable_play = $_SESSION['alsaequal'] == 'Off' ? 'disabled' : '';
 $_disable_rm = $_selected_curve == 'Flat' ? 'disabled' : '';
-$_disable_rm_msg = $_selected_curve == 'Flat' ? 'The Flat curve cannot be removed' : '';
+$_disable_rm_msg = $_selected_curve == 'Flat' ? '无法删除平坦曲线' : '';
 
 $result = sqlQuery("SELECT * FROM cfg_eqalsa WHERE curve_name='" . $searchCurve . "'", $dbh);
 $values = explode(',', $result[0]['curve_values']);

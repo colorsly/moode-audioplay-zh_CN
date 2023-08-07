@@ -1,10 +1,7 @@
-<?php
+<!--
 /**
  * moOde audio player (C) 2014 Tim Curtis
  * http://moodeaudio.org
- *
- * tsunamp player ui (C) 2013 Andrea Coiutti & Simone De Gregori
- * http://www.tsunamp.com
  *
  * This Program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,17 +18,11 @@
  *
  * 汉化：Androidnews
  */
-
-require_once __DIR__ . '/inc/common.php';
-require_once __DIR__ . '/inc/session.php';
-
-phpSession('open');
-$_SESSION['alt_back_link'] = '';
-phpSession('close');
-
-$section = basename(__FILE__, '.php');
-
-$tpl = "indextpl.min.html";
-include('header.php');
-eval("echoTemplate(\"".getTemplate("/var/www/templates/$tpl")."\");");
-include('footer.min.php');
+-->
+<div>
+	<div id="players">
+		<ul style="margin:0">
+			$_players
+		</ul>
+	</div>
+</div>

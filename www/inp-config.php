@@ -26,11 +26,11 @@ phpSession('open');
 
 if (isset($_POST['update_audio_input']) && $_POST['audio_input'] != $_SESSION['audioin']) {
 	if ($_POST['update_audio_input'] != 'Local' && $_SESSION['mpdmixer'] == 'software') {
-		$_SESSION['notify']['title'] = 'MPD Volume control must first be set to Hardware or Fixed (0dB)';
+		$_SESSION['notify']['title'] = 'MPD音量控制必须首先设置为Hardware or Fixed (0dB)';
 		$_SESSION['notify']['duration'] = 6;
 	} else {
 		phpSession('write', 'audioin', $_POST['audio_input']);
-		submitJob('audioin', $_POST['audio_input'], 'Input set to ' . $_POST['audio_input'], '');
+		submitJob('audioin', $_POST['audio_input'], '输入设置为 ' . $_POST['audio_input'], '');
 	}
 }
 
@@ -41,7 +41,7 @@ if (isset($_POST['update_resume_mpd']) && $_POST['resume_mpd'] != $_SESSION['rsm
 
 if (isset($_POST['update_audio_output']) && $_POST['audio_output'] != $_SESSION['audioout']) {
 	phpSession('write', 'audioout', $_POST['audio_output']);
-	submitJob('audioout', $_POST['audio_output'], 'Output set to ' . $_POST['audio_output'], '');
+	submitJob('audioout', $_POST['audio_output'], '输出设置为 ' . $_POST['audio_output'], '');
 }
 
 phpSession('close');
@@ -49,9 +49,9 @@ phpSession('close');
 // Input source
 $_select['audio_input'] .= "<option value=\"Local\" " . (($_SESSION['audioin'] == 'Local') ? "selected" : "") . ">MPD</option>\n";
 if ($_SESSION['i2sdevice'] == 'HiFiBerry DAC+ ADC') {
-	$_select['audio_in'] .= "<option value=\"Analog\" " . (($_SESSION['audioin'] == 'Analog') ? "selected" : "") . ">Analog input</option>\n";
+	$_select['audio_in'] .= "<option value=\"Analog\" " . (($_SESSION['audioin'] == 'Analog') ? "selected" : "") . ">模拟输入</option>\n";
 } else if ($_SESSION['i2sdevice'] == 'Audiophonics ES9028/9038 DAC' || $_SESSION['i2sdevice'] == 'Audiophonics ES9028/9038 DAC (Pre 2019)') {
-	$_select['audio_in'] .= "<option value=\"S/PDIF\" " . (($_SESSION['audioin'] == 'S/PDIF') ? "selected" : "") . ">S/PDIF input</option>\n";
+	$_select['audio_in'] .= "<option value=\"S/PDIF\" " . (($_SESSION['audioin'] == 'S/PDIF') ? "selected" : "") . ">S/PDIF输入</option>\n";
 }
 
 // Resume MPD after changing to Local
@@ -59,7 +59,7 @@ $_select['resume_mpd'] .= "<option value=\"Yes\" " . (($_SESSION['rsmafterinp'] 
 $_select['resume_mpd'] .= "<option value=\"No\" " . (($_SESSION['rsmafterinp'] == 'No') ? "selected" : "") . ">否</option>\n";
 
 // Output device
-$_select['audio_output'] .= "<option value=\"Local\" " . (($_SESSION['audioout'] == 'Local') ? "selected" : "") . ">Local device</option>\n";
+$_select['audio_output'] .= "<option value=\"Local\" " . (($_SESSION['audioout'] == 'Local') ? "selected" : "") . ">本地设备</option>\n";
 if ($_SESSION['btsvc'] == '1') {
 	$_select['audio_output'] .= "<option value=\"Bluetooth\" " . (($_SESSION['audioout'] == 'Bluetooth') ? "selected" : "") . ">蓝牙扬声器</option>\n";
 }

@@ -154,7 +154,7 @@ $_eth0method .= "<option value=\"static\" " . ($cfgNetwork[0]['method'] == 'stat
 
 // Display IP address or message
 $ipAddr = sysCmd("ip addr list eth0 |grep \"inet \" |cut -d' ' -f6|cut -d/ -f1");
-$_eth0currentip = empty($ipAddr[0]) ? 'Not in use' : $ipAddr[0];
+$_eth0currentip = empty($ipAddr[0]) ? '没有启用' : $ipAddr[0];
 
 // Static IP
 $_eth0ipaddr = $cfgNetwork[0]['ipaddr'];
@@ -184,9 +184,9 @@ if (!empty($ipAddr[0])) {
 
 // Determine message to display
 if ($_SESSION['apactivated'] == true) {
-	$_wlan0currentip = empty($ipAddr[0]) ? 'Unable to activate AP mode' : $ipAddr[0] . ' - AP mode active';
+	$_wlan0currentip = empty($ipAddr[0]) ? '无法激活AP模式' : $ipAddr[0] . ' - AP模式激活';
 } else {
-	$_wlan0currentip = empty($ipAddr[0]) ? 'Not in use' : $ipAddr[0] . ' - quality ' . $quality . '%, level ' . $level;
+	$_wlan0currentip = empty($ipAddr[0]) ? '没有启用' : $ipAddr[0] . ' - quality ' . $quality . '%, level ' . $level;
 }
 
 // SSID, scanner, security protocol, password

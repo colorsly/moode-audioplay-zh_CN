@@ -48,17 +48,17 @@ if (isset($_POST['checkfor_update'])) {
 
 	if (false === ($availableDate = strtotime($available['Date'])) ||
 		false === ($thisDate = strtotime($thisReleaseDate))) {
-		$_available_upd = 'Date error comparing This: ' . $thisReleaseDate . ' to Available: ' . $available['Date'];
+		$_available_upd = '比较以下内容时出现日期错误:' . $thisReleaseDate . ' 至可用: ' . $available['日期'];
 	} else if ($availableDate <= $thisDate) {
-		$_available_upd = 'Software is up to date';
+		$_available_upd = '软件是最新的';
 	} else if ($available['ImageOnly'] == 'Yes') {
-		$_available_upd = 'A new image-only release of moOde is available. Visit <a href="http://moodeaudio.org" class="moode-about-link" target="_blank">moodeaudio.org</a> for more information.';
+		$_available_upd = 'moOde的一个新的稳定版本现已推出。参见 <a href="http://moodeaudio.org" class="moode-about-link" target="_blank">moodeaudio.org</a> 了解更多信息。';
 	} else {
 		$_available_upd = $available['Date'] == 'None' ? 'None available' :
-			'<button class="btn btn-primary btn-small config-btn set-button btn-submit" id="install-update" type="submit" name="install_update" value="1">Install</button>' .
-			'<button class="btn btn-primary btn-small config-btn set-button" data-toggle="modal" href="#view-pkgcontent">View</button>' .
+			'<button class="btn btn-primary btn-small config-btn set-button btn-submit" id="install-update" type="submit" name="install_update" value="1">安装</button>' .
+			'<button class="btn btn-primary btn-small config-btn set-button" data-toggle="modal" href="#view-pkgcontent">查看</button>' .
 			'<span class="config-btn-after">Release ' . $available['Release'] . ', ' . $available['Date'] . '</span>' .
-			'<span class="config-help-static">Monitor progress with the command <i>moodeutl -t</i></span>';
+			'<span class="config-help-static">使用命令监控进度 <i>moodeutl -t</i></span>';
 		$_pkg_description = $available['Description'];
 		$_pkg_relnotes = $available['Relnotes'];
 	}
@@ -73,16 +73,16 @@ if (isset($_POST['install_update'])) {
 		$space = sysCmd("df | grep /dev/root | awk '{print $4}'");
 		# Check for invalid configs
 		if ($mount[0] != '/var/local/moode.sqsh on /var/www type squashfs (ro,relatime)' && ($_SESSION['feat_bitmask'] & FEAT_SQSHCHK)) {
-			$_SESSION['notify']['title'] = 'Invalid configuration';
-			$_SESSION['notify']['msg'] = "Cannot find compressed file system";
+			$_SESSION['notify']['title'] = '无效配置';
+			$_SESSION['notify']['msg'] = "找不到压缩文件系统";
 			$_SESSION['notify']['duration'] = 20;
 		} else if ($mount[0] == '/var/local/moode.sqsh on /var/www type squashfs (ro,relatime)' && !($_SESSION['feat_bitmask'] & FEAT_SQSHCHK)) {
-			$_SESSION['notify']['title'] = 'Invalid configuration';
-			$_SESSION['notify']['msg'] = "File system is compressed and read-only";
+			$_SESSION['notify']['title'] = '无效配置';
+			$_SESSION['notify']['msg'] = "文件系统已压缩且只读";
 			$_SESSION['notify']['duration'] = 20;
 		} else if ($space[0] < 512000) {
-			$_SESSION['notify']['title'] = 'Insufficient space';
-			$_SESSION['notify']['msg'] = "Update cannot proceed without at least 500M space";
+			$_SESSION['notify']['title'] = '空间不足';
+			$_SESSION['notify']['msg'] = "至少500M的剩余空间，否则更新无法进行";
 			$_SESSION['notify']['duration'] = 20;
 		} else {
 			submitJob('install_update', '', '', '', 60000);
@@ -103,7 +103,7 @@ if (isset($_POST['update_host_name'])) {
 	if (isset($_POST['hostname']) && $_POST['hostname'] != $_SESSION['hostname']) {
 		if (preg_match("/[^A-Za-z0-9-]/", $_POST['hostname']) == 1) {
 			$_SESSION['notify']['title'] = 'Invalid input';
-			$_SESSION['notify']['msg'] = "Host name can only contain A-Z, a-z, 0-9 or hyphen (-).";
+			$_SESSION['notify']['msg'] = "主机名只能包含a-z、A-Z、0-9或连字符(-)。";
 		} else {
 			submitJob('hostname', '"' . $_SESSION['hostname'] . '" ' . '"' . $_POST['hostname'] . '"', '设置已更新', '系统需重启');
 			phpSession('write', 'hostname', $_POST['hostname']);
@@ -299,11 +299,11 @@ if (isset($_POST['shellinabox']) && $_POST['shellinabox'] != $_SESSION['shellina
 // MAINTENANCE
 
 if (isset($_POST['update_clear_syslogs'])) {
-	submitJob('clearsyslogs', '', 'System logs cleared', '');
+	submitJob('clearsyslogs', '', '系统日志已清除', '');
 }
 
 if (isset($_POST['update_clear_playhistory'])) {
-	submitJob('clearplayhistory', '', 'Playback history cleared', '');
+	submitJob('clearplayhistory', '', '播放历史记录已清除', '');
 }
 
 if (isset($_POST['debuglog']) && $_POST['debuglog'] != $_SESSION['debuglog']) {
@@ -393,10 +393,10 @@ if ($model == '3') { // Pi-3B, B+, A+
 	$result = sysCmd('vcgencmd otp_dump | grep 17:');
 	if ($result[0] == '17:3020000a') {
 		$_usbboot_btn_disable = 'disabled';
-		$_usbboot_msg = 'USB boot is already enabled';
+		$_usbboot_msg = 'USB引导已启用';
 	} else {
 		$_usbboot_btn_disable = '';
-		$_usbboot_msg = 'USB boot is not enabled yet';
+		$_usbboot_msg = 'USB引导尚未启用';
 	}
 } else {
 	// NOTE: USB boot is enabled by default for pi 4, 400 with Sep 3 2020 or later boot loader

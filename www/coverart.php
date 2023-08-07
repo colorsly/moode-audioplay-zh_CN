@@ -26,7 +26,7 @@
  *
  * 2023-01-01 sacd iso by yuyong
  *
- * ºº»¯£ºAndroidnews
+ * æ±‰åŒ–ï¼šAndroidnews
  */
 
 require_once __DIR__ . '/inc/common.php';

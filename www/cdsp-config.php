@@ -71,9 +71,9 @@ else if ($selectedConfig && isset($_POST['check']) && $_POST['check'] == '1') {
 
 	$selectedConfigLabel = $cdsp->getConfigLabel($selectedConfig);
 	if($checkResult['valid'] == True) {
-		$_SESSION['notify']['title'] =   htmlentities('Pipeline configuration \"' . $selectedConfigLabel . '\" is valid');
+		$_SESSION['notify']['title'] = htmlentities('Pipeline配置 \"' . $selectedConfigLabel . '\" 是有效的');
 	} else {
-		$_SESSION['notify']['title'] = htmlentities('Pipeline configuration \"' . $selectedConfigLabel . '\" is not valid');
+		$_SESSION['notify']['title'] = htmlentities('Pipeline配置 \"' . $selectedConfigLabel . '\" 是无效的');
 	}
 }
 // Import (Upload)
@@ -91,7 +91,7 @@ else if (isset($_FILES['pipeline_config']) && isset($_POST['import']) && $_POST[
 		$cdsp->patchRelConvPath($configFileBaseName);
 	}
 	$selectedConfig = $configFileBaseName;
-	$_SESSION['notify']['title'] =  htmlentities('Import \"' . $configFileBaseName . '\" completed');
+	$_SESSION['notify']['title'] =  htmlentities('输入 \"' . $configFileBaseName . '\" 完成');
 }
 // Export (Download)
 else if ($selectedConfig && isset($_POST['export']) && $_POST['export'] == '1') {
@@ -109,11 +109,11 @@ else if ($selectedConfig && isset($_POST['remove']) && $_POST['remove'] == '1') 
 	if ($_SESSION['camilladsp'] != $selectedConfig) { // Can't remove active config
 		$configFileName = $cdsp->getConfigsLocationsFileName() . $selectedConfig;
 		unlink($configFileName);
-		$_SESSION['notify']['title'] = htmlentities('Remove configuration \"' . $selectedConfig . '\" completed');
+		$_SESSION['notify']['title'] = htmlentities('移除配置 \"' . $selectedConfig . '\" 完成');
 		$selectedConfig = null;
 	}
 	else {
-		$_SESSION['notify']['title'] = htmlentities('Cannot remove active configuration \"' . $selectedConfig . '\"');
+		$_SESSION['notify']['title'] = htmlentities('不能移除激活的配置 \"' . $selectedConfig . '\"');
 	}
 }
 // New pipeline
@@ -130,7 +130,7 @@ else if ($selectedConfig && isset($_POST['copy_pipeline']) && $_POST['copy_pipel
 else if (isset($_FILES['coeffs_file']) && isset($_POST['import']) && $_POST['import'] == '1') {
 	$configFileName = $cdsp->getCoeffsLocation() . $_FILES["coeffs_file"]["name"];
 	move_uploaded_file($_FILES["coeffs_file"]["tmp_name"], $configFileName);
-	$_SESSION['notify']['title'] =  htmlentities('Import \"' . $_FILES["coeffs_file"]["name"] . '\" completed');
+	$_SESSION['notify']['title'] =  htmlentities('输入 \"' . $_FILES["coeffs_file"]["name"] . '\" 完成');
 
 	$selectedCoeff = $_FILES["coeffs_file"]["name"];
 }
@@ -149,7 +149,7 @@ else if ($selectedCoeff && isset($_POST['export']) && $_POST['export'] == '1') {
 else if ($selectedCoeff && isset($_POST['remove']) && $_POST['remove'] == '1') {
 	$configFileName = $cdsp->getCoeffsLocation() . $selectedCoeff;
 	unlink($configFileName);
-	$_SESSION['notify']['title'] = htmlentities('Remove configuration \"' . $selectedCoeff . '\" completed');
+	$_SESSION['notify']['title'] = htmlentities('移除配置 \"' . $selectedCoeff . '\" 完成');
 	$selectedCoeff = null;
 }
 else if ($selectedCoeff && isset($_POST['info']) && $_POST['info'] == '1') {
@@ -338,8 +338,8 @@ if(file_exists($extensions_config)) {
 }
 
 $cdsp_log_level = $cdsp->getLogLevel();
-$_cdsp_log_level .= "<option value=\"default\" " . (($cdsp_log_level == 'default') ? "selected" : "") . " >Default</option>\n";
-$_cdsp_log_level .= "<option value=\"verbose\" " . (($cdsp_log_level == 'verbose') ? "selected" : "") . " >Verbose</option>\n";
+$_cdsp_log_level .= "<option value=\"default\" " . (($cdsp_log_level == 'default') ? "selected" : "") . " >默认</option>\n";
+$_cdsp_log_level .= "<option value=\"verbose\" " . (($cdsp_log_level == 'verbose') ? "selected" : "") . " >冗余</option>\n";
 
 setAltBackLink();
 

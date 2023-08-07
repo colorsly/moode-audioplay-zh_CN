@@ -505,7 +505,7 @@
 				<button aria-label="Refresh" id="btn-pl-refresh" class="btn">
 					<i class="far fa-redo"></i>
 				</button>
-				<button aria-label="新的播放列表" id="btn-pl-new" class="btn">
+				<button aria-label="new playlist" id="btn-pl-new" class="btn">
 					<i class="far fa-plus"></i>
 				</button>
 				<form id="pl-search" class="" method="post" onsubmit="return false;">
@@ -746,7 +746,7 @@
 	<div class="modal-body">
 		<form id="set-favorites-playlist-form" method="post" onsubmit="return false;">
 			<div class="control-group">
-				<label class="control-label" for="playlist-favorites-name">收藏夹播放列表</label>
+				<label class="control-label" for="playlist-favorites-name">播放列表收藏夹名称</label>
 				<div class="controls">
 					<input id="playlist-favorites-name" type="text" value="" autofocus>
 					<span class="help-block">将播放列表设置为最喜欢的位置 <i class="far fa-heart"></i>存储项目。如果播放列表不存在，将创建一个新的播放列表。</span>
@@ -1284,11 +1284,12 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-native-lazyload" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-native-lazyload" class="help-block hide">将“浏览器”使用的方法设置为无边框封面缩略图。
+						<span id="info-native-lazyload" class="help-block hide">
+							将“浏览器”使用的方法设置为无边框封面缩略图。
 							<br>
-							<b>Yes: </b>使用内部浏览器例程。这是默认设置，通常速度最快。
+							<b>是: </b>使用内部浏览器例程。这是默认设置，通常速度最快。
 							<br>
-							<b>No: </b>使用自定义Javascript例程。这有时可以解决内部浏览器加载缓慢的问题。
+							<b>否: </b>使用自定义Javascript例程。这有时可以解决内部浏览器加载缓慢的问题。
 						</span>
 					</div>
 				</div>
@@ -1324,7 +1325,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-playqueue-art" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-playqueue-art" class="help-block hide">显示队列中歌曲和电台的缩略图。请注意，显示缩略图可能会影响性能。</span>
+						<span id="info-playqueue-art" class="help-block hide">
+							显示队列中歌曲和电台的缩略图。
+							请注意，显示缩略图可能会影响性能。
+						</span>
 					</div>
 					<label class="control-label" for="show-npicon">正在播放图标</label>
 					<div class="controls">
@@ -1352,7 +1356,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-show-npicon" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-show-npicon" class="help-block hide">在队列中当前正在播放的项目旁边显示EQ条动画图标。请注意，使用附加的本地显示器时，显示图标可能会影响性能。</span>
+						<span id="info-show-npicon" class="help-block hide">
+							在队列中当前正在播放的项目旁边显示EQ条动画图标。
+							请注意，使用附加的本地显示器时，显示图标可能会影响性能。
+						</span>
 					</div>
 					<label class="control-label" for="extra-tags">额外元数据</label>
 					<div class="controls">
@@ -1360,7 +1367,8 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-extra-tags" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-extra-tags" class="help-block hide">在封面下方显示以下标签的任意组合。如果不显示任何标记，请输入None或将字段留空。
+						<span id="info-extra-tags" class="help-block hide">
+							在封面下方显示以下标签的任意组合。如果不显示任何标记，请输入None或将字段留空。
 							<br>
 							<b>Tags: </b>album, genre, track, disc, date, composer, conductor, performer, encoded
 						</span>
@@ -1431,7 +1439,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-search_site" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-search_site" class="help-block hide">单击“播放”视图中的当前曲目标题，即可启动对所选网站的互联网搜索。搜索艺术家和相册的组合。维基百科的搜索仅限于艺术家。</span>
+						<span id="info-search_site" class="help-block hide">
+							单击“播放”视图中的当前曲目标题，即可启动对所选网站的互联网搜索。
+							搜索艺术家和专辑的组合。维基百科的搜索仅限于艺术家。
+						</span>
 					</div>
 					<label class="control-label" for="play-history-enabled">播放历史日志</label>
 					<div class="controls">
@@ -1459,7 +1470,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-play-history" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-play-history" class="help-block hide">将播放的每首歌曲记录到播放历史记录日志中。可以点击日志中的歌曲来启动谷歌搜索。可以在系统配置中清除日志。</span>
+						<span id="info-play-history" class="help-block hide">
+							将播放的每首歌曲记录到播放历史记录日志中。
+							可以点击日志中的歌曲来启动谷歌搜索。可以在系统配置中清除日志。
+						</span>
 					</div>
 				</div>
 			</div>
@@ -1661,7 +1675,7 @@
 							<b>按艺术家/年份： </b>每位艺术家的专辑按时间顺序排列。
 							<br>
 							<b>按年份： </b>专辑按时间顺序排列。
-							<br>请注意，按年份排序时，如果专辑中的所有曲目都不是同一年份，则将使用最近的年份。如果不存在年份标记，或者年份标记不是数字，则不会显示该相册的年份信息。
+							<br>请注意，按年份排序时，如果专辑中的所有曲目都不是同一年份，则将使用最近的年份。如果不存在年份标记，或者年份标记不是数字，则不会显示该专辑的年份信息。
 						</span>
 					</div>
 					<label class="control-label" for="tagview-sort-order">标记视图排序顺序</label>
@@ -1744,7 +1758,8 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-track-play" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-track-play" class="help-block hide">对于“标记/专辑”视图中的曲目列表，此选项控制“播放”和“清除/播放”操作是仅将选定曲目添加到队列，还是将选定曲目和所有后续曲目添加到。
+						<span id="info-track-play" class="help-block hide">
+							对于“标记/专辑”视图中的曲目列表，此选项控制“播放”和“清除/播放”操作是仅将选定曲目添加到队列，还是将选定曲目和所有后续曲目添加到。
 							<br>
 							<b>曲目 </b>仅播放选定曲目。
 							<br>
@@ -1797,7 +1812,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-recently-added" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-recently-added" class="help-block hide">用于筛选库中最近添加的专辑的时间段。默认值为1个月。请注意，“No limit”选项提供了一种实现“添加日期”类型库的方法。</span>
+						<span id="info-recently-added" class="help-block hide">
+							用于筛选库中最近添加的专辑的时间段。默认值为1个月。
+							请注意，“No limit”选项提供了一种实现“添加日期”类型库的方法。
+						</span>
 					</div>
 					<label class="control-label" for="show-encoded-at">显示采样率</label>
 					<div class="controls">
@@ -1816,7 +1834,7 @@
 									</li>
 									<li class="modal-dropdown-text">
 										<a href="#notarget" data-cmd="show-encoded-at-sel">
-											<span class="text">No (searchable)</span>
+											<span class="text">否（可搜索）</span>
 										</a>
 									</li>
 									<li class="modal-dropdown-text">
@@ -1840,7 +1858,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-show-encoded-at" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-show-encoded-at" class="help-block hide">比特深度和采样率可以在封面艺术上或下方以几种格式之一显示。The "HD only" option displays an HD badge when the bit depth for song files is &gt; 16 or sample rate is &gt; 44.1 kHz, and for radio stations the bit rate is &gt; 128 kbps.</span>
+						<span id="info-show-encoded-at" class="help-block hide">
+							比特深度和采样率可以在封面艺术上或下方以几种格式之一显示。
+							The "HD only" option displays an HD badge when the bit depth for song files is &gt; 16 or sample rate is &gt; 44.1 kHz, and for radio stations the bit rate is &gt; 128 kbps.
+						</span>
 					</div>
 					<label class="control-label" for="cover-search-priority">封面搜索优先级</label>
 					<div class="controls">
@@ -1906,7 +1927,11 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-hires-thumbnails" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-hires-thumbnails" class="help-block hide">此选项设置缩略图生成器输出的JPEG图像的分辨率。更改此设置后重新生成缩略图。请注意，“自动”使用设备“像素比率”设置最佳分辨率和质量，同时保持最小的文件大小（最快的图像加载时间）。这可能会导致图像分辨率降低。</span>
+						<span id="info-hires-thumbnails" class="help-block hide">
+							此选项设置缩略图生成器输出的JPEG图像的分辨率。更改此设置后重新生成缩略图。
+							请注意，“自动”使用设备“像素比率”设置最佳分辨率和质量，同时保持最小的文件大小（最快的图像加载时间）。
+							这可能会导致图像分辨率降低。
+						</span>
 					</div>
 					<label class="control-label" for="thumbnail-columns">缩略图栏</label>
 					<div class="controls">
@@ -1954,7 +1979,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-thumbnail-columns" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-thumbnail-columns" class="help-block hide">设置在收音机、专辑和播放列表视图中显示缩略图的列数。第一个数字针对台式机/平板电脑，第二个数字针对移动设备。</span>
+						<span id="info-thumbnail-columns" class="help-block hide">
+							设置在收音机、专辑和播放列表视图中显示缩略图的列数。
+							第一个数字针对台式机/平板电脑，第二个数字针对移动设备。
+						</span>
 					</div>
 				</div>
 			</div>
@@ -2027,7 +2055,8 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-tag-view-artist" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-tag-view-artist" class="help-block hide">选择如何在标签视图中填充艺术家列表。
+						<span id="info-tag-view-artist" class="help-block hide">
+							选择如何在标签视图中填充艺术家列表。
 							<br>
 							<b>艺术家: </b>列出所有艺术家、专辑艺术家、表演者和指挥。为所选艺术家列出的专辑将只显示属于该艺术家的曲目。单击专辑将在显示专辑的所有曲目和仅显示所选艺术家的曲目之间切换。
 							<br>
@@ -2074,7 +2103,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-library-inc-mbrz-albumid" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-library-inc-mbrz-albumid" class="help-block hide">确定如何区分同名专辑。The term @AlbumID refers to the MUSICBRAINZ_ALBUMID tag.</span>
+						<span id="info-library-inc-mbrz-albumid" class="help-block hide">
+							确定如何区分同名专辑。
+							The term @AlbumID refers to the MUSICBRAINZ_ALBUMID tag.
+						</span>
 					</div>
 					<label class="control-label" for="library-inc-comment-tag">包括注释标记</label>
 					<div class="controls">
@@ -2102,7 +2134,9 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-library-inc-comment-tag" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-library-inc-comment-tag" class="help-block hide">注释文本在标签/专辑视图中显示在专辑标题中的年份之后，或者在曲目列表中显示为专辑标题(如果“专辑关键字”设定为包括) @AlbumID.</span>
+						<span id="info-library-inc-comment-tag" class="help-block hide">
+							注释文本在标签/专辑视图中显示在专辑标题中的年份之后，或者在曲目列表中显示为专辑标题(如果“专辑关键字”设定为包括) @AlbumID.
+						</span>
 					</div>
 					<label class="control-label" for="ignore-articles">忽略的项目</label>
 					<div class="controls">
@@ -2110,7 +2144,9 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-ignore-articles" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-ignore-articles" class="help-block hide">指定排序时要忽略的项目的逗号分隔列表。不允许使用嵌入空格，空白列表将导致“无”，并将有效禁用该选项。</span>
+						<span id="info-ignore-articles" class="help-block hide">
+							指定排序时要忽略的项目的逗号分隔列表。不允许使用嵌入空格，空白列表将导致“无”，并将有效禁用该选项。
+						</span>
 					</div>
 					<label class="control-label" for="show-genres-column">显示流派栏</label>
 					<div class="controls">
@@ -2228,7 +2264,7 @@
 			</div>
 		</div><!-- COVERVIEW -->
 		<div class="accordian">
-			<span class="h5">CoverView</span>
+			<span class="h5">封面视图</span>
 			<div class="kontrol">
 				<div class="control-group">
 					<label class="control-label" for="scnsaver-timeout">定时显示</label>
@@ -2358,7 +2394,8 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-scnsaver-style" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-scnsaver-style" class="help-block hide">设置用于背景的效果。
+						<span id="info-scnsaver-style" class="help-block hide">
+							设置用于背景的效果。
 							<br>
 							<b>Animated: </b>颜色变化覆盖。
 							<br>
@@ -2696,7 +2733,7 @@
 				<input id="new-station-url" class="input-large" type="text" name="new_station_url" maxlength="200" value="">
 				<span id="info-new-station-url" class="help-block">输入实际流的URL，而不是流链接的播放列表的URL。</span>
 			</div>
-			<label class="control-label" for="new-radiologo">Logo 图片</label>
+			<label class="control-label" for="new-radiologo">Logo图片</label>
 			<div class="controls">
 				<div class="modal-cover-div">
 					<label id="new-radiologo" for="new-logoimage" class="btn btn-primary btn-small modal-button-style">选择</label>
@@ -3081,7 +3118,10 @@
 				<a aria-label="Help" class="info-toggle" data-cmd="info-radioview-group-method" href="#notarget">
 					<i class="fas fa-info-circle"></i>
 				</a>
-				<span id="info-radioview-group-method" class="help-block hide">指定如何将列表拆分为由命名标头分隔的组。“Favorites first”（收藏夹优先）选择将收藏夹电台放在列表的顶部，按名称排序，然后按排序标记分组的其余电台。</span>
+				<span id="info-radioview-group-method" class="help-block hide">
+					指定如何将列表拆分为由命名标头分隔的组。
+					“Favorites first”（收藏夹优先）选择将收藏夹电台放在列表的顶部，按名称排序，然后按排序标记分组的其余电台。
+				</span>
 			</div>
 		</div><!-- SHOW/HIDE STATIONS -->
 		<span class="h5">显示/隐藏 电台</span>
@@ -3227,8 +3267,10 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-recorder-storage" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-recorder-storage" class="help-block hide">指定“录音”文件夹所在的路径。如果路径中不存在该文件夹，将自动创建该文件夹。
-							<br>请注意，包含记录文件夹的分区只允许ext4格式。</span>
+						<span id="info-recorder-storage" class="help-block hide">
+							指定“录音”文件夹所在的路径。如果路径中不存在该文件夹，将自动创建该文件夹。
+							<br>请注意，包含记录文件夹的分区只允许ext4格式。
+						</span>
 					</div>
 					<label class="control-label" for="tag-recordings">Tag <span id="untagged-file-count"></span>记录</label>
 					<div class="controls">
@@ -3256,7 +3298,8 @@
 						<a aria-label="Help" class="info-toggle" data-cmd="info-tag-recordings" href="#notarget">
 							<i class="fas fa-info-circle"></i>
 						</a>
-						<span id="info-tag-recordings" class="help-block hide">使用以下标签标记记录文件夹中所有新的(未标记的)文件。
+						<span id="info-tag-recordings" class="help-block hide">
+							使用以下标签标记记录文件夹中所有新的(未标记的)文件。
 							<br>
 							<b>流派： </b>记录
 							<br>

@@ -179,7 +179,7 @@ if (isset($_POST['update_dlna_settings'])) {
 	}
 	if (isset($_POST['dlnasvc']) && $_POST['dlnasvc'] != $_SESSION['dlnasvc']) {
 		$title = '设置已更新';
-		$msg = $_POST['dlnasvc'] == 1 ? 'Database rebuild initiated' : '';
+		$msg = $_POST['dlnasvc'] == 1 ? '数据库重建已启动' : '';
 		phpSession('write', 'dlnasvc', $_POST['dlnasvc']);
 	}
 	if (isset($title)) {
@@ -188,11 +188,11 @@ if (isset($_POST['update_dlna_settings'])) {
 }
 if (isset($_POST['rebuild_dlnadb'])) {
 	if ($_SESSION['dlnasvc'] == 1) {
-		submitJob('dlnarebuild', '', 'Database rebuild initiated...', '');
+		submitJob('dlnarebuild', '', '数据库重建已启动...', '');
 	}
 	else {
-		$_SESSION['notify']['title'] = 'Turn DLNA server on';
-		$_SESSION['notify']['msg'] = 'Database rebuild will initiate';
+		$_SESSION['notify']['title'] = '打开DLNA服务器';
+		$_SESSION['notify']['msg'] = '数据库重建将启动';
 	}
 }
 

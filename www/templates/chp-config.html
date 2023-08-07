@@ -37,9 +37,9 @@
 					$_select[digfilter]
 				</select>
 				<span class="config-help-static">
-                	The filter is applied to PCM samples at the oversampling stage.
-					Playback is automatically restarted to make filter change effective.
-					Note that Filter is bypassed if sample rate is 384 kHz.
+                	该滤波器应用于过采样阶段的PCM样本。
+					播放将自动重新启动，以使过滤器更改生效。
+					请注意，如果采样速率为384 kHz，则旁路滤波器。
                 </span>
 			</div>
 
@@ -69,7 +69,7 @@
 			<legend>Allo Piano 2.1 DAC
 				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
 			</legend>
-			<p class=sub-legend>These options are for the dual Burr Brown PCM5142 implementation on the Piano 2.1 board.</p>
+			<p class=sub-legend>这些选项适用于dual Burr Brown PCM5142 implementation on the Piano 2.1 board.</p>
 
 			<label class="control-label" for="outputmode">输出模式</label>
 			<div class="controls">
@@ -77,9 +77,9 @@
 					$_select[outputmode]
 				</select>
 				<span class="config-help-static">
-					<b>Dual-Mono: </b>Main DAC outputs L ch and Sub DAC outputs R ch (L/mute mute/R).<br>
-					<b>Dual-Stereo: </b>Both DAC's output L/R channels (L/R L/R).<br>
-					<b>Stereo: </b>All freq to Main L/R, Sub L/R muted<br>
+					<b>Dual-Mono: </b>主DAC输出L通道和副DAC输出R通道 (L/mute mute/R).<br>
+					<b>Dual-Stereo: </b>两个DAC都输出L/R通道 (L/R L/R).<br>
+					<b>Stereo: </b>所有频率至主左/右，副左/右静音<br>
 					<b>Subwoofer: </b>2.1/2.2 (High freq to main L/R, Low freq to sub L / sub L/R)<br>
                 </span>
 			</div>
@@ -109,7 +109,7 @@
 			<legend>Allo Katana DAC
 				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
 			</legend>
-			<p class=sub-legend>These options are for the ESS Sabre ES9038Q2M implementation on the Katana board.</p>
+			<p class=sub-legend>这些选项适用于ESS Sabre ES9038Q2M implementation on the Katana board.</p>
 
 			<label class="control-label" for="katana-osf">过采样滤波器</label>
 			<div class="controls">
@@ -149,7 +149,7 @@
 			<legend>Allo Boss 2 DAC
 				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
 			</legend>
-			<p class=sub-legend>These options are for the Cirrus Logic CS43198 implementation on the Boss 2 board.</p>
+			<p class=sub-legend>这些选项适用于Cirrus Logic CS43198 implementation on the Boss 2 board.</p>
 
 			<label class="control-label" for="boss2-deemphasis-filter">去加重滤波器</label>
 			<div class="controls">
@@ -226,7 +226,7 @@
 			<legend>Audiophonics ES9028/9038 DAC
 				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
 			</legend>
-			<p class=sub-legend>These options are for the ESS Sabre ES9028/9038 implementation on the Audiophonics board.</p>
+			<p class=sub-legend>这些选项适用于ESS Sabre ES9028/9038 implementation on the Audiophonics board.</p>
 
 			<label class="control-label" for="audiophonics-q2m-osf">过采样滤波器</label>
 			<div class="controls">
@@ -257,7 +257,7 @@
 			<legend>MERUS(tm) Amp piHAT ZW
 				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
 			</legend>
-			<p class=sub-legend>These options are for the MERUS MA12070P implementation on the MERUS Amp board.</p>
+			<p class=sub-legend>这些选项适用于MERUS MA12070P implementation on the MERUS Amp board.</p>
 
 			<label class="control-label" for="merus-ma12070p-pmp">电源模式配置文件</label>
 			<div class="controls">
@@ -265,7 +265,9 @@
 					$_select[merus_ma12070p_pmp]
 				</select>
 				<span class="config-help-static">
-                	MA12070P为操作内部放大器提供了不同的功率模式配置文件。它们为预期应用定义了放大器的最佳设置。功率模式配置文件的选择会影响各种参数，如开关频率、调制方案和环路增益，从而在音频性能、功率损耗和EMI等设计权衡中提供灵活性。
+                	MA12070P为操作内部放大器提供了不同的功率模式配置文件。
+					它们为预期应用定义了放大器的最佳设置。
+					功率模式配置文件的选择会影响各种参数，如开关频率、调制方案和环路增益，从而在音频性能、功率损耗和EMI等设计权衡中提供灵活性。
                 </span>
 			</div>
 		</div>
