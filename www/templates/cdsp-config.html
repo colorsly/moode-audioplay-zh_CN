@@ -1,0 +1,448 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * (C) 2020 @bitlab (@bitkeeper Git)
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 汉化：Androidnews
+ */
+-->
+<div id="container">
+	<div class="container">
+		<h1 class="cdsp-config">CamillaDSP</h1>
+		<p>
+			CamillaDSP是一个通用信号处理工具，用于路由和过滤声音。例如，它可以用于构建有源扬声器的分频器，或者用于执行房间校正。
+			这个版本是: $_select[version]
+		</p>
+
+		<form class="form-horizontal" action="" method="post">
+			<legend>设置
+				<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1" $_save_disabled>保存</button>
+			</legend>
+			<p class="sub-legend $_camilladsp_set_disabled_message">
+				要使用CamillaDSP，请关闭音频和多房间配置中的DSP、EQ和多房间选项。
+			</p>
+
+			<div class="config-horiz-rule">常规设置</div>
+
+			<div class="control-group">
+				<label class="control-label" for="cdsp-mode">信号处理</label>
+				<div class="controls">
+					<select id="cdsp-mode" class="config-select-xxlarge" name="cdsp_mode" $_save_disabled>
+						$_select[cdsp_mode]
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-cdsp-mode" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-cdsp-mode" class="config-help-info">
+						<b>Off: </b>将不进行信号处理。
+						<br />
+						<b>Custom: </b>使用自定义alsa_cdsp配置。
+						<br>
+						<b>Quick convolution filter: </b>提供带增益的基本音量的预定义滤波器。无需提供配置文件。
+						<br>
+						<b>Other: </b>使用列出的配置文件之一。
+					</span>
+				</div>
+
+				<label class="control-label">默认设备</label>
+				<div class="controls">
+					<div class="toggle config-toggle-yn">
+						<label class="toggle-radio" for="toggle-cdsp-use-default-device-2">是</label>$_select[cdsp_use_default_device_yes]
+						<label class="toggle-radio" for="toggle-cdsp-use-default-device-1">否</label>$_select[cdsp_use_default_device_no]
+					</div>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-cdsp-use-default-device" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-cdsp-use-default-device" class="config-help-info">
+						<b>Yes: </b>使用moOde定义的音频设备和格式。
+						<br>
+						<b>No: </b>指定不同的音频设备和格式，例如，如果要创建多声道交叉。
+					</span>
+				</div>
+
+				<label class="control-label" for="log-level">日志级别</label>
+				<div class="controls">
+					<select id="log-level" name="log_level" class="config-select-large">
+						$_cdsp_log_level
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-log-level" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-log-level" class="config-help-info">
+						控制MPD日志中CamillaDSP条目的详细信息量(/var/log/mpd/log).
+					</span>
+				</div>
+			</div>
+
+			<div class="config-horiz-rule">快速卷积滤波器</div>
+
+			<div class="control-group">
+				<label class="control-label" for="cdsp-qc-gain">Gain (dB)</label>
+				<div class="controls">
+					<input class="config-input-large" type="number" maxlength="3" min="-40" max="20" step="0.1" id="cdsp-qc-gain" name="cdsp_qc_gain" value="$_cdsp_qc_gain">
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-cdsp-qc-gain" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-cdsp-qc-gain" class="config-help-info">
+						调整增益有助于防止削波。范围是-40dB到20dB。你可以打开下面的管道编辑器来分析信号是否被削波或显示滤波器的频率曲线。
+					</span>
+				</div>
+
+				<label class="control-label" for="cdsp-qc-ir-left">IR left</label>
+				<div class="controls">
+					<select id="cdsp-qc-ir-left" class="config-select-xxlarge" name="cdsp_qc_ir_left">
+						$_select[cdsp_qc_ir_left]
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-cdsp-qc-ir-left" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-cdsp-qc-ir-left" class="config-help-info">
+						选择用于卷积的脉冲响应。可以在卷积文件部分添加新的脉冲响应。
+					</span>
+				</div>
+
+				<label class="control-label" for="cdsp-qc-ir-right">IR Right</label>
+				<div class="controls">
+					<select id="cdsp-qc-ir-right" class="config-select-xxlarge" name="cdsp_qc_ir_right">
+						$_select[cdsp_qc_ir_right]
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-cdsp-qc-right" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-cdsp-qc-right" class="config-help-info">
+						选择用于卷积的脉冲响应。可以在卷积文件部分添加新的脉冲响应。
+					</span>
+				</div>
+
+				<label class="control-label" for="cdsp-qc-ir-type">IR type</label>
+				<div class="controls">
+					<select id="cdsp-qc-ir-type" class="config-select-large" name="cdsp_qc_ir_type">
+						$_select[cdsp_qc_ir_type]
+					</select>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-cdsp-qc-type" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-cdsp-qc-type" class="config-help-info">
+						设置所选脉冲响应文件的类型。对于wave文件只需选择WAVE，无需转换为RAW。
+						卷积文件部分提供了特定脉冲响应文件的详细信息。
+						参见 <a href="https://github.com/HEnquist/camilladsp#fir">CamillaDSP documentation</a>获得更多信息。
+					</span>
+					$_check_msg_quick_convolution
+				</div>
+			</div>
+		</form>
+
+		<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+			<div class="control-group">
+
+				<div class="config-horiz-rule">Pipeline</div>
+
+				<label class="control-label" for="cdsp-config">配置</label>
+				<div class="controls">
+					<select id="cdsp-config" class="config-select-xxlarge" name="cdsp_config" onchange="$('#btn-automatic-check').click();">
+						$_select[cdsp_config]
+					</select>
+					<button id="btn-automatic-check" class="btn btn-medium btn-primary btn-submit" type="submit" name="check_auto" value="1" style="display:none"></button>
+					<span class="config-help-static">
+						$_check_msg_config
+					</span>
+				</div>
+
+				<div class="controls">
+					<a data-toggle="modal" href="#remove-pipeline">
+						<button class="btn btn-medium btn-primary config-btn">移除</button>
+					</a>
+					<a data-toggle="modal" href="#copy-pipeline">
+						<button class="btn btn-medium btn-primary config-btn">复制</button>
+					</a>
+					<a data-toggle="modal" href="#create-new-pipeline">
+						<button class="btn btn-medium btn-primary config-btn">新建</button>
+					</a>
+					<button class="btn btn-medium btn-primary btn-submit config-btn" type="submit" name="export" value="1">下载</button>
+
+					<label for="pipeline-config" id="choose-pipeline-cfg" class="btn btn-primary btn-medium config-btn">上传</label>
+					<input type="file" id="pipeline-config" accept=".yml" name="pipeline_config" style="display:none" onchange="$('#btn-import-pipeline').click();">
+					<button id="btn-import-pipeline" class="btn btn-medium btn-primary btn-submit" type="submit" name="import" value="1" style="display:none" />
+
+					<button class="btn btn-medium btn-primary btn-submit config-btn" type="submit" name="check" value="1">检查</button>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-configuration-actions" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<div id="info-configuration-actions" class="config-help-info">
+						<b>Remove: </b>Delete the selected configuation file.
+						<br />
+						<b>Copy: </b>Provide new name and copy the selected configuation file.
+						<br />
+						<b>New: </b>Create empty new configuration (contains minimal required settings).
+						<br />
+						<b>Download: </b>Download the selected configuation file.
+						<br />
+						<b>Upload: </b>Upload a new configuration file. If file already exists it will be overwritten.
+						<br />
+						<b>Check: </b>Check if the selected configuration is a valid CamillaDSP configuration.
+						<br />
+						<br />
+
+						Changes to the configuration are effective immediately after pausing/stopping playback.
+						<br>
+						Information on how to create CamillaDSP configuration files can be found on the
+						<a href="https://github.com/HEnquist/camilladsp">CamillaDSP homepage</a>.
+						<br>
+						<br>
+						If CamillaDSP can't play audio, errors will be reported to the MPD log <code>/var/log/mpd/log</code>
+						<br>
+						In case this is due to channel counts or sampling rates which are not supported by your DAC,
+						<br>
+						you can either handle this in CamillaDSP with mixers or resamplers
+						<br>
+						or change the formats which are passed to CamillaDSP in <code>/etc/alsa/conf.d/camilladsp.conf</code>
+						<br>
+						If this file is erroneous, <code>/var/log/moode.log</code> and <code>/var/log/syslog</code> may also provide hints.
+						<br>
+						<br>
+						To create new configurations you have three choices:
+						<br>
+						The easy start by copying an existing configuration and start the camillagui (at the bottom of this page).
+						<br>
+						Press the new button for minimal configuration and edit this on.
+						Or brew your own configuration file from scratch in text editor. With the currently selected sound device, this is the minimal config, that you need to get any sound through CamillaDSP:
+						<br>
+						<code>
+							<span style="white-space: pre;">
+								devices:
+								samplerate: 44100 # irrelevant if resampling is disabled - then it will be overridden with the incoming sample rate
+								chunksize: 4096 # increase, if buffer underruns occur when using higher samplerates (e.g. to 8192, 16384, 32768, 65536, ...)
+								queuelimit: 1 # increasing this introduces significant latency when stopping playback or changing songs
+								# e.g.: samplerate=44100, chunksize=1024, queuelimit=44 => latency ~ 1s
+								capture:
+								type: Stdin
+								channels: 2 # irrelevant - will always be overridden (currently always 2)
+								format: S32LE # irrelevant - will always be overridden with the incoming sample format
+								playback:
+								type: Alsa
+								channels: 2
+								device: "$sound_device_type:$current_sound_device_number" # by default, this is automatically updated when configuration is choosen. (correct value is only shown, when playback is stopped.) #
+								format: $sound_device_sample_format # supported formats are: $sound_device_supported_sample_formats (correct value is only shown, when playback is stopped)
+							</span>
+						</code>
+						<br>
+						<br />
+						Any reference to a convolution file should be relative like <code>../coeffs/yourfile.wav</code>
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<form class="form-horizontal" action="#conv_file" method="post" enctype="multipart/form-data">
+			<a id="conv_file"></a>
+
+			<div class="config-horiz-rule">
+				<a href="#conv_file"></a>卷积文件
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="cdsp-coeffs">脉冲响应</label>
+				<div class="controls">
+					<select id="cdsp-coeffs" class="config-select-xxlarge" name="cdsp_coeffs" onchange="$('#coeff_remove_id').val($('#cdsp-coeffs :selected').val() );$('#btn-check-coeff').click();">
+						$_select[cdsp_coeffs]
+					</select>
+					<span class="config-help-static">
+						$_coeff_info_html
+					</span>
+				</div>
+
+				<!-- ids and names aren't correct: (copy of above now)-->
+				<div class="controls">
+					<a data-toggle="modal" href="#remove-coeff">
+						<button class="btn btn-medium btn-primary config-btn">移除</button>
+					</a>
+					<button class="btn btn-medium btn-primary config-btn btn-submit config-btn" type="submit" name="export" value="1">下载</button>
+					<label for="coeffs_file" id="choose-coeff-cfg" class="btn btn-medium btn-primary config-btn">上传新的</label>
+					<input type="file" id="coeffs_file" accept=".wav,.txt,.raw,.csv" name="coeffs_file" style="display:none" onchange="$('#btn-import-coeff').click();">
+					<button id="btn-import-coeff" class="btn btn-medium btn-primary  config-btn btn-submit" type="submit" name="import" value="1" style="display:none" </button>
+							<button id="btn-check-coeff" class="btn btn-medium btn-primary config-btn btn-submit" type="submit" name="info" value="1" style="display:none">信息</button>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-convolution-actions" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<div id="info-convolution-actions" class="config-help-info">
+						<b>Remove: </b>删除选定的卷积文件。
+						<br />
+						<b>Download: </b>下载选定的卷积文件。
+						<br />
+						<b>Upload: </b>上传一个卷积文件，现有的会被覆盖。
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<form class="form-horizontal" action="#pipeline_editor" method="post">
+			<a id="pipeline_editor"></a>
+
+			<div class="config-horiz-rule">
+				<a href="#conv_file"></a>Pipeline编辑器
+			</div>
+
+			<div class="control-group">
+				<span class="config-help-static $_camillagui_notfound_show">
+					<span style='color: red'>&#10007;</span> 找不到或未安装Pipeline编辑器。
+				</span>
+				<span class="config-help-static $_camillagui_status_problems">
+					<span style='color: red'>&#10007;</span> Pipeline编辑器出现未知问题。
+				</span>
+
+				<label class="control-label">状态</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle-camillagui2">开</label>$_select[camillagui1]
+						<label class="toggle-radio" for="toggle-camillagui1">关</label>$_select[camillagui0]
+					</div>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-camillagui" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-camillagui" class="config-help-info">
+						显示“Pipeline”编辑器的当前“开/关”状态。为了在重新启动后节省系统资源，Pipeline编辑器会自动关闭。
+					</span>
+					<button id="btn-updat-camilla-gui" class="btn btn-medium btn-primary btn-submit" type="submit" name="update_camillagui" value="1" style="display:none" />
+				</div>
+
+				<label class="control-label">专家模式</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle-camillaguiexpert2">开</label>$_select[camillaguiexpert1]
+						<label class="toggle-radio" for="toggle-camillaguiexpert1">关</label>$_select[camillaguiexpert0]
+					</div>
+					<a aria-label="Help" class="config-info-toggle" data-cmd="info-camillaguiexpert" href="#notarget">
+						<i class="fas fa-info-circle"></i>
+					</a>
+					<span id="info-camillaguiexpert" class="config-help-info">
+						显示播放和捕获设备设置等设置。仅用于自定义配置。
+					</span>
+					<button id="btn-updat-camilla-gui-expert" class="btn btn-medium btn-primary btn-submit" type="submit" name="update_camillagui_expert" value="1" style="display:none" />
+				</div>
+
+				<div class="controls">
+					<a href="cdsp-configeditor.php" target="camillagui">
+						<button class="btn btn-medium btn-primary config-btn" $_open_camillagui_disabled>打开</button>
+					</a>
+					<span class="config-btn-after">Pipeline编辑器</span>
+					<span class="config-help-static">
+						这将打开用于创建自定义配置的Pipeline编辑器。
+					</span>
+				</div>
+			</div>
+		</form>
+
+		<form class="form-horizontal $_cdsp_extensions_show" action="#extensions" method="post">
+			<a id="extensions"></a>
+			<legend>扩展</legend>
+			<div class="control-group">
+				$extensions_html
+			</div>
+		</form>
+
+	</div>
+</div>
+
+<form class="form-horizontal" method="post">
+	<div id="remove-pipeline" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="remove-pipeline-label" aria-hidden="true">
+		<input id="config_remove_id" type="hidden" name="cdsp_config" value="$_selected_config" />
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Remove Pipeline?</h3>
+		</div>
+		<div class="modal-body txtmid">
+			<h4>$_selected_config</h4>
+			<span class="config-help-static">
+				$_disable_rm_msg
+			</span>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="remove" value="1" $_disable_rm>确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="remove-coeff" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="remove-coeff-label" aria-hidden="true">
+		<input id="coeff_remove_id" type="hidden" name="cdsp_coeffs" value="$_selected_coeff" />
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Remove Coefficients?</h3>
+		</div>
+		<div class="modal-body txtmid">
+			<h4>$_selected_coeff</h4>
+			<span class="config-help-static">
+				$_disable_rm_msg
+			</span>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="remove" value="1" $_disable_rm>确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="copy-pipeline" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="copy-pipeline-label" aria-hidden="true">
+		<input type="hidden" name="cdsp_config" value="$_selected_config" />
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Copy pipeline</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<div class="control-group">
+					<label class="control-label" for="selected-pipeline-name">从选定</label>
+					<div class="controls">
+						<input id="selected-pipeline-name" class="config-input-large" type="text" value="$_selected_config" readonly>
+					</div>
+					<label class="control-label" for="copyto-pipeline-name">至新</label>
+					<div class="controls">
+						<input id="copyto-pipeline-name" class="config-input-large" type="text" pattern="[A-Za-z0-9 .\-_]*" name="copyto_pipeline_name" value="" autofocus>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="copy_pipeline" value="1">复制</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="create-new-pipeline" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="new-pipeline-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>创建新的pipeline</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="new-pipeline-name">新的pipeline名称</label>
+				<div class="controls">
+					<input class="config-input-large" type="text" pattern="[A-Za-z0-9 .\-_]*" id="new-pipeline-name" name="new_pipeline_name" value="" autofocus>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="create_new_pipeline" value="1">创建</button>
+		</div>
+	</div>
+</form>
