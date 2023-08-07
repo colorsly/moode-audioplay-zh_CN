@@ -1,0 +1,207 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 汉化：Androidnews
+ */
+-->
+
+<h5>概述</h5>
+<p>moOde有四个主要部分：播放、库、封面视图和配置</p>
+<p>在“播放”和“库”之间切换是通过单击“播放”中的封面艺术或“库”中播放栏的任何打开区域来完成的</p>
+<h5>播放</h5>
+<p>播放屏幕包括播放队列、音量和时间旋钮、播放控件、封面艺术和元数据。
+<h5>库</h5>
+<p>该库提供了用于浏览和选择内容的Radio、Folder、Tag、Album和Playlist视图，以及用于显示歌曲信息和控制播放的播放栏。用于配置库的各个方面的选项，包括排序顺序、最近添加的选项等，位于“首选项”的“库”部分</p>
+<h5>搜索库</h5>
+<p>标签和专辑视图中提供了强大的搜索功能，允许根据输入的文本、标签值对或特殊的预定义过滤器过滤库。这些是在库菜单的搜索字段中输入的。还有一个高级搜索对话框，可以提交多个标记值对</p>
+<div id="quickhelp-bullet-list">
+	<ul>
+		<li><span> 一般 </span>
+			<p>搜索不区分大小写，部分匹配被视为有效。单击“筛选依据”标题可清除搜索。</p>
+		</li>
+		<li><span>精确标签</span>
+			<p>支持以下标签：Any、Genre、Artist、Album、Title、Album Artist、Date、Composer、Conductor、Performer、Work、Comment和File。</p>
+			<p>例子: genre rock | artist frank sinatra | artist mccartney | any zeppelin</p>
+		</li>
+		<li><span>任意标签</span>
+			<p>Any标记使用OR关系对所有标记进行搜索。当在搜索字段中输入的第一个文本单词与任何标签或预定义的过滤器名称不匹配时，将自动调用Any搜索。</p>
+			<p>例子: yellow submarine | all that you can't leave behind | frank sinatra | 1962</p>
+		</li>
+		<li><span>预定义过滤</span>
+			<p>以下预定义的筛选器可用: Encoded [bits/rate], Format [.ext], Folder [path], Hdonly, Lossless, Lossy and Year [yyyy] or [yyyy-yyyy].</p>
+			<p>例子: encoded 24/96 | encoded 192 | hdonly | format .dsf | folder u2/achtung baby | lossy | year 1962 | year 1994-1998</p>
+		</li>
+	</ul>
+</div>
+
+<h5>封面视图 </h5>
+<p>封面视图屏幕保护程序提供了一个大尺寸的封面艺术图像或可选的模拟或数字时钟、一个用于控制播放的播放条以及可以在“首选项”的CoverView部分中选择的几个背景选项。</p>
+
+<h5>配置 </h5>
+<p>配置屏幕可通过主菜单访问，并提供库、音频、网络、系统和渲染器的设置。</p>
+
+<h5>队列</h5>
+<p>队列显示在Playback和CoverView中，包含所有要播放的项目。它主要通过从库中选择一个项目，然后单击上下文菜单上列出的队列命令之一来填充。它也可以通过自动洗牌自动填充。下面列出了队列命令。</p>
+<div id="quickhelp-bullet-list">
+	<ul>
+		<li><span>添加|播放</span>
+			<p>“添加”命令将项目添加到队列的末尾。“播放”命令首先检查该项目是否已经在队列中，然后播放现有的项目，否则它与添加一样，然后开始播放。</p>
+		</li>
+		<li><span>清除/播放</span>
+			<p>“清除/播放”命令首先清除队列，然后添加项目并开始播放。</p>
+		</li>
+		<li><span>添加下一个|播放下一个</span>
+			<p>“添加下一个”命令在当前播放或最后播放的项目之后立即添加项目。“播放下一个”命令首先检查该项目是否已经在队列中，然后播放现有的项目，否则它与“添加下一个”命令一样，然后开始播放。</p>
+		</li>
+		<li>
+			<p>对于库标签和专辑视图中的曲目列表，可以通过首选项选项配置播放和清除/播放动作，以将所选曲目添加到队列中，或者将所选曲目和所有后续曲目添加到队列中。</p>
+		</li
+	</ul>
+</div>
+
+<h5>播放列表</h5>
+<p>创建、编辑和管理播放列表主要在库播放列表视图中完成。还可以通过上下文菜单项“将队列保存到播放列表”、“设置收藏夹名称”和“添加到播放列表”来创建播放列表。</p>
+<div id="quickhelp-bullet-list">
+	<ul>
+		<li><span>将队列保存到播放列表</span>
+			<p>“将队列保存到播放列表”命令显示可用播放列表的列表，并将项目添加到所选播放列表或新播放列表(如果指定了播放列表)的末尾。</p>
+		</li>
+		<li><span>设置收藏夹名称</span>
+			<p>“设置收藏夹名称”命令显示一个输入表单，用于指定播放列表的名称，该播放列表包含通过单击 心形 <i class="far fa-heart"></i> 按钮。按钮收藏的项目。如果播放列表不存在，将会创建一个。</p>
+		</li>
+		<li><span>添加到播放列表</span>
+			<p>“添加到播放列表”命令显示可用播放列表的列表，并将项目添加到所选播放列表或新播放列表(如果指定了播放列表)的末尾。</p>
+		</li>
+	</ul>
+</div>
+
+<h5>多房间音频</h5>
+<p>moOde多房间音频系统由发送器和接收器组成。发送方应该是一个专用的moOde播放器，配置为输出到集成的HDMI端口或可选的耳机插孔，但不连接到任何扬声器或耳机。它仅作为音乐服务器，将音频输出发送到一个或多个接收器。欲了解更多信息参见 <a href="./setup_multiroom.txt" class="multiroom-setup-link" target="_blank">查看多房间设置指南</a></p>
+<div id="quickhelp-bullet-list">
+	<ul>
+		<li><span>配置</span>
+			<p>发送器和接收器选项在多房间配置中配置，可通过菜单/配置或音频配置的ALSA部分访问。发送者可以分发包括MPD、AirPlay和Spotify在内的音频源。</p>
+		</li>
+		<li><span>主音量</span>
+			<p>发送器系统上的音量旋钮通过向接收器发送音量变化来提供主音量控制，接收器将其应用于自己的音量。接收器可以通过多房间配置来选择加入或退出主音量控制。</p>
+		</li>
+		<li><span>接收器控制</span>
+			<p>可以通过播放视图顶部的&nbsp;<i class="fas fa-rss"></i>&nbsp;按钮访问接收器面板，从发送器系统集中控制接收器。</p>
+		</li>
+		<li><span>工作网络</span>
+			<p>系统的性能取决于低延迟、高吞吐量的网络和主机。接收者的发现依赖于多播DNS。音频分发协议的寻址依赖于使用默认地址239.0.0.1的IP多播。</p>
+		</li>
+		<li><span>音频格式</span>
+			<p>该系统采用16位48 kHz PCM格式，通过Opus编解码器进行编码。ALSA使用Speex转换器处理必要的重采样。</p>
+		</li>
+	</ul>
+</div>
+
+<h5>特殊菜单</h5>
+<p>大多数菜单项是不言自明的，但有几个执行独特的功能。</p>
+<div id="quickhelp-icon-list">
+	<ul>
+		<li><i class="fas fa-forward sx"></i>
+			<span>其他玩家</span>
+			<p>该项目位于主菜单上。它显示了在网络上发现的其他moOde玩家的列表。点击一个玩家打开它的网页界面。如果播放器用作多房间接收器图标&nbsp;<i class="fas fa-rss"></i>&nbsp;将出现在其名称旁边。</p>
+		</li>
+		<li><i class="far fa-music sx"></i>
+			<span>音频信息</span>
+			<p>该项目位于主菜单和播放栏上的省略号上下文菜单中。如果从主菜单打开，它会显示当前正在播放的项目的硬件相关信息，并分为三个部分，包括输入/输出、DSP和音频设备。如果从省略号上下文菜单中打开，它会显示当前正在播放的电台或曲目的元数据信息。</p>
+		</li>
+	</ul>
+</div>
+
+<h5>特殊按钮</h5>
+<p>大多数按钮都是不言自明的，但有几个按钮执行独特的功能。</p>
+<div id="quickhelp-icon-list">
+	<ul>
+		<li><i class="far fa-sliders-v-square sx"></i>
+			<span>CamillaDSP快速选择</span>
+			<p>显示可用CamillaDSP过滤器的菜单。当CamillaDSP打开时，此按钮出现在播放视图的顶部。</p>
+		</li>
+		<li><i class="far fa-tv sx"></i>
+			<span>封面视图</span>
+			<p>显示全屏封面查看屏幕保护程序。单击播放栏之外的任意位置可关闭封面视图。</p>
+		</li>
+		<li><i class="far fa-random sx"></i>
+			<span>随机播放</span>
+			<p>播放从队列中随机选择的曲目(默认)，或者如果打开了自动随机播放(参见音频配置),播放从整个音乐库中随机选择的曲目或专辑。</p>
+		</li>
+		<li><i class="far fa-arrow-down sx"></i>
+			<span>无痕播放</span>
+			<p>播放完毕后，将曲目从队列中移除。当自动随机播放打开时，消费模式会自动启用。</p>
+		</li>
+		<li><i class="far fa-repeat sx"></i>
+			<span>重复播放</span>
+			<p>重复队列，或者如果启用了Single，则重复曲目。</p>
+		</li>
+		<li><i class="far fa-redo sx"></i>
+			<span>单曲重复</span>
+			<p>与“重复”一起使用，重复播放一首曲目。</p>
+		</li>
+		<li><i class="far fa-exchange-alt sx"></i>
+			<span>上次播放曲目</span>
+			<p>在当前播放的项目和上一次播放的项目之间切换。</p>
+		</li>
+		<li><i class="far fa-dot-circle sx"></i>
+			<span>选择随机专辑</span>
+			<p>在标签或专辑视图中选择一个随机专辑进行查看。</p>
+		</li>
+		<li><i class="far fa-asterisk sx"></i>
+			<span>随机专辑</span>
+			<p>从音乐库中随机选择一张专辑，并执行为“一键操作”设置指定的操作。此设置位于“偏好设置”的“回放”部分。</p>
+		</li>
+		<li><i class="far fa-heart sx"></i>
+			<span>我的收藏</span>
+			<p>将队列中当前选定的项目添加到收藏夹播放列表。播放列表在“资料库播放列表”视图中列出。</p>
+		</li>
+	</ul>
+</div>
+
+<h5>活动组件</h5>
+<p>用户界面中有几个非按钮元素，点击时会执行一个动作</p>
+<div id="quickhelp-bullet-list">
+	<ul>
+		<li><span>触摸操作</span>
+			<p>当在“资料库电台”或“专辑”视图中点按封面，或点按“随机播放专辑”时 <i class="far fa-asterisk sx"></i> 按钮，执行为“一键操作”设置指定的操作。此设置位于“偏好设置”的“资源库”部分。</p>
+		</li>
+		<li><span>渲染器活动屏幕</span>
+			<p>点击蓝牙、模拟输入或S/PDIF输入激活中心的标题，将启动各自的配置屏幕，允许更改输入/输出设置。</p>
+		</li>
+		<li><span>时间旋钮</span>
+			<p>在播放歌曲文件时点击时间将会在向上或向下计时之间切换。点按或拖移时间环会在乐曲中向前或向后移动。</p>
+		</li>
+		<li><span>音量旋钮</span>
+			<p>点击数字音量切换静音状态。单击音量环上的前进按钮，音量会前进最大的步长数，称为音量步长限制。这个限制可以通过音频配置来设置。单击加号/减号按钮可将音量调节1档。</p>
+		</li>
+		<li><span>额外元数据</span>
+			<p>在播放时，单击封面下方的额外元数据会打开音频信息屏幕上的电台或曲目标签。</p>
+		</li>
+		<li><span>歌曲名称</span>
+			<p>在播放时，点击封面下的歌曲标题，在单独的浏览器标签中启动搜索。可以在首选项的播放部分选择使用的搜索引擎。</p>
+			<p>智能手机上，它将队列滚动到该项目。</p>
+		</li>
+		<li><span>电台或艺术家名称</span>
+			<p>播放时，单击封面下方的电台名称或艺术家姓名，可分别切换至电台或标签视图。在标签视图中，应用了艺术家过滤器。在收音机视图中，列表滚动到电台。</p>
+		</li>
+		<li><span>滑动手势</span>
+			<p>在智能手机上，向上滑动可以将队列滚动到视图中，点击播放栏可以返回播放。在图书馆标签视图中，向侧面滑动会显示/隐藏“流派”栏。</p>
+		</li>
+	</ul>
+</div>
