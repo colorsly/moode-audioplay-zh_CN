@@ -1,0 +1,95 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 汉化：Androidnews
+ */
+-->
+<div id="container">
+<div class="container">
+    <h1 class="snd-config">Squeezelite</h1>
+
+    <form class="form-horizontal" action="" method="post">
+    	<legend>设置
+			<button class="legend-config btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+		</legend>
+
+        <div class="control-group">
+            <label class="control-label" for="renderer-name">名称</label>
+            <div class="controls">
+                <input class="config-input-large" type="text" id="renderer-name" name="config[PLAYERNAME]" value="$_sl_select[renderer_name]">
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-renderer_name" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-renderer_name" class="config-help-info">
+					将出现在LMS中的友好名称
+                </span>
+            </div>
+
+            <label class="control-label" for="alsa-buffer">ALSA参数</label>
+            <div class="controls">
+                <input class="config-input-large" type="text" id="alsa-params" name="config[ALSAPARAMS]" value="$_sl_select[alsa_params]">
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-alsa-params" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-alsa-params" class="config-help-info">
+					b = buffer time, p = period count, f sample format (16|24|24_3|32), m = use mmap (0|1)<br>
+                	b less than 500 treated as buffer time in ms, otherwise size in bytes<br>
+					p less than 50 treated as period count, otherwise size in bytes
+                </span>
+            </div>
+
+            <label class="control-label" for="output-buffers">输出缓冲器</label>
+            <div class="controls">
+                <input class="config-input-large" type="text" id="output-buffers" name="config[OUTPUTBUFFERS]" value="$_sl_select[output_buffers]">
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-output-buffers" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-output-buffers" class="config-help-info">
+					流缓冲区（KB）：dspBuffer必须小于可用RAM
+                </span>
+            </div>
+
+            <label class="control-label" for="task-priority">任务优先级</label>
+            <div class="controls">
+                <input class="config-input-large" type="number" id="task-priority" name="config[TASKPRIORITY]" value="$_sl_select[task_priority]" min="1" max="99">
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-task-priority" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-task-priority" class="config-help-info">
+                	默认值：45，最小/最大优先级为1/99
+                </span>
+            </div>
+
+            <label class="control-label" for="audio-codecs">音频编解码器</label>
+            <div class="controls">
+                <input class="config-input-large" type="text" id="audio-codecs" name="config[CODECS]" value="$_sl_select[audio_codecs]">
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-audio-codecs" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-audio-codecs" class="config-help-info">
+                	默认值： flac,pcm,mp3,ogg,aac,alac,dsd
+					可用编解码器： flac,pcm,mp3,ogg,aac,wma,alac,dsd,mad,mpg
+                </span>
+            </div>
+
+            <label class="control-label" for="other-options">Other options</label>
+            <div class="controls">
+                <input class="config-input-large" type="text" id="other-options" name="config[OTHEROPTIONS]" value="$_sl_select[other_options]">
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-other-options" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-other-options" class="config-help-info">
+                	默认值：-W -D 500 -R E -S /var/local/www/commandw/slpower.sh<br>
+					-V [control] Use ALSA control for volume, otherwise use software volume.<br>
+					-D [delay][:format] Output device supports DSD<br>
+					[delay] = optional delay in ms switching between PCM and DSD<br>
+					[:format] = dop (default if not specified), u8, u16le, u16be, u32le oe u32be.<br>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
