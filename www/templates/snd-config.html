@@ -1,0 +1,473 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 汉化：Androidnews
+ */
+-->
+<div id="container">
+<div class="container">
+	<h1 class="snd-config">音乐</h1>
+
+	<form class="form-horizontal" method="post">
+		<legend>音频输出</legend>
+		<p class="sub-legend">
+			音频输出设备包括Raspberry Pi集成HDMI和耳机音频端口、I2S HAT音频设备和USB音频设备。
+			请注意，当MPD音频输出设置为“蓝牙扬声器”或多房间发送器或接收器打开时，这些设置无法更改。
+		</p>
+
+		<div class="control-group">
+			<label class="control-label" for="output_device">输出设备</label>
+			<div class="controls">
+                <select id="output_device" name="output_device" class="config-select-large">
+					$_mpd_select[device]
+                </select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_output_device" value="novalue" $_output_device_btn_disabled>设置</button>
+				<span><em>&nbsp;$_device_error</em></span>
+			</div>
+
+			<label class="control-label" for="mixer_type">音量控制器</label>
+            <div class="controls">
+                <select id="mixer_type" name="mixer_type" class="config-select-large">
+					$_mpd_select[mixer_type]
+                </select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_volume_type" value="novalue" $_volume_type_btn_disabled>设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-mixer-type" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-mixer-type" class="config-help-info">
+					<b>- Hardware:&nbsp;</b>使用音频设备板载音量控制器。<br>
+                    <b>- Software:&nbsp;</b>使用MPD软件音量程序(带抖动的32位浮点)。<br>
+					<b>- Fixed (0dB output):&nbsp;</b>假设使用外部模拟或数字音量控制器。
+				</span>
+				<span class="config-help-static">
+					<b>请注意：</b> 更改此选项前，请将音量设置为较低水平。<br>
+					Fixed (0dB) 将输出100%的音量。可以通过调节最大ALSA音量来设置实际的固定音量。
+				</span>
+            </div>
+
+			<label class="control-label" for="i2sdevice">命名I2S设备</label>
+			<div class="controls">
+				<select id="i2sdevice" class="config-select-large" name="i2sdevice">
+					$_i2s[i2sdevice]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_i2s_device" value="novalue" $_i2sdevice_btn_disable>设置</button>
+			</div>
+			<label class="control-label" for="i2soverlay">或DT覆盖</label>
+			<div class="controls">
+				<select id="i2soverlay" class="config-select-large" name="i2soverlay">
+					$_i2s[i2soverlay]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_i2s_overlay" value="novalue" $_i2soverlay_btn_disable>设置</button>
+				<span class="config-help-static">
+					将两者都设置为None可配置USB音频设备、Pi HDMI或Pi耳机插孔<br>
+					作为更新此设置的一部分，自动播放将被关闭。
+                </span>
+			</div>
+
+			<label class="control-label" for="drvoptions">驱动程序选项</label>
+			<div class="controls">
+				<select id="drvoptions" class="config-select-large" name="drvoptions">
+					$_select[drvoptions]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_drvoptions" value="novalue" $_driveropt_btn_disable>设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-drvoptions" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-drvoptions" class="config-help-info">
+					<b>slave:</b> 如果启用，Boss和MiniBOSS DAC将在Kali reclocker要求的从属模式下运行。<br>
+					<b>glb_mclk:</b> 如果启用，则使用Kali MCLK，并禁用Piano 2.1的PLL以获得最佳SQ。<br>
+                </span>
+			</div>
+
+			<label class="control-label">芯片选项</label>
+			<div class="controls">
+				<a href="chp-config.php" $_chip_link_disable><button class="btn btn-primary btn-medium config-btn" $_chip_btn_disable>编辑</button></a>
+			</div>
+		</div>
+
+		<legend>ALSA选项</legend>
+		<p class="sub-legend">
+			高级Linux声音架构（ALSA）是一个软件框架，也是Linux内核的一部分，为声卡设备驱动程序和音频应用程序提供应用程序编程接口（API）。
+		</p>
+
+		<div class="control-group">
+			<label class="control-label" for="alsavolume_max">最大音量(%)</label>
+			<div class="controls">
+				<input class="config-input-large" $_alsavolume_max_readonly type="number" maxlength="3" min="0" max="100" id="alsavolume_max" name="alsavolume_max" value="$_alsavolume_max">
+				<button class="btn btn-primary btn-small config-btn-set btn-submit status-msg $_alsavolume_max_hide" type="submit" name="update_alsavolume_max" value="novalue">设置</button>$_alsavolume_max_msg
+				<span id="info-alsavolume_max" class="config-help-static">
+					当音量类型设定为“Software”或“Fixed”时，或者当任何渲染器处于活动状态时，建立0dB级别。<br>
+					请注意，在100%音量时，HDMI端口将正确设置为0dB，而不是+4dB。
+				</span>
+			</div>
+
+			<label class="control-label" for="alsa_output_mode">输出模式</label>
+			<div class="controls">
+				<select id="alsa_output_mode" class="config-select-large" name="alsa_output_mode">
+					$_select[alsa_output_mode]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_alsa_output_mode" value="novalue" $_alsa_output_mode_disable>设置</button>
+				<span class="config-help-static">
+					<b>默认(plughw)</b><br>
+					如果需要，执行格式转换，例如将位深度填充为零，达到音频设备所需的宽度。<br>
+					<b>Direct (hw)</b><br>
+					不执行任何格式转换。音频设备必须接受该格式，否则无法播放。<br>
+					支持MPD、CamillaDSP、蓝牙（入站）、AirPlay和Spotify渲染器。<br>
+					注意:直通模式不支持环回。
+				</span>
+			</div>
+
+			<label class="control-label">环回</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-alsa-loopback-2">开</label>$_select[alsa_loopback_on]
+					<label class="toggle-radio" for="toggle-alsa-loopback-1">关</label>$_select[alsa_loopback_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_alsa_loopback" value="novalue" $_alsa_loopback_disable>设置</button>
+				<span class="config-help-static">
+					环回设备提供输出到音频设备的PCM流的副本。可以通过读取“hw:Loopback，1,0”来访问副本。<br>
+					请注意，对于HDMI和耳机输出回送，要求采样速率大于44.1K，这可以在MPD配置的SoX重新采样部分进行配置。如果多房间发送器打开，则该要求不适用。
+                </span>
+			</div>
+
+			<div $_feat_multiroom">
+				<label class="control-label">多房间</label>
+				<div class="controls">
+					<a href="trx-config.php"><button class="btn btn-primary btn-medium config-btn">系统配置</button></a>
+					<span class="config-help-static">
+						设置多房间音频发送器和接收器。需要打开环回。
+		            </span>
+				</div>
+			</div>
+		</div>
+
+		<legend>MPD Options</legend>
+		<p class="sub-legend">
+			音乐播放器守护进程(MPD)是一个灵活、强大的播放音乐的服务器端应用程序，是moOde中主要的音频应用程序。MPD设置包括DSD、SoX重采样、音频缓冲和其他设置，可通过编辑按钮进行配置。
+		</p>
+
+		<div class="config-horiz-rule">常规设置</div>
+		<div class="control-group">
+			<label class="control-label">MPD设置</label>
+			<div class="controls">
+				<a href="mpd-config.php"><button class="btn btn-primary btn-medium config-btn">编辑</button></a>
+			</div>
+
+			<div class="controls">
+				<a data-toggle="modal" href="#mpd-restart"><button class="btn btn-medium btn-primary config-btn">重新启动</button></a>
+				<span class="config-btn-after">MPD</span>
+			</div>
+
+			<label class="control-label">开始后自动播放</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-autoplay-2">开</label>$_select[autoplay_on]
+					<label class="toggle-radio" for="toggle-autoplay-1">关</label>$_select[autoplay_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_autoplay" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-autoplay" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-autoplay" class="config-help-info">
+					开始自动随机播放，如果它以前是活跃的，或播放最后播放的项目。
+                </span>
+			</div>
+		</div>
+
+		<div class="config-horiz-rule">自动随机播放</div>
+		<div class="control-group">
+			<label class="control-label">自动随机播放</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-ashufflesvc-2">开</label>$_select[ashufflesvc_on]
+					<label class="toggle-radio" for="toggle-ashufflesvc-1">关</label>$_select[ashufflesvc_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_ashufflesvc" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-ashufflesvc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-ashufflesvc" class="config-help-info">
+					当播放列表中的最后一首歌曲播放完毕时，自动随机播放会从音乐库中添加两首随机选择的歌曲然后重复该过程。
+					这在不增加播放列表的情况下创建了连续的音乐流有两个轨道使得MPD交叉渐变能够被使用。
+					注意:自动随机播放取代MPD随机播放作为“随机”按钮的方法。
+                </span>
+			</div>
+
+			<label class="control-label" for="ashuffle_mode">模式</label>
+			<div class="controls">
+				<select id="ashuffle_mode" class="config-select-large" name="ashuffle_mode">
+					$_select[ashuffle_mode]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_ashuffle_mode" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_ashuffle_mode" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_ashuffle_mode" class="config-help-info">
+					播放随机选择的曲目或整张专辑。
+				</span>
+			</div>
+
+			<label class="control-label" for="ashuffle_filter">标签过滤器</label>
+			<div class="controls">
+                <input class="config-input-large" type="text" id="ashuffle_filter" name="ashuffle_filter" value="$_ashuffle_filter">
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_ashuffle_filter" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_ashuffle_filter" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_ashuffle_filter" class="config-help-info">
+					“自动随机播放”用来选择要随机播放的轨道的标签值对的字符串。
+					给定标记只允许出现一次。过滤器不区分大小写，它执行标记包含值子串匹配。<br>
+					<b>Ex:</b>&nbsp; genre "indie rock" artist coldplay<br>
+					<b>Ex:</b>&nbsp; filename "NAS/Music/Led Zeppelin"
+                </span>
+			</div>
+		</div>
+
+		<div class="config-horiz-rule">音量选项</div>
+		<div class="control-group">
+			<label class="control-label" for="volume_step_limit">音量步长限制</label>
+			<div class="controls">
+				<select id="volume_step_limit" class="config-select-large" name="volume_step_limit">
+					$_select[volume_step_limit]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_volume_step_limit" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_volume_step_limit" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_volume_step_limit" class="config-help-info">
+					设定在当前位置之前点按音量旋钮时，音量旋钮将前进的最大量。
+				</span>
+			</div>
+
+			<label class="control-label" for="volume_mpd_max">最大MPD音量</label>
+			<div class="controls">
+                <input class="config-input-large" type="number" maxlength="2" min="0" max="100" id="volume_mpd_max" name="volume_mpd_max" value="$_volume_mpd_max" required>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_volume_mpd_max" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_volume_mpd_max" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_volume_mpd_max" class="config-help-info">
+					建立可通过音量旋钮和vol.sh和rotvol.sh设置的最高音量。
+                </span>
+			</div>
+
+			<label class="control-label">显示分贝音量</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-volume-db-display-2">开</label>$_select[volume_db_display_on]
+					<label class="toggle-radio" for="toggle-volume-db-display-1">关</label>$_select[volume_db_display_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_volume_db_display" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_volume_db_display" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_volume_db_display" class="config-help-info">
+					在音量旋钮的0-100级别旁边显示分贝音量。
+                </span>
+			</div>
+
+			<label class="control-label">USB音量旋钮</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-usb-volknob-2">开</label>$_select[usb_volknob_on]
+					<label class="toggle-radio" for="toggle-usb-volknob-1">关</label>$_select[usb_volknob_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_usb_volknob" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_usb_volknob" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_usb_volknob" class="config-help-info">
+					激活USB音量旋钮的triggerhappy按键映射守护程序。<br>
+					有关键/事件映射，请参考/etc/triggerhappy/triggers.d/media.conf
+                </span>
+			</div>
+
+			<label class="control-label">旋转编码器</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-rotaryenc-2">开</label>$_select[rotaryenc_on]
+					<label class="toggle-radio" for="toggle-rotaryenc-1">关</label>$_select[rotaryenc_off]
+				</div>
+				<input class="config-input-large" type="text" id="rotenc_params" name="rotenc_params" value="$_select[rotenc_params]" required>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_rotenc" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-rotary-enc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-rotary-enc" class="config-help-info">
+					使旋转编码器设备能够控制MPD音量。<br>
+					Driver args:<br>
+					- poll_interval: 音量更新轮询循环的休眠毫秒数。默认值= 100。<br>
+					- accell_factor: 用于确定是使用1步还是“volume_step”步的阈值(上次/当前enc位置之间的差值)。默认值= 2。<br>
+					- volume_step: 旋钮快速转动时使用的步数。默认值= 3。<br>
+					- pin_a, pin_b: Broadcom SoC引脚号。默认值= 23，24。
+                </span>
+			</div>
+		</div>
+
+		<div class="config-horiz-rule">DSP选项</div>
+		<div class="control-group">
+			<label class="control-label" for="mpdcrossfade">交叉渐变(secs)</label>
+			<div class="controls">
+                <input class="config-input-large" type="number" maxlength="2" min="0" max="15" id="mpdcrossfade" name="mpdcrossfade" value="$_mpdcrossfade" required>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_mpdcrossfade" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-mpdcrossfade" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-mpdcrossfade" class="config-help-info">
+					MPD使用其音频缓冲区进行交叉渐变，因此必须有足够的缓冲区空间来执行请求给定音频格式的交叉渐变秒数。<br>
+					注意:设置为0将禁用交叉渐变。
+                </span>
+			</div>
+
+			<label class="control-label" for="crossfeed">交叉馈电</label>
+			<div class="controls">
+				<select id="crossfeed" class="config-select-large" name="crossfeed">
+					$_select[crossfeed]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_crossfeed" value="novalue" $_crossfeed_set_disabled>设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-crossfeed" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-crossfeed" class="config-help-info">
+					<b>700 Hz, 3.0 dB - Linkwitz</b><br>
+					- 近似于方位角为40度的原始Linkwitz交叉馈线。最高的交叉馈电水平，最低的分离。<br>
+					<b>700 Hz, 4.5 dB - Bauer</b><br>
+					- 在大约3米的距离上近似方位角为30度的虚拟扬声器位置。<br>
+					<b>800 Hz, 6.0 dB - Chu Moy</b><br>
+					- 近似于Chu Moy改进的Linkwitz交叉馈线。<br>
+					<b>650 Hz, 10.0 dB - Jan Meier</b><br>
+					- 近似于Jan Meier自然交叉馈送。最低的交叉馈电电平，最高的分离度。<br>
+                </span>
+			</div>
+
+			<label class="control-label">极性反转</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-invert-polarity-2">开</label>$_select[invert_polarity_on]
+					<label class="toggle-radio" for="toggle-invert-polarity-1">关</label>$_select[invert_polarity_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_invert_polarity" value="novalue" $_invpolarity_set_disabled>设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info_invert_polarity" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_invert_polarity" class="config-help-info">
+					将每个通道上的波形从 +/- to -/+.<br>
+                </span>
+			</div>
+		</div>
+
+		<div class="config-horiz-rule">HTTP流</div>
+		<div class="control-group">
+			<label class="control-label">流媒体服务器</label>
+			<div class="controls">
+				<div class="toggle">
+					<label class="toggle-radio" for="toggle-mpd-httpd-2">开</label>$_select[mpd_httpd_on]
+					<label class="toggle-radio" for="toggle-mpd-httpd-1">关</label>$_select[mpd_httpd_off]
+				</div>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_mpd_httpd" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-mpd-httpd" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-mpd-httpd" class="config-help-info">
+					在指定的端口上以HTTP流的形式提供MPD输出。<br>
+                </span>
+			</div>
+
+			<label class="control-label" for="mpd-httpd-port">端口</label>
+			<div class="controls">
+                <input class="config-input-large" type="number" maxlength="4" min="8000" max="9000" id="mpd-httpd-port" name="mpd_httpd_port" value="$_mpd_httpd_port" required>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_mpd-httpd_port" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-mpd-httpd-port" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-mpd-httpd-port" class="config-help-info">
+					默认端口是 8000. 端口号范围是 8000 - 9000.
+                </span>
+			</div>
+
+			<label class="control-label" for="mpd-httpd-encoder">编码器</label>
+			<div class="controls">
+				<select id="mpd-httpd-encoder" class="config-select-large" name="mpd_httpd_encoder">
+					$_select[mpd_httpd_encoder]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_mpd_httpd_encoder" value="novalue">设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-mpd-httpd-encoder" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-mpd-httpd-encoder" class="config-help-info">
+					使用压缩级别为0的FLAC(最快，最少压缩)或320 kbps的LAME (MP3)对流进行编码。
+				</span>
+			</div>
+		</div>
+
+		<legend>均衡器</legend>
+		<p class="sub-legend">
+			均衡器由MPD、AirPlay和Spotify连接渲染器支持。如果MPD音频输出设置为“蓝牙扬声器”或“多房间发送器”或“接收器”打开，则它们不可用。
+			请注意，均衡器、交叉馈送和极性反转是互斥的。启用其中一个将禁用另一个上的“设置”按钮。
+		</p>
+
+		<div class="control-group">
+			<label class="control-label" for="camilladsp">CamillaDSP</label>
+			<div class="controls">
+				<select id="camilladsp" class="config-select-large" name="camilladsp">
+					$_select[camilladsp]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_camilladsp" value="novalue" $_camilladsp_set_disabled>设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-camilladsp" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<div id="info-camilladsp" class="config-help-info">
+					CamillaDSP是一个通用信号处理工具，用于路由和过滤声音。例如，它可以用于构建有源扬声器的分频器，或者用于执行房间校正。CamillaDSP由Henrik Enquist维护。集成到moOde是由@bitlab完成的。<br>
+					功能摘要:<br>
+					- IIR filters (BiQuad)<br>
+					- FIR filters (Convolution via FFT)<br>
+					- Built-in sample rate converter<br>
+					- Filters can be chained freely<br>
+					- Flexible routing<br>
+					- Simple YAML configuration<br>
+					- All calculations done with 64-bit floats<br>
+					- ARM Neon 64-bit instruction set is used<br>
+					- Pipeline editor with expert mode<br>
+					Configurations can be managed at the CamillaDSP settings page.
+                </div>
+				<div>
+					$_camilladsp_config_check
+				</div>
+			</div>
+
+			<div class="controls">
+				<a href="cdsp-config.php"><button class="btn btn-medium btn-primary config-btn" $_camilladsp_set_disabled>编辑</button></a>
+				<span class="config-btn-after">CamillaDSP设置</span>
+			</div>
+
+			<label class="control-label" for="eqfa12p">参数均衡器</label>
+			<div class="controls">
+				<select id="eqfa12p" class="config-select-large" name="eqfa12p">
+					$_select[eqfa12p]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_eqfa12p" value="novalue" $_eqfa12p_set_disabled>设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-eqp" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-eqp" class="config-help-info">
+					三个x四个串联的Mitra Regalia峰值均衡器滤波器；Fons Adriaensens“Parametric1”均衡器[fafil]的矢量算术重新实现，差异较小。 串行滤波器组织的并行化导致输出滞后三个样本。该EQ使用Tim Goetze编写的CAPS DSP程序套件中的@bitlab自定义eqfa12p组件<br>
+					<b>注意:</b> 均衡器处理适用于MPD、AirPlay和Spotify输出。<br>
+                </span>
+			</div>
+
+			<div class="controls">
+				<a href="eqp-config.php"><button class="btn btn-medium btn-primary config-btn">编辑</button></a>
+				<span class="config-btn-after">EQ曲线</span>
+			</div>
+
+			<label class="control-label" for="alsaequal">图形均衡器</label>
+			<div class="controls">
+				<select id="alsaequal" class="config-select-large" name="alsaequal">
+					$_select[alsaequal]
+				</select>
+				<button class="btn btn-primary btn-small config-btn-set btn-submit" type="submit" name="update_alsaequal" value="novalue" $_alsaequal_set_disabled>设置</button>
+				<a aria-label="Help" class="config-info-toggle" data-cmd="info-alsaequal" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-alsaequal" class="config-help-info">
+					经典的倍频带、恒定Q、二阶滤波器设计。中心高于奈奎斯特频率的频带会自动禁用。该均衡器使用蒂姆·戈策编写的CAPS DSP程序套件的Eq10X2组件。<br>
+					<b>注意:</b> 均衡器处理适用于MPD、AirPlay和Spotify输出。<br>
+                </span>
+			</div>
+
+			<div class="controls">
+				<a href="eqg-config.php"><button class="btn btn-medium btn-primary config-btn">编辑</button></a>
+				<span class="config-btn-after">EQ曲线</span>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+
+<form class="form-horizontal" method="post">
+	<div id="mpd-restart" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="mpd-restart-label" aria-hidden="true">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>重新启动MPD服务？</h3>
+		</div>
+		<div class="modal-body"></div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="mpdrestart" value="1">确定</button>
+		</div>
+	</div>
+</form>
