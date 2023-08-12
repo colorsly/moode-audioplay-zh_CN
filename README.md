@@ -3,6 +3,7 @@
 #### 介绍
 MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，最初由Andrea Coiutti和Simone De Gregori设计和编码，随后通过RaspyFi/Volumio项目的早期努力进行了增强。
 汉化文件适用版本：Release: 8.2.4 2022-12-27
+汉化文件适用版本：Release: 8.3.3 2023-06-08
 
 #### 软件架构
 无复杂架构一说，就是替换固件相关目录下的文件
@@ -12,12 +13,13 @@ MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，
 包含：
 moOde 8.2.4s 英文原版
 核心隔离脚本
+moOde8.3.3 英文原版
 汉化包
-
-链接: https://pan.baidu.com/s/1_jJYeUOIVJclCaAXVl9pQg?pwd=y3c8 提取码: y3c8 
-
+链接: https://pan.baidu.com/s/1_jJYeUOIVJclCaAXVl9pQg?pwd=y3c8 提取码: y3c8
 
 #### 安装教程
+
+ **详细安装教程请参阅：moOde系统和桥安装以及汉化说明.pdf** 
 
 1.  有三种或以上方式安装汉化文件
     
