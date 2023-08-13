@@ -151,8 +151,8 @@ if (isset($_POST['update_alsa_loopback'])) {
 		if ($_POST['alsa_loopback'] == 'Off') {
 			$result = sysCmd('sudo modprobe -r snd-aloop');
 			if (!empty($result)) {
-				$_SESSION['notify']['title'] = 'Unable to turn off';
-				$_SESSION['notify']['msg'] = 'Loopback is in use';
+				$_SESSION['notify']['title'] = '无法关闭';
+				$_SESSION['notify']['msg'] = '环回正在使用中';
 				$_SESSION['notify']['duration'] = 5;
 			} else {
 				submitJob('alsa_loopback', 'Off', '设置已更新', '');
