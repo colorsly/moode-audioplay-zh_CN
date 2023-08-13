@@ -43,7 +43,13 @@ c.在linux系统环境下，读取moode系统的tf卡，复制汉化文件到相
 
 #### 汉化效果
 
-
+![输入图片说明](moOde-audioplay-zh_CN-01.jpg)
+![输入图片说明](moOde-audioplay-zh_CN-02.jpg)
+![输入图片说明](moOde-audioplay-zh_CN-03.jpg)
+![输入图片说明](moOde-audioplay-zh_CN-04.jpg)
+![输入图片说明](moOde-audioplay-zh_CN-05.jpg)
+![输入图片说明](moOde-audioplay-zh_CN-06.jpg)
+![输入图片说明](moOde-audioplay-zh_CN-07.jpg)
 
 #### 参与贡献
 
