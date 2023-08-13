@@ -26,9 +26,9 @@ moOde8.3.3 英文原版
 #### 安装教程
 
  **详细安装教程请参阅：moOde系统和桥安装以及汉化说明.pdf** 
-
 1. 仓库安装方法：
 ssh登录moOde
+
 <code>
 wget https://github.com/colorsly/moode-audioplay-zh_cn/archive/refs/tags/1.1.2.zip
 unzip 1.1.2.zip
