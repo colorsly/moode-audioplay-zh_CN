@@ -27,13 +27,21 @@ moOde8.3.3 英文原版
 
  **详细安装教程请参阅：moOde系统和桥安装以及汉化说明.pdf** 
 
-1.  有三种或以上方式安装汉化文件
-    
-a.在制作moOde系统TF卡启动盘的时候，使用“树莓派镜像烧录器”刷入8.2.4s系统镜像，刷入前在选项菜单勾选开启ssh服务，开启设置用户名密码，然后使用通过WinSCP软件，ssh访问moode系统，使用刷写系统时建立的权号登陆，上传汉化文件到~/目录，最后，在浏览器访问moOde系统，系统设置中打开ssh，sudo -i ，进入root模式，最后，cp ~/www /var/www 大功告成。
+1. 仓库安装方法：
+ssh登录moOde
+<code>
+wget https://github.com/colorsly/moode-audioplay-zh_cn/archive/refs/tags/1.1.2.zip
+unzip 1.1.2.zip
+cd moode-audioplay-zh_cn-1.1.2
+cd 8.3.3
+sudo cp -rf www/* /var/www
+</code>
 
-b.使用diskgens软件，读取moode系统的tf卡，复制汉化文件到相应目录替换目标文件。
+2.在制作moOde系统TF卡启动盘的时候，使用“树莓派镜像烧录器”刷入8.2.4s系统镜像，刷入前在选项菜单勾选开启ssh服务，开启设置用户名密码，然后使用通过WinSCP软件，ssh访问moode系统，使用刷写系统时建立的权号登陆，上传汉化文件到~/目录，最后，在浏览器访问moOde系统，系统设置中打开ssh，sudo -i ，进入root模式，最后，cp ~/www /var/www 大功告成。
 
-c.在linux系统环境下，读取moode系统的tf卡，复制汉化文件到相应目录替换目标文件。
+3.使用diskgens软件，读取moode系统的tf卡，复制汉化文件到相应目录替换目标文件。
+
+4.在linux系统环境下，读取moode系统的tf卡，复制汉化文件到相应目录替换目标文件。
 
 #### 使用说明
 
