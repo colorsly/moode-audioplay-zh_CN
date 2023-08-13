@@ -30,7 +30,7 @@ moOde8.3.3 英文原版
 1.使用ssh登陆moOde，输入以下命令，进行仓库方式安装汉化，以8.3.3版本为例说明
 
 <code>
-wget wget https://github.com/colorsly/moode-audioplay-zh_cn/archive/refs/tags/1.1.2.zip
+wget https://github.com/colorsly/moode-audioplay-zh_cn/archive/refs/tags/1.1.2.zip
 upzip 1.1.2.zip
 cd moode-audioplay-zh_cn-1.1.2
 cd 8.3.3
