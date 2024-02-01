@@ -25,6 +25,8 @@ moOde8.3.3 英文原版
 
 链接:https://pan.baidu.com/s/1Kd1EcAsVmoL5Qr4sXp41Dw?pwd=rq9g
 
+代码更新转移至：https://gitee.com/androidnews/moode-audioplay-zh_cn
+
 #### 安装教程
 
  **详细安装教程请参阅：moOde系统和桥安装以及汉化说明.pdf** 
