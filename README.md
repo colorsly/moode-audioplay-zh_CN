@@ -7,6 +7,8 @@ MoOde Audio Player是MPD出色的WebUI音频播放器客户端的衍生产品，
 
 汉化文件适用版本：Release: 8.3.3 2023-06-08
 
+汉化文件适用版本：Release: 8.3.7 2023-12-07
+
 #### 软件架构
 无复杂架构一说，就是替换固件相关目录下的文件
 
@@ -21,7 +23,7 @@ moOde8.3.3 英文原版
 
 汉化包
 
-链接: https://pan.baidu.com/s/1_jJYeUOIVJclCaAXVl9pQg?pwd=y3c8 提取码: y3c8
+链接:https://pan.baidu.com/s/1Kd1EcAsVmoL5Qr4sXp41Dw?pwd=rq9g
 
 #### 安装教程
 
